@@ -1,0 +1,14 @@
+wp-admin
+wp-includes
+wp-content/**
+.htaccess
+index.php
+license.txt
+local-xdebuginfo.php
+readme.html
+wp-*.php
+xmlrpc.php
+!wp-content/themes
+!wp-content/themes/twentytwentyfour
+!wp-content/themes/twentytwentyfour/templates
+!wp-content/themes/twentytwentyfour/templates/index.php

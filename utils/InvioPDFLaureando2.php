@@ -1,10 +1,10 @@
 <?php
+require_once __DIR__ . '/ProspettoPDFLaureando2.php';
+require_once dirname(__DIR__) . '/lib/PHPMailer/src/Exception.php';
+require_once dirname(__DIR__) . '/lib/PHPMailer/src/PHPMailer.php';
+require_once dirname(__DIR__) . '/lib/PHPMailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require_once(realpath(dirname(__FILE__)) . '/ProspettoPDFLaureando2.php');
-require_once('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\PHPMailer\src\Exception.php');
-require_once('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\PHPMailer\src\PHPMailer.php');
-require_once('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\PHPMailer\src\SMTP.php');
 /**
  * @access public
  * @author franc
@@ -28,12 +28,12 @@ class InvioPDFLaureando2 {
      */
 
     public function __construct(){
-        $json_content = file_get_contents('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\data\ausiliario.json');
+        $json_content = file_get_contents(dirname(__DIR__) . '/data/ausiliario.json');
 
         $this->_matricole = json_decode($json_content,true);
-        $json_content2 = file_get_contents('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\data\ausiliario2.json');
+        $json_content2 = file_get_contents(dirname(__DIR__) . '/data/ausiliario.json');
         $this->_cdl = json_decode($json_content2,true);
-        $json_content3 = file_get_contents('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\data\ausiliario3.json');
+        $json_content3 = file_get_contents(dirname(__DIR__) . '/data/ausiliario.json');
         $this->_dataLaurea = json_decode($json_content3,true);
     }
     public function invioProspetti(){
@@ -73,7 +73,7 @@ class InvioPDFLaureando2 {
 		 Unità Didattica DII');
 
 
-        $messaggio->AddAttachment("data\pdf_generati\\" . $studente_carriera->_matricola . "-prospetto.pdf");
+        $messaggio->AddAttachment("data/pdf_generati/" . $studente_carriera->_matricola . "-prospetto.pdf");
 
         if(!$messaggio->Send()){
             echo $messaggio->ErrorInfo;

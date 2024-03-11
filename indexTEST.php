@@ -11,9 +11,9 @@
 <br>
 
 <?php
-require_once('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\TEST\TESTconfigurazione.php');
-$val = new TESTconfigurazione();
-$val->test();
+    require_once('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\TEST\TESTconfigurazione.php');
+    $val = new TESTconfigurazione();
+    $val->test();
 ?>
 <br>
 <?php

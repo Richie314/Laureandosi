@@ -1,7 +1,7 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/EsameLaureando2.php');
-require_once(realpath(dirname(__FILE__)) . '/ProspettoPDFLaureando2.php');
-require_once(realpath(dirname(__FILE__)) . '/GestioneCarrieraStudente2.php');
+require_once __DIR__ . '/EsameLaureando2.php';
+require_once __DIR__ . '/ProspettoPDFLaureando2.php';
+require_once __DIR__ . '/GestioneCarrieraStudente2.php';
 
 
 class CarrieraLaureando2 {
@@ -29,7 +29,7 @@ class CarrieraLaureando2 {
         $gcs = new GestioneCarrieraStudente();
         $anagrafica_json = $gcs->restituisciAnagraficaStudente($matricola);
         $carriera_json = $gcs->restituisciCarrieraStudente($matricola);
-        $con_s = file_get_contents('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\utils\json_files\formule_laurea.json');
+        $con_s = file_get_contents(__DIR__ . '/json_files/formule_laurea.json');
         $configurazione_json = json_decode($con_s, true);
         $anagrafica = json_decode($anagrafica_json, true);
         $this->_nome = $anagrafica["Entries"]["Entry"]["nome"];
@@ -132,4 +132,3 @@ class CarrieraLaureando2 {
         return $this->_cdl;
     }
 }
-?>

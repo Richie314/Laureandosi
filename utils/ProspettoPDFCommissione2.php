@@ -1,5 +1,5 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/ProspettoConSimulazione2.php');
+require_once __DIR__ . '/ProspettoConSimulazione2.php';
 
 /**
  * @access public

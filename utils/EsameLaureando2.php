@@ -31,4 +31,3 @@ class EsameLaureando2 {
 	 */
 	public $_informatico = 0;
 }
-?>

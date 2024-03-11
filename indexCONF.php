@@ -36,13 +36,13 @@
     <br>
 
 <?php
-require_once('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\utils\ModificaParametriConfigurazione.php');
-if(isset($_GET["formula"]) && isset($_GET["esami informatici"])){
-    $array_inf = array_map("intval", explode(",", $_GET["esami_informatici"]));
-    $val = new ModificaParametriCofigurazione($_GET["cdl"],$array_inf);
-    $val->modificaFormula($_GET["formula"]);
-    $val->modificaEsamiInformatici();
-    echo "parametri configurati";
-}
+    require_once __DIR__ . '/utils/ModificaParametriConfigurazione.php';
+    if (isset($_GET["formula"]) && isset($_GET["esami informatici"])){
+        $array_inf = array_map("intval", explode(",", $_GET["esami_informatici"]));
+        $val = new ModificaParametriCofigurazione($_GET["cdl"],$array_inf);
+        $val->modificaFormula($_GET["formula"]);
+        $val->modificaEsamiInformatici();
+        echo "parametri configurati";
+    }
 ?>
 </form>

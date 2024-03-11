@@ -1,6 +1,6 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/ProspettoPDFCommissione2.php');
-require_once(realpath(dirname(__FILE__)) . '/ProspettoPDFLaureando2.php');
+require_once __DIR__ . '/ProspettoPDFCommissione2.php';
+require_once __DIR__ . '/ProspettoPDFLaureando2.php';
 
 /**
  * @access public

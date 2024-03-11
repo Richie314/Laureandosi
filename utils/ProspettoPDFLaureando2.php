@@ -1,7 +1,7 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/CarrieraLaureandoInformatica2.php');
-require_once(realpath(dirname(__FILE__)) . '/CarrieraLaureando2.php');
-require_once(realpath(dirname(__FILE__)) . '/fpdf.php');
+require_once __DIR__ . '/CarrieraLaureandoInformatica2.php';
+require_once __DIR__ . '/CarrieraLaureando2.php';
+require_once dirname(__DIR__) . '/lib/fpdf184/fpdf.php';
 /**
  * @access public
  * @author franc

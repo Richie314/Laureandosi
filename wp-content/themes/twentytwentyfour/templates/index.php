@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name : index
+ * Template Name: Main Page
  */
 ?>
 <!--
@@ -115,7 +115,7 @@ action = "index.php" method = "get">-->
 <br>
 <!-- <a href = "data/pdf_generati/prospettoCommissione.pdf"> Apri prospetti</a>   -->
 <?php
-require_once('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\utils\AccessoProspetti.php');
+require_once dirname(__DIR__,  4) . '/utils/AccessoProspetti.php';
 $accesso = new AccessoProspetti;
 $aux = $accesso->fornisciAccesso();
 echo '<a href="' . $aux . '" download> Apri Prospetti</a>'

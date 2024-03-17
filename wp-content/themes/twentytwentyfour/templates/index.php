@@ -2,6 +2,7 @@
 /**
  * Template Name: Main Page
  */
+require_once dirname(__DIR__, 4) . "/utils/Configurazione.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,6 +49,7 @@
                         console.log(data, textStatus);
                     },
                     error: (JQueryXHR, textStatus, errorThrown) => {
+                        console.log(JQueryXHR.responseText);
                         console.error(errorThrown);
                     }
                 });

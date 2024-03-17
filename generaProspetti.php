@@ -17,19 +17,31 @@ $messaggio = null;
 $esito = null;
 
 $prospetto = new ProspettoPdfCommissione2($matricole_array, $data_laurea, $cdl);
-$prospetto->generaProspettiCommissione();
-$prospetto->generaProspettiLaureandi();
-
-
-if (!$prospetto->popolaJSON(__DIR__ . '/data/ausiliario.json'))
+$prospetti_generati = $prospetto->generaProspettiLaureandi();
+if ($prospetto->generaProspettiCommissione())
 {
-    $messaggio = "Impossibile salvare dati sull'operazione";
-    $esito = "Errore";
-    
+    $prospetti_generati++;
 }
 
 $esito = "Successo";
 $messaggio = "$prospetti_generati prospetti generati";
+
+if (!$prospetto->popolaJSON(__DIR__ . '/data/ausiliario.json'))
+{
+    $messaggio = "Impossibile salvare dati sull'operazione";
+    $esito = "Errore";   
+}
+
+if (count($matricole_array) === 0)
+{
+    $messaggio = "Nessuna matricola inviata";
+    $esito = "Errore";
+} elseif ($prospetti_generati < count($matricole_array) + 1)
+{
+    $pdf_previsti = count($matricole_array) + 1;
+    $messaggio = "$prospetti_generati / $pdf_previsti prospetti generati";
+    $esito = "Errore";
+}
 
 // Output risposta
 echo json_encode(array(

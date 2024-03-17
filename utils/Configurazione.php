@@ -18,7 +18,7 @@ class Configurazione
             // File mancante
             return null;
         }
-        $obj = json_decode($file_content);
+        $obj = json_decode($file_content, true);
         if (!$obj)
         {
             return null;
@@ -26,12 +26,13 @@ class Configurazione
         $arr = array();
         foreach ($obj as $nome => $cdl) {
             $arr[$nome] = new CorsoDiLaurea(
+                $nome,
                 $cdl['formula'],
                 $cdl['cfu_richiesti'],
                 $cdl['valore_lode'],
                 $cdl['Tmin'],
                 $cdl['Tmin'],
-                $cdl['Tstap'],
+                $cdl['Tstep'],
                 $cdl['Cmin'],
                 $cdl['Cmax'],
                 $cdl['Cstep'],

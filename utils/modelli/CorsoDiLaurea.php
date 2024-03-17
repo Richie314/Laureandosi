@@ -8,6 +8,7 @@ class CorsoDiLaurea
     public ParametroFormula $C;
     public int $ValoreLode;
     private int $Duarata = 3;
+    public string $Nome;
 
     public function CalcolaFormula(string|float $M, string|int $CFU, string|int|float $T = 0, string|int|float $C = 0) : float|null
     {
@@ -38,6 +39,7 @@ class CorsoDiLaurea
         return ($anno_immatricolazione + 1 + $this->Duarata) . "-05-01";
     }
     public function __construct(
+        string $nome,
         string|null $formula, 
         string|int|null $cfu, 
         string|int $valoreLode,
@@ -45,6 +47,7 @@ class CorsoDiLaurea
         string|int|null $cMin, string|int|null $cMax, string|int|null $cStep,
         string|int|null $durata = null)
     {
+        $this->Nome = trim($nome);
         if (isset($cfu))
         {
             $this->CFURichiesti = (int)$cfu;
@@ -59,5 +62,8 @@ class CorsoDiLaurea
             $this->Duarata = (int)$durata;
         }
     }
-
+    public function __toString() : string
+    {
+        return $this->Nome;
+    }
 };

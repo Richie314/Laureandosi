@@ -1,4 +1,7 @@
-[
-    123456,
-    345678
-]
+{
+    "matricole": [
+        123456
+    ],
+    "cdl": "T. Ing. Biomedica",
+    "data_laurea": "2024-03-19"
+}

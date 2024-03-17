@@ -55,6 +55,12 @@ class CarrieraLaureando2
         $this->_esami = array();
         for ($i = 0; $i < sizeof($carriera["Esami"]["Esame"]); $i++)
         {
+            if (!is_string($carriera["Esami"]["Esame"][$i]["DES"]))
+            {
+                continue;
+                //var_dump($carriera["Esami"]["Esame"][$i]);
+                //throw new JsonException("Descrizione dell'esame deve essere una stringa");
+            }
             $esame = new EsameLaureando2(
                 $carriera["Esami"]["Esame"][$i]["DES"],
                 $carriera["Esami"]["Esame"][$i]["VOTO"],
@@ -64,6 +70,19 @@ class CarrieraLaureando2
             );
             $this->_esami[] = $esame;
             $this->_anno_immatricolazione = (int)$carriera["Esami"]["Esame"][$i]["ANNO_IMM"];
+            
+            /*
+            if (
+                $esame->_faMedia && 
+                is_string($carriera["Esami"]["Esame"][$i]["CORSO"]) &&
+                (string)$this->_cdl !== $carriera["Esami"]["Esame"][$i]["CORSO"])
+            {
+                $this_cdl = (string)$this->_cdl;
+                $cdl_iscritto = (string)$carriera["Esami"]["Esame"][$i]["CORSO"];
+                throw new LogicException(
+                    "$matricola è iscritta a '$this_cdl' ma ha richiesto la laurea in '$cdl_iscritto'");
+            }
+            */
         }
         if (!isset($this->_anno_immatricolazione))
         {

@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/ProspettoPDFCommissione2.php';
 require_once __DIR__ . '/ProspettoPDFLaureando2.php';
 
 /**

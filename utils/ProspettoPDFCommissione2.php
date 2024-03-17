@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/ProspettoConSimulazione2.php';
+require_once __DIR__ . '/modelli/ProspettoConSimulazione2.php';
 
 /**
  * @access public

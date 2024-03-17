@@ -58,7 +58,7 @@ class Configurazione
             // File mancante
             return null;
         }
-        $obj = json_decode($file_content);
+        $obj = json_decode($file_content, true);
         if (!$obj)
         {
             return null;

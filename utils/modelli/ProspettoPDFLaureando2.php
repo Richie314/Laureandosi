@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/CarrieraLaureandoInformatica2.php';
-require_once __DIR__ . '/Configurazione.php';
-require_once dirname(__DIR__) . '/lib/fpdf184/fpdf.php';
+require_once dirname(__DIR__) . '/Configurazione.php';
+require_once dirname(__DIR__, 2) . '/lib/fpdf184/fpdf.php';
 /**
  * @access public
  * @author franc

@@ -3,6 +3,7 @@
  * Template Name: Main Page
  */
 require_once dirname(__DIR__, 4) . "/utils/Configurazione.php";
+require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +26,7 @@ require_once dirname(__DIR__, 4) . "/utils/Configurazione.php";
             align-items: center;
         }
         button {
-
+            cursor: pointer;
             color: white;
             background-color: red;
             padding: 0.5em;
@@ -61,63 +62,42 @@ require_once dirname(__DIR__, 4) . "/utils/Configurazione.php";
 <h1> 
     Genera prospetti di laurea
 </h1>
+
 <form action="./generaProspetti.php" method="post" id="main-form">
 
     <h1> 
         Laureandosi 2 - Gestione Lauree 
     </h1>
+
     <label for="cdl">
-        Cdl:
+        Cdl
     </label>
     <select name="cdl" id="cdl">
-        <optgroup label="Scegli un Corso di Laurea"></optgroup>
         <optgroup label="Corsi di Laurea disponibili">
             <?php foreach (Configurazione::CorsiDiLaurea() as $nome => $cdl) {  ?>
-                <option value="<?= htmlspecialchars($nome) ?>"><?= htmlspecialchars($nome) ?></option>
+                <option value="<?= htmlspecialchars($nome) ?>">
+                    <?= htmlspecialchars($nome) ?>
+                </option>
             <?php } ?>
         </optgroup>
     </select>
 
-    <br>
-
-    <label for="matricole">Matricole:</label>
+    <label for="matricole">
+        Matricole
+    </label>
     <textarea name="matricole" id="matricole"></textarea>
 
-    <br>
-
-    <label for="data_laurea">Data Laurea:</label>
+    <label for="data_laurea">
+        Data Laurea
+    </label>
     <input type="date" name="data_laurea" id="data_laurea">
 
-    <br>
-    <br>
-    <br>
-
-    <!-- bottoni  -->
     <button type="submit">
         Crea Prospetti
     </button>
-
 </form>
-<form action = "inviaProspetti.php" method = "get">
 
-<br>
-<br>
+<form action="./inviaProspetti.php" method="post" id="">
     <button type="submit"> Invia Prospetti </button>
-
 </form>
-
-<br>
-<?php
-    require_once dirname(__DIR__,  4) . '/utils/AccessoProspetti.php';
-    $accesso = new AccessoProspetti;
-    $aux = $accesso->fornisciAccesso();
-    echo '<a href="' . $aux . '" download> Apri Prospetti</a>'
-?>
-<br>
-<!--</form> -->
-<br>
-<br>
-<a href="indexTEST.php">Vai alla pagina 2</a>
-
-<a href="indexCONF.php"> Vai alla pagina del configuratore</a>
 </body>

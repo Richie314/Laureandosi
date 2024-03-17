@@ -1,9 +1,7 @@
 <?php
-require_once __DIR__ . '/modelli/EsameLaureando2.php';
-require_once __DIR__ . '/modelli/CorsoDiLaurea.php';
-require_once __DIR__ . '/ProspettoPDFLaureando2.php';
-require_once __DIR__ . '/GestioneCarrieraStudente2.php';
-
+require_once __DIR__ . '/EsameLaureando2.php';
+require_once __DIR__ . '/CorsoDiLaurea.php';
+require_once dirname(__DIR__) . '/GestioneCarrieraStudente2.php';
 
 class CarrieraLaureando2
 {
@@ -25,7 +23,6 @@ class CarrieraLaureando2
 
 	public function __construct(string|int $matricola, string|CorsoDiLaurea $cdl_in)
     {
-        //costruisco un oggetto carrieraLaureando del laureando con matricola matricola
         $this->_matricola = (int)$matricola;
         
         if ($cdl_in instanceof CorsoDiLaurea)
@@ -58,8 +55,6 @@ class CarrieraLaureando2
             if (!is_string($carriera["Esami"]["Esame"][$i]["DES"]))
             {
                 continue;
-                //var_dump($carriera["Esami"]["Esame"][$i]);
-                //throw new JsonException("Descrizione dell'esame deve essere una stringa");
             }
             $esame = new EsameLaureando2(
                 $carriera["Esami"]["Esame"][$i]["DES"],
@@ -112,8 +107,6 @@ class CarrieraLaureando2
         return $this->_media;
     }
 
-
-
 	public function creditiCurricolariConseguiti() : int
     {
         $crediti = 0;
@@ -125,12 +118,11 @@ class CarrieraLaureando2
         return $crediti;
 	}
 
-
 	public function restituisciFormula() : string
     {
 		return $this->_cdl->Formula;
 	}
-    public function creditiCheFannoMedia()
+    public function creditiCheFannoMedia() : int
     {
         $crediti = 0;
 

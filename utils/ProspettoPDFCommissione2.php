@@ -9,15 +9,15 @@ class ProspettoPDFCommissione2 {
 	/**
 	 * @AttributeType int[]
 	 */
-	private $_matricole = array();
+	private array $_matricole = array();
 	/**
 	 * @AttributeType string
 	 */
-	private $_dataLaurea;
+	private string $_dataLaurea;
 	/**
 	 * @AttributeType string
 	 */
-	private $_cdl;
+	private string $_cdl;
 	/**
 	 * @AssociationType ProspettoConSimulazione2
 	 * @AssociationKind Composition
@@ -33,7 +33,8 @@ class ProspettoPDFCommissione2 {
 	 * @ParamType aDataLaurea string
 	 * @ParamType aCdl string
 	 */
-	public function __construct(array $aMatricole, $aDataLaurea, $aCdl) {
+	public function __construct(array $aMatricole, string $aDataLaurea, string $aCdl)
+    {
 		$this->_matricole = $aMatricole;
         $this->_dataLaurea = $aDataLaurea;
         $this->_cdl = $aCdl;
@@ -41,15 +42,16 @@ class ProspettoPDFCommissione2 {
 
 	/**
 	 * @access public
-	 * @return void
-	 * @ReturnType void
+	 * @return bool
+	 * @ReturnType bool
 	 */
-	public function generaProspettiCommissione() {
+	public function generaProspettiCommissione() : bool
+    {
         $pdf = new FPDF();
         $font_family = "Arial";
         $pdf->AddPage();
         $pdf->SetFont($font_family, "", 14);
-// --------  PRIMA PAGINA CON LA LISTA ---------------------
+        // --------  PRIMA PAGINA CON LA LISTA ---------------------
         $pdf->Cell(0, 6, $this->_cdl, 0, 1, 'C');
         $pdf->Ln(2);
         $pdf->SetFont($font_family, "", 16);
@@ -64,40 +66,49 @@ class ProspettoPDFCommissione2 {
         $pdf->Cell($width, $height, "VOTO LAUREA", 1, 1, 'C');
         $pdf->SetFont($font_family, "", 12);
         for ($i = 0; $i < sizeof($this->_matricole); $i++) {
-            $pag_con_simulazione = new ProspettoConSimulazione2($this->_matricole[$i], $this->_cdl, $this->_dataLaurea);
+            $pag_con_simulazione = new ProspettoConSimulazione2(
+                $this->_matricole[$i], $this->_cdl, $this->_dataLaurea);
             $pdf = $pag_con_simulazione->generaRiga($pdf);
         }
 
         // --------  PAGINE CON LA CARRIERA ---------------------
         // aggiungo la pagina di ogni laureando
         for ($i = 0; $i < sizeof($this->_matricole); $i++) {
-            $pag_con_simulazione = new ProspettoConSimulazione2($this->_matricole[$i], $this->_cdl, $this->_dataLaurea);
+            $pag_con_simulazione = new ProspettoConSimulazione2(
+                $this->_matricole[$i], $this->_cdl, $this->_dataLaurea);
             $pdf = $pag_con_simulazione->generaContenuto($pdf);
         }
 
-        $percorso_output = "data\pdf_generati\\";
-        $nome_file = "prospettoCommissione.pdf";
-        $pdf->Output('F', $percorso_output . $nome_file);
-
+        $path = dirname(__DIR__) . "/data/pdf_generati/prospettoCommissione.pdf";
+        $pdf->Output('F', $path);
+        return file_exists($path);
     }
-    public function generaProspettiLaureandi()
+    public function generaProspettiLaureandi() : int
     {
-        for ($i = 0; $i < sizeof($this->_matricole); $i++) {
-            $prospetto = new ProspettoPdfLaureando2($this->_matricole[$i], $this->_cdl, $this->_dataLaurea);
-            $prospetto->generaProspetto();
+        $totale = 0;
+        for ($i = 0; $i < sizeof($this->_matricole); $i++)
+        {
+            try {
+                $prospetto = new ProspettoPdfLaureando2($this->_matricole[$i], $this->_cdl, $this->_dataLaurea);
+                $pdf = $prospetto->generaProspetto();
+    
+                $path = dirname(__DIR__) . "/data/pdf_generati/" . $this->_matricole[$i] . "-prospetto.pdf";
+                $pdf->Output('F', $path);
+                if (file_exists($path))
+                    $totale++;
+            } catch (Exception $ex) {
+            }
         }
+        return $totale;
     }
-    public function popolaJSON($nomeFile){
-        $json_string = json_encode($this->_matricole,JSON_PRETTY_PRINT);
-        file_put_contents($nomeFile,$json_string);
-    }
-    public function popolaJSON2($nomeFile){
-        $json_string = json_encode($this->_cdl,JSON_PRETTY_PRINT);
-        file_put_contents($nomeFile,$json_string);
-    }
-    public function popolaJSON3($nomeFile){
-        $json_string = json_encode($this->_dataLaurea,JSON_PRETTY_PRINT);
-        file_put_contents($nomeFile,$json_string);
+    public function popolaJSON(string $nomeFile) : bool
+    {
+        $obj = array(
+            'matricole' => $this->_matricole,
+            'cdl' => $this->_cdl,
+            'data_laurea' => $this->_dataLaurea
+        );
+        $json_string = json_encode($obj, JSON_PRETTY_PRINT);
+        return (bool)file_put_contents($nomeFile,$json_string);
     }
 }
-?>

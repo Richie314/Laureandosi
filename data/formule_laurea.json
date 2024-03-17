@@ -1,6 +1,8 @@
 {
     "T. Ing. Biomedica": {
         "formula": "(110 \/ 27.17) * ( $M * $CFU + $T * 3 ) \/ ( $CFU + 3 )",
+        "valore_lode": 33,
+        "durata": 3,
         "cfu_richiesti": 177,
         "Tmin": 18,
         "Tmax": 30,
@@ -11,6 +13,8 @@
     },
     "T. Ing. Elettronica": {
         "formula": "2 + 4 * ( $M * $CFU + $T * 3) \/ ( $CFU + 3)",
+        "valore_lode": 33,
+        "durata": 3,
         "cfu_richiesti": 177,
         "Tmin": 18,
         "Tmax": 33,
@@ -21,6 +25,8 @@
     },
     "T. Ing. Informatica": {
         "formula": "$M * 3 + 18 + $T + $C",
+        "valore_lode": 33,
+        "durata": 3,
         "cfu_richiesti": 177,
         "Tmin": 0,
         "Tmax": 0,
@@ -31,6 +37,8 @@
     },
     "T. Ing. delle Telecomunicazioni": {
         "formula": "$M * 11 \/ 3+ $C",
+        "valore_lode": 33,
+        "durata": 3,
         "cfu_richiesti": 177,
         "Tmin": 0,
         "Tmax": 0,
@@ -41,6 +49,8 @@
     },
     "M. Ing. Biomedica, Bionics Engineering": {
         "formula": "$M * 3.5 + 11 + $C",
+        "valore_lode": 33,
+        "durata": 2,
         "cfu_richiesti": 105,
         "Tmin": 0,
         "Tmax": 0,
@@ -51,6 +61,8 @@
     },
     "M. Ing. Elettronica": {
         "formula": "4 * ( $M * $CFU + $T * 18 ) \/ ( $CFU + 18 )",
+        "valore_lode": 33,
+        "durata": 2,
         "cfu_richiesti": 102,
         "Tmin": 18,
         "Tmax": 30,
@@ -61,6 +73,8 @@
     },
     "M. Computer Engineering, Artificial Intelligence and Data Enginering": {
         "formula": "$M * 3 + 22 + $T + $C",
+        "valore_lode": 33,
+        "durata": 2,
         "cfu_richiesti": 96,
         "Tmin": 0,
         "Tmax": 0,
@@ -71,6 +85,8 @@
     },
     "M. Ing. Robotica e della Automazione": {
         "formula": "$M * 3 + 18.5 + $T",
+        "valore_lode": 33,
+        "durata": 2,
         "cfu_richiesti": 102,
         "Tmin": 0,
         "Tmax": 0,
@@ -81,6 +97,8 @@
     },
     "M. Ing. delle Telecomunicazioni": {
         "formula": "$M * 11 \/ 3 + $C",
+        "valore_lode": 33,
+        "durata": 2,
         "cfu_richiesti": 96,
         "Tmin": 0,
         "Tmax": 0,

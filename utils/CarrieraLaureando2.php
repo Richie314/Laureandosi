@@ -1,79 +1,102 @@
 <?php
-require_once __DIR__ . '/EsameLaureando2.php';
+require_once __DIR__ . '/modelli/EsameLaureando2.php';
+require_once __DIR__ . '/modelli/CorsoDiLaurea.php';
 require_once __DIR__ . '/ProspettoPDFLaureando2.php';
 require_once __DIR__ . '/GestioneCarrieraStudente2.php';
 
 
-class CarrieraLaureando2 {
+class CarrieraLaureando2
+{
 
-	public $_matricola;
+	public int $_matricola;
 
-	public $_nome;
+	public string $_nome;
 
-	public $_cognome;
+	public string $_cognome;
 
-	public $_cdl;
+	public CorsoDiLaurea $_cdl;
 
-	public $_email;
+	public string $_email;
 
-	public $_esami;
+	public array $_esami;
 
-	private $_media;
+	private float $_media;
+    public ?int $_anno_immatricolazione = null;
 
-	private $_formulaVotoLaurea;
-
-	public function __construct($matricola, $cdl_in){
+	public function __construct(string|int $matricola, string|CorsoDiLaurea $cdl_in)
+    {
         //costruisco un oggetto carrieraLaureando del laureando con matricola matricola
-        $this->matricola = $matricola;
-        //chiamo gcs per prendere tutte le info del laureando
-        $gcs = new GestioneCarrieraStudente();
-        $anagrafica_json = $gcs->restituisciAnagraficaStudente($matricola);
-        $carriera_json = $gcs->restituisciCarrieraStudente($matricola);
-        $con_s = file_get_contents(__DIR__ . '/json_files/formule_laurea.json');
-        $configurazione_json = json_decode($con_s, true);
+        $this->_matricola = (int)$matricola;
+        
+        if ($cdl_in instanceof CorsoDiLaurea)
+        {
+            $this->_cdl = $cdl_in;
+        } else {
+            $this->_cdl = Configurazione::CorsiDiLaurea()[$cdl_in];
+        }
+
+        $anagrafica_json = GestioneCarrieraStudente::restituisciAnagraficaStudente($matricola);
+        if (!$anagrafica_json || strlen(trim($anagrafica_json)) === 0)
+        {
+            throw new Exception("Impossibile trovare dati anagrafici per la matricola '$matricola'");
+        }
         $anagrafica = json_decode($anagrafica_json, true);
+
         $this->_nome = $anagrafica["Entries"]["Entry"]["nome"];
         $this->_cognome = $anagrafica["Entries"]["Entry"]["cognome"];
         $this->_email = $anagrafica["Entries"]["Entry"]["email_ate"];
-        $this->_cdl = $cdl_in;
-        $this->_formulaVotoLaurea =  $configurazione_json[$this->_cdl]["formula"];
+
+        $carriera_json = GestioneCarrieraStudente::restituisciCarrieraStudente($matricola);
+        if (!$carriera_json || strlen(trim($carriera_json)) === 0)
+        {
+            throw new Exception("Impossibile trovare carriera per la matricola '$matricola'");
+        }
         $carriera = json_decode($carriera_json, true);
         $this->_esami = array();
-        for ($i = 0; $i < sizeof($carriera["Esami"]["Esame"]); $i++) {
-            $esame = $this-> inserisci_esame($carriera["Esami"]["Esame"][$i]["DES"], $carriera["Esami"]["Esame"][$i]["VOTO"], $carriera["Esami"]["Esame"][$i]["PESO"], 1, 1);
-            if ($esame != null && is_string($esame->_nomeEsame)) {
-                array_push($this->_esami, $esame);
-            }
+        for ($i = 0; $i < sizeof($carriera["Esami"]["Esame"]); $i++)
+        {
+            $esame = new EsameLaureando2(
+                $carriera["Esami"]["Esame"][$i]["DES"],
+                $carriera["Esami"]["Esame"][$i]["VOTO"],
+                $carriera["Esami"]["Esame"][$i]["PESO"],
+                true, true,
+                $this->_cdl->ValoreLode
+            );
+            $this->_esami[] = $esame;
+            $this->_anno_immatricolazione = (int)$carriera["Esami"]["Esame"][$i]["ANNO_IMM"];
         }
-
-        $this->calcola_media();
-
+        if (!isset($this->_anno_immatricolazione))
+        {
+            throw new Exception("Nessun esame trovato per matricola '$matricola'");
+        }
+        $this->_media = $this->calcola_media();
     }
-    public function calcola_media()
+    public function calcola_media() : float
     {
         $esami = $this->_esami;
         $somma_voto_cfu = 0;
         $somma_cfu_tot = 0;
 
-        for ($i = 0; $i < sizeof($esami); $i++) {
-            if ($esami[$i]->_faMedia == 1) {
-
-                $somma_voto_cfu += intval($esami[$i]->_votoEsame) * $esami[$i]->_cfu;
-//devi convertire il voto in un int prima
-                $somma_cfu_tot += $esami[$i]->_cfu;
+        for ($i = 0; $i < sizeof($this->_esami); $i++)
+        {
+            if ($esami[$i]->_faMedia)
+            {
+                $somma_voto_cfu += $esami[$i]->_votoEsame * $this->_esami[$i]->_cfu;
+                //devi convertire il voto in un int prima
+                $somma_cfu_tot += $this->_esami[$i]->_cfu;
             }
-            //console_log($somma_voto_cfu);
         }
-        $this->_media = $somma_voto_cfu / $somma_cfu_tot;
+        return (float)$somma_voto_cfu / $somma_cfu_tot;
+    }
+    public function restituisciMedia(): float
+    {
         return $this->_media;
     }
-    public function restituisciMedia(){
-        return $this->_media;
-    }
 
 
 
-	public function creditiCurricolariConseguiti() {
+	public function creditiCurricolariConseguiti() : int
+    {
         $crediti = 0;
         for ($i = 0; sizeof($this->_esami) > $i; $i++) {
             if ($this->_esami[$i]->_nomeEsame != "PROVA FINALE" &&  $this->_esami[$i]->_nomeEsame != "LIBERA SCELTA PER RICONOSCIMENTI") {
@@ -84,51 +107,24 @@ class CarrieraLaureando2 {
 	}
 
 
-	public function restituisciFormula() {
-		return $this->_formulaVotoLaurea;
+	public function restituisciFormula() : string
+    {
+		return $this->_cdl->Formula;
 	}
     public function creditiCheFannoMedia()
     {
         $crediti = 0;
 
-        for ($i = 0; sizeof($this->_esami) > $i; $i++) {
-            $crediti += ($this->_esami[$i]->_curricolare == 1 && $this->_esami[$i]->_faMedia == 1) ? $this->_esami[$i]->_cfu : 0;
+        for ($i = 0; $i < sizeof($this->_esami); $i++)
+        {
+            $crediti += $this->_esami[$i]->Credito();
         }
+
         return $crediti;
     }
 
-
-    private function inserisci_esame($nome, $voto, $cfu, $faMedia, $curricolare)
+    public function get_class()
     {
-
-        if (
-            $nome == "LIBERA SCELTA PER RICONOSCIMENTI" || $nome == "PROVA FINALE" || $nome ==  "TEST DI VALUTAZIONE DI INGEGNERIA"
-            || $nome == "PROVA DI LINGUA INGLESE B2" || $voto == 0
-        ) {
-            $faMedia = 0;
-        }
-        // non metto esami con parametri malformati
-        if ($nome != "TEST DI VALUTAZIONE DI INGEGNERIA" && $nome != null) {
-            if ($voto == "30 e lode" || $voto == "30 e lode " || $voto == "30  e lode") {
-// -_- ci hanno messo 2 spazi
-                $voto = "33";
-            }
-
-            trim($voto);
-//toglie gli spazi bianchi
-            //trim($cfu);
-            $esame = new EsameLaureando2();
-            $esame->_nomeEsame = $nome;
-            $esame->_votoEsame = $voto;
-            $esame->_cfu = $cfu;
-            $esame->_faMedia = $faMedia;
-            $esame->_curricolare = $curricolare;
-            return $esame;
-        } else {
-            return null;
-        }
-    }
-    public function get_class(){
         return $this->_cdl;
     }
 }

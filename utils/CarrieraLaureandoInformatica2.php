@@ -1,71 +1,81 @@
 <?php
 require_once __DIR__ . '/CarrieraLaureando2.php';
-class CarrieraLaureandoInformatica2 extends CarrieraLaureando2{
-    private $dataImmatricolazione;
-    private $dataLaurea;
-    private $mediaEsamiInformatici;
-    private $bonus;
-    public function __construct($matricola, $cdl_in, $dataLaurea){
+class CarrieraLaureandoInformatica2 extends CarrieraLaureando2
+{
+    private float $mediaEsamiInformatici;
+    private float $mediaConBonus = 0.0;
+    private bool $bonus = false;
+    
+    public function __construct(string|int $matricola, string|CorsoDiLaurea $cdl_in, string $dataLaurea)
+    {
         parent::__construct($matricola, $cdl_in);
-        $this->dataLaurea = $dataLaurea;
-        $this->bonus = "NO";
-        $gcs = new GestioneCarrieraStudente();
-        $carriera_json = $gcs->restituisciCarrieraStudente($matricola);
-        $carriera = json_decode($carriera_json, true);
-        $this->dataImmatricolazione = $carriera["Esami"]["Esame"][0]["ANNO_IMM"];
-        $fine_bonus = ($this->dataImmatricolazione + 4) . ("-05-01");
-        if ($dataLaurea < $fine_bonus) {
-            $this->bonus = "SI";
-            $this->applicaBonus();
+        
+        if ($dataLaurea < $this->_cdl->FineBonus($this->_anno_immatricolazione))
+        {
+            $this->bonus = true;
+            $this->mediaConBonus = $this->applicaBonus();
         }
 
-        $e_info = file_get_contents(dirname(__DIR__) . '/data/esami_informatici.json');
-        $esami_info = json_decode($e_info, true);
+        $esami_info = Configurazione::EsamiInformatici();
+        if (!isset($esami_info))
+        {
+            throw new Exception("Impossibile caricare gli esami informatici");
+        }
 
-        for ($i = 0; $i < sizeof($this->_esami); $i++) {
-            if (in_array($this->_esami[$i]->_nomeEsame, $esami_info["nomi_esami"])) {
-                $this->_esami[$i]->_informatico = 1;
+        for ($i = 0; $i < sizeof($this->_esami); $i++)
+        {
+            if (in_array($this->_esami[$i]->_nomeEsame, $esami_info))
+            {
+                $this->_esami[$i]->_informatico = true;
             }
         }
         $this->mediaEsamiInformatici = $this->calcolaMediaEsamiInformatici();
-        $this->calcola_media();
     }
 
-    public function getMediaEsamiInformatici()
+    public function getMediaEsamiInformatici() : float
     {
         return $this->mediaEsamiInformatici;
     }
-    private function calcolaMediaEsamiInformatici()
+    private function calcolaMediaEsamiInformatici() : float
     {
         $somma = 0;
         $numero = 0;
         for ($i = 0; $i < sizeof($this->_esami); $i++) {
-            if ($this->_esami[$i]->_faMedia == 1) {
-                $somma += intval($this->_esami[$i]->_votoEsame) ;
+            if ($this->_esami[$i]->_faMedia && $this->_esami[$i]->_informatico)
+            {
+                $somma += $this->_esami[$i]->_votoEsame;
                 $numero++;
             }
         }
-        return $somma / $numero;
+        return (float)$somma / $numero;
     }
-    public function getBonus()
+    public function getBonus() : string
     {
-        return $this->bonus;
+        return $this->bonus ? "SI" : "NO";
     }
-    private function applicaBonus(){
+    private function applicaBonus() : float
+    {
+        $voto_min = null;
+        $indice_min = null;
 
-            $voto_min = 33;
-            $indice_min = 0;
-
-            for ($i = 0; $i < sizeof($this->_esami); $i++) {
-                $esame = $this->_esami[$i];
-                if ($esame->_faMedia == 1 && $esame->_votoEsame < $voto_min) {
-                    $voto_min = $esame->_votoEsame;
+        for ($i = 0; $i < sizeof($this->_esami); $i++)
+        {
+            if ($this->_esami[$i]->_faMedia)
+            {
+                if (!isset($voto_min) || $this->_esami[$i]->_votoEsame < $voto_min)
+                {
                     $indice_min = $i;
+                    $voto_min = (int)$this->_esami[$i]->_votoEsame;
                 }
             }
-
-            $this->_esami[$indice_min]->_faMedia = 0;
-
+        }
+        $this->_esami[$indice_min]->_faMedia = false; // Rimuovo l'esame peggiore
+        $media_bonus = $this->calcola_media(); // Calcolo la media vendo escluso l'esame
+        $this->_esami[$indice_min]->_faMedia = true; // Reinserisco l'esame che avevo rimosso
+        return $media_bonus;
+    }
+    public function restituisciMedia() : float
+    {
+        return $this->bonus ? $this->mediaConBonus : parent::restituisciMedia();
     }
 }
-?>

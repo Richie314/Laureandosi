@@ -47,6 +47,8 @@ class CarrieraLaureandoInformatica2 extends CarrieraLaureando2
                 $numero++;
             }
         }
+        if ($numero === 0)
+            return 0.0;
         return (float)$somma / $numero;
     }
     public function getBonus() : string

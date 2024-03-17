@@ -60,6 +60,7 @@ class CarrieraLaureando2
                 $carriera["Esami"]["Esame"][$i]["DES"],
                 $carriera["Esami"]["Esame"][$i]["VOTO"],
                 $carriera["Esami"]["Esame"][$i]["PESO"],
+                $carriera["Esami"]["Esame"][$i]["DATA_ESAME"],
                 true, true,
                 $this->_cdl->ValoreLode
             );
@@ -79,6 +80,11 @@ class CarrieraLaureando2
             }
             */
         }
+
+        usort($this->_esami, function (EsameLaureando2 $a, EsameLaureando2 $b) {
+            return ($a->_dataEsame < $b->_dataEsame) ? (-1) : 1;
+        });
+
         if (!isset($this->_anno_immatricolazione))
         {
             throw new Exception("Nessun esame trovato per matricola '$matricola'");
@@ -111,7 +117,9 @@ class CarrieraLaureando2
     {
         $crediti = 0;
         for ($i = 0; sizeof($this->_esami) > $i; $i++) {
-            if ($this->_esami[$i]->_nomeEsame != "PROVA FINALE" &&  $this->_esami[$i]->_nomeEsame != "LIBERA SCELTA PER RICONOSCIMENTI") {
+            if (
+                $this->_esami[$i]->_nomeEsame != "PROVA FINALE" &&  
+                $this->_esami[$i]->_nomeEsame != "LIBERA SCELTA PER RICONOSCIMENTI") {
                 $crediti += ($this->_esami[$i]->_curricolare == 1) ? $this->_esami[$i]->_cfu : 0;
             }
         }

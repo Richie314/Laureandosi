@@ -139,7 +139,7 @@ class ProspettoPDFLaureando2 {
         EsameLaureando2 $esame, 
         FPDF &$pdf)
     {
-        $pdf->Cell($larghezza_grande, $altezza, $esame->_nomeEsame, 1, 0, 'L');
+        $pdf->Cell($larghezza_grande, $altezza, $esame->_nomeEsame /*. " (" . $esame->_dataEsame->format("Y-m-d") . ")"*/, 1, 0, 'L');
         $pdf->Cell($larghezza_piccola, $altezza, $esame->_cfu, 1, 0, 'C');
         $pdf->Cell($larghezza_piccola, $altezza, $esame->_votoEsame, 1, 0, 'C');
         if ($this->_carrieraLaureando instanceof CarrieraLaureandoInformatica2) {

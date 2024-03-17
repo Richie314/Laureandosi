@@ -27,6 +27,7 @@ class EsameLaureando2
 	 * @AttributeType boolean
 	 */
 	public bool $_curricolare;
+	public DateTime $_dataEsame;
 	/**
 	 * @AttributeType boolean
 	 */
@@ -59,6 +60,7 @@ class EsameLaureando2
 		string $nome, 
 		string|int|null $voto,
 		string|int $cfu,
+		string $data,
 		string|int|bool $faMedia,
 		string|int|bool $curricolare,
 		string|int $valore_lode = 33)
@@ -66,6 +68,7 @@ class EsameLaureando2
 		$this->_nomeEsame = strtoupper(trim($nome));
 		$faMedia = $faMedia && !in_array($nome, self::$EsamiDaIgnorare) && (int)$voto !== 0;
 		$this->_cfu = (int)$cfu;
+		$this->_dataEsame = DateTime::createFromFormat("d/m/Y", $data);
 		$this->_curricolare = (bool)$curricolare;
 		$this->_faMedia = $faMedia && $this->_curricolare;
 		$voto = !isset($voto) ? 0 : $voto;

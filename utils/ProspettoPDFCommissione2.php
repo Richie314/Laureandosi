@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/modelli/ProspettoConSimulazione2.php';
+require_once __DIR__ . '/AccessoProspetti.php';
 
 /**
  * @access public
@@ -66,20 +67,24 @@ class ProspettoPDFCommissione2 {
         $pdf->Cell($width, $height, "VOTO LAUREA", 1, 1, 'C');
         $pdf->SetFont($font_family, "", 12);
         for ($i = 0; $i < sizeof($this->_matricole); $i++) {
-            $pag_con_simulazione = new ProspettoConSimulazione2(
-                $this->_matricole[$i], $this->_cdl, $this->_dataLaurea);
-            $pdf = $pag_con_simulazione->generaRiga($pdf);
+            try {
+                $pag_con_simulazione = new ProspettoConSimulazione2(
+                    $this->_matricole[$i], $this->_cdl, $this->_dataLaurea);
+                $pdf = $pag_con_simulazione->generaRiga($pdf);
+            } catch (Exception $ex) {}
         }
 
         // --------  PAGINE CON LA CARRIERA ---------------------
         // aggiungo la pagina di ogni laureando
         for ($i = 0; $i < sizeof($this->_matricole); $i++) {
-            $pag_con_simulazione = new ProspettoConSimulazione2(
-                $this->_matricole[$i], $this->_cdl, $this->_dataLaurea);
-            $pdf = $pag_con_simulazione->generaContenuto($pdf);
+            try {
+                $pag_con_simulazione = new ProspettoConSimulazione2(
+                    $this->_matricole[$i], $this->_cdl, $this->_dataLaurea);
+                $pdf = $pag_con_simulazione->generaContenuto($pdf);
+            } catch (Exception $ex) {};
         }
 
-        $path = dirname(__DIR__) . "/data/pdf_generati/prospettoCommissione.pdf";
+        $path = AccessoProspetti::pathCommissioneServer();
         $pdf->Output('F', $path);
         return file_exists($path);
     }
@@ -91,13 +96,12 @@ class ProspettoPDFCommissione2 {
             try {
                 $prospetto = new ProspettoPdfLaureando2($this->_matricole[$i], $this->_cdl, $this->_dataLaurea);
                 $pdf = $prospetto->generaProspetto();
-    
-                $path = dirname(__DIR__) . "/data/pdf_generati/" . $this->_matricole[$i] . "-prospetto.pdf";
+                
+                $path = AccessoProspetti::pathLaureandoServer($this->_matricole[$i]);
                 $pdf->Output('F', $path);
                 if (file_exists($path))
                     $totale++;
-            } catch (Exception $ex) {
-            }
+            } catch (Exception $ex) { }
         }
         return $totale;
     }

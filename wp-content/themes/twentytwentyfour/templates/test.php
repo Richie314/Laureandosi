@@ -4,6 +4,7 @@
  */
 include_once dirname(__DIR__, 4) . '/TEST/TestAccessoProspetti.php';
 include_once dirname(__DIR__, 4) . '/TEST/TestConfigurazione.php';
+include_once dirname(__DIR__, 4) . '/TEST/TestGestioneCarrieraStudente.php';
 include_once dirname(__DIR__, 4) . '/TEST/TestParametroFormula.php';
 include_once dirname(__DIR__, 4) . '/TEST/TestCorsoDiLaurea.php';
 include_once dirname(__DIR__, 4) . '/TEST/TestCarrieraLaureando.php';
@@ -16,6 +17,9 @@ $test_array = array(
     new TestConfigurazione_CorsiDiLaurea(),
     new TestConfigurazione_IngInf(),
     new TestConfigurazione_EsamiInformatici(),
+
+    new TestGestioneCarrieraStudente_restituisciAnagraficaStudente(),
+    new TestGestioneCarrieraStudente_restituisciCarrieraStudente(),
 
     new TestParametroFormula(),
 

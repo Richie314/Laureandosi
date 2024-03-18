@@ -36,7 +36,7 @@ class Configurazione
                 $cdl['Cmin'],
                 $cdl['Cmax'],
                 $cdl['Cstep'],
-                $cdl['corpo_email'],
+                $cdl['formula_email'],
                 $cdl['durata']
             );
         }

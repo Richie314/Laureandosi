@@ -296,6 +296,7 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
     }
     second_form.onsubmit = async (evt) => {
         evt.preventDefault();
+        console.log('Ajax');
         let iterate = true;
         
         second_form_ul.innerHTML = '';
@@ -303,16 +304,20 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
             const li = document.createElement('li');
             li.innerText = mat + ':';
             li.id = 'result-' + mat;
+            li.style.userSelect = 'none';
             second_form_ul.appendChild(li);
         });
         second_form_details.classList.remove('hidden');
 
-        do {
+        while (iterate)
+        {
+            console.log('Invio in corso...');
             const res = await post(second_form.getAttribute('action'), {
                 'numero_max': 1
             });
             if (!res)
             { 
+                console.log('Response was invalid');
                 continue;
             }
             console.log('Invii: ' + res.InviiEffettuati.length);
@@ -323,8 +328,9 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
             });
             second_form_progress.value += res.InviiEffettuati.length;
 
+            console.log('Delay di 1s');
             await sleep(1000);
-        } while (iterate);
+        }
     }
 </script>
 </body>

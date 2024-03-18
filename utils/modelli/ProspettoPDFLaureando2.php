@@ -25,13 +25,10 @@ class ProspettoPDFLaureando2 {
 	/**
 	 * @access public
 	 * @param int aMatricola
-	 * @param string aCdl
+	 * @param CorsoDiLaurea|string aCdl
 	 * @param string aDataLaurea
-	 * @ParamType aMatricola int
-	 * @ParamType aCdl string
-	 * @ParamType aDataLaurea string
 	 */
-	public function __construct(string|int $aMatricola, string $aCdl, string $aDataLaurea)
+	public function __construct(string|int $aMatricola, CorsoDiLaurea|string $aCdl, string $aDataLaurea)
     {
         $this->_carrieraLaureando = 
             Configurazione::IngInf($aCdl) ? 

@@ -105,14 +105,10 @@ class ProspettoPDFCommissione2 {
         }
         return $totale;
     }
-    public function popolaJSON(string $nomeFile) : bool
+    public function popolaJSON() : bool
     {
-        $obj = array(
-            'matricole' => $this->_matricole,
-            'cdl' => $this->_cdl,
-            'data_laurea' => $this->_dataLaurea
-        );
-        $json_string = json_encode($obj, JSON_PRETTY_PRINT);
-        return (bool)file_put_contents($nomeFile,$json_string);
+        require_once __DIR__ . '/InvioPDFLaureando2.php';
+        $obj = InvioPDFLaureando2::Generate($this->_matricole, $this->_cdl, $this->_dataLaurea);
+        return isset($obj);
     }
 }

@@ -1,6 +1,6 @@
 {
     "T. Ing. Biomedica": {
-        "formula": "(110 \/ 27.17) * ( $M * $CFU + $T * 3 ) \/ ( $CFU + 3 )",
+        "formula": "(110 \/ 27.17) * ( M * CFU + T * 3 ) \/ ( CFU + 3 )",
         "valore_lode": 33,
         "durata": 3,
         "cfu_richiesti": 177,
@@ -9,10 +9,11 @@
         "Tstep": 1,
         "Cmin": 0,
         "Cmax": 0,
-        "Cstep": 0
+        "Cstep": 0,
+        "formula_email": "Gentile laureando/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adopererà per\ndeterminare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: vittoria.dattilo@unipi.it\nAlcune spiegazioni:\n- gli esami che non hanno un voto in trentesimi, hanno voto nominale zero al posto di giudizio o idoneita', in\nquanto non contribuiscono al calcolo della media ma solo al numero di crediti curriculari;\n- gli esami che non fanno media (pur contribuendo ai crediti curriculari) non hanno la spunta nella colonna MED;\n- il voto di tesi (T) appare nominalmente a zero in quanto verra' determinato in sede di laurea, e va da 18 a 30.\n Cordiali saluti\n Unità Didattica DII"
     },
     "T. Ing. Elettronica": {
-        "formula": "2 + 4 * ( $M * $CFU + $T * 3) \/ ( $CFU + 3)",
+        "formula": "2 + 4 * ( M * CFU + T * 3) \/ ( CFU + 3)",
         "valore_lode": 33,
         "durata": 3,
         "cfu_richiesti": 177,
@@ -21,10 +22,11 @@
         "Tstep": 1,
         "Cmin": 0,
         "Cmax": 0,
-        "Cstep": 0
+        "Cstep": 0,
+        "formula_email": "Gentile laureando/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adopererà per\ndeterminare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: vittoria.dattilo@unipi.it\nAlcune spiegazioni:\n- gli esami che non hanno un voto in trentesimi, hanno voto nominale zero al posto di giudizio o idoneita', in\nquanto non contribuiscono al calcolo della media ma solo al numero di crediti curriculari;\n- gli esami che non fanno media (pur contribuendo ai crediti curriculari) non hanno la spunta nella colonna MED;\n- il voto di tesi (T) appare nominalmente a zero in quanto verra' determinato in sede di laurea, e va da 18 a 30.\n Cordiali saluti\n Unità Didattica DII"
     },
     "T. Ing. Informatica": {
-        "formula": "$M * 3 + 18 + $T + $C",
+        "formula": "M * 3 + 18 + T + C",
         "valore_lode": 33,
         "durata": 3,
         "cfu_richiesti": 177,
@@ -33,10 +35,11 @@
         "Tstep": 0,
         "Cmin": 1,
         "Cmax": 7,
-        "Cstep": 1
+        "Cstep": 1,
+        "formula_email": "Gentile laureando/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adopererà per\ndeterminare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: vittoria.dattilo@unipi.it\nAlcune spiegazioni:\n- gli esami che non hanno un voto in trentesimi, hanno voto nominale zero al posto di giudizio o idoneita', in\nquanto non contribuiscono al calcolo della media ma solo al numero di crediti curriculari;\n- gli esami che non fanno media (pur contribuendo ai crediti curriculari) non hanno la spunta nella colonna MED;\n- il voto di tesi (T) appare nominalmente a zero in quanto verra' determinato in sede di laurea, e va da 18 a 30.\n Cordiali saluti\n Unità Didattica DII"
     },
     "T. Ing. delle Telecomunicazioni": {
-        "formula": "$M * 11 \/ 3+ $C",
+        "formula": "M * 11 \/ 3+ C",
         "valore_lode": 33,
         "durata": 3,
         "cfu_richiesti": 177,
@@ -45,10 +48,11 @@
         "Tstep": 0,
         "Cmin": 1,
         "Cmax": 11,
-        "Cstep": 1
+        "Cstep": 1,
+        "formula_email": "Gentile laureando/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adopererà per\ndeterminare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: vittoria.dattilo@unipi.it\nAlcune spiegazioni:\n- gli esami che non hanno un voto in trentesimi, hanno voto nominale zero al posto di giudizio o idoneita', in\nquanto non contribuiscono al calcolo della media ma solo al numero di crediti curriculari;\n- gli esami che non fanno media (pur contribuendo ai crediti curriculari) non hanno la spunta nella colonna MED;\n- il voto di tesi (T) appare nominalmente a zero in quanto verra' determinato in sede di laurea, e va da 18 a 30.\n Cordiali saluti\n Unità Didattica DII"
     },
     "M. Ing. Biomedica, Bionics Engineering": {
-        "formula": "$M * 3.5 + 11 + $C",
+        "formula": "M * 3.5 + 11 + C",
         "valore_lode": 33,
         "durata": 2,
         "cfu_richiesti": 105,
@@ -57,10 +61,11 @@
         "Tstep": 0,
         "Cmin": 0.5,
         "Cmax": 4,
-        "Cstep": 0.5
+        "Cstep": 0.5,
+        "formula_email": "Gentile laureando/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adopererà per\ndeterminare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: vittoria.dattilo@unipi.it\nAlcune spiegazioni:\n- gli esami che non hanno un voto in trentesimi, hanno voto nominale zero al posto di giudizio o idoneita', in\nquanto non contribuiscono al calcolo della media ma solo al numero di crediti curriculari;\n- gli esami che non fanno media (pur contribuendo ai crediti curriculari) non hanno la spunta nella colonna MED;\n- il voto di tesi (T) appare nominalmente a zero in quanto verra' determinato in sede di laurea, e va da 18 a 30.\n Cordiali saluti\n Unità Didattica DII"
     },
     "M. Ing. Elettronica": {
-        "formula": "4 * ( $M * $CFU + $T * 18 ) \/ ( $CFU + 18 )",
+        "formula": "4 * ( M * CFU + T * 18 ) \/ ( CFU + 18 )",
         "valore_lode": 33,
         "durata": 2,
         "cfu_richiesti": 102,
@@ -69,10 +74,11 @@
         "Tstep": 1,
         "Cmin": 0,
         "Cmax": 0,
-        "Cstep": 0
+        "Cstep": 0,
+        "formula_email": "Gentile laureando/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adopererà per\ndeterminare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: vittoria.dattilo@unipi.it\nAlcune spiegazioni:\n- gli esami che non hanno un voto in trentesimi, hanno voto nominale zero al posto di giudizio o idoneita', in\nquanto non contribuiscono al calcolo della media ma solo al numero di crediti curriculari;\n- gli esami che non fanno media (pur contribuendo ai crediti curriculari) non hanno la spunta nella colonna MED;\n- il voto di tesi (T) appare nominalmente a zero in quanto verra' determinato in sede di laurea, e va da 18 a 30.\n Cordiali saluti\n Unità Didattica DII"
     },
     "M. Computer Engineering, Artificial Intelligence and Data Enginering": {
-        "formula": "$M * 3 + 22 + $T + $C",
+        "formula": "M * 3 + 22 + T + C",
         "valore_lode": 33,
         "durata": 2,
         "cfu_richiesti": 96,
@@ -81,10 +87,11 @@
         "Tstep": 0,
         "Cmin": 1,
         "Cmax": 3,
-        "Cstep": 1
+        "Cstep": 1,
+        "formula_email": "Gentile laureando/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adopererà per\ndeterminare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: vittoria.dattilo@unipi.it\nAlcune spiegazioni:\n- gli esami che non hanno un voto in trentesimi, hanno voto nominale zero al posto di giudizio o idoneita', in\nquanto non contribuiscono al calcolo della media ma solo al numero di crediti curriculari;\n- gli esami che non fanno media (pur contribuendo ai crediti curriculari) non hanno la spunta nella colonna MED;\n- il voto di tesi (T) appare nominalmente a zero in quanto verra' determinato in sede di laurea, e va da 18 a 30.\n Cordiali saluti\n Unità Didattica DII"
     },
     "M. Ing. Robotica e della Automazione": {
-        "formula": "$M * 3 + 18.5 + $T",
+        "formula": "M * 3 + 18.5 + T",
         "valore_lode": 33,
         "durata": 2,
         "cfu_richiesti": 102,
@@ -93,10 +100,11 @@
         "Tstep": 0,
         "Cmin": 1,
         "Cmax": 3,
-        "Cstep": 1
+        "Cstep": 1,
+        "formula_email": "Gentile laureando/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adopererà per\ndeterminare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: vittoria.dattilo@unipi.it\nAlcune spiegazioni:\n- gli esami che non hanno un voto in trentesimi, hanno voto nominale zero al posto di giudizio o idoneita', in\nquanto non contribuiscono al calcolo della media ma solo al numero di crediti curriculari;\n- gli esami che non fanno media (pur contribuendo ai crediti curriculari) non hanno la spunta nella colonna MED;\n- il voto di tesi (T) appare nominalmente a zero in quanto verra' determinato in sede di laurea, e va da 18 a 30.\n Cordiali saluti\n Unità Didattica DII"
     },
     "M. Ing. delle Telecomunicazioni": {
-        "formula": "$M * 11 \/ 3 + $C",
+        "formula": "M * 11 \/ 3 + C",
         "valore_lode": 33,
         "durata": 2,
         "cfu_richiesti": 96,
@@ -105,6 +113,7 @@
         "Tstep": 0,
         "Cmin": 1,
         "Cmax": 11,
-        "Cstep": 1
+        "Cstep": 1,
+        "formula_email": "Gentile laureando/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adopererà per\ndeterminare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: vittoria.dattilo@unipi.it\nAlcune spiegazioni:\n- gli esami che non hanno un voto in trentesimi, hanno voto nominale zero al posto di giudizio o idoneita', in\nquanto non contribuiscono al calcolo della media ma solo al numero di crediti curriculari;\n- gli esami che non fanno media (pur contribuendo ai crediti curriculari) non hanno la spunta nella colonna MED;\n- il voto di tesi (T) appare nominalmente a zero in quanto verra' determinato in sede di laurea, e va da 18 a 30.\n Cordiali saluti\n Unità Didattica DII"
     }
 }

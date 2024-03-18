@@ -24,5 +24,9 @@ class AccessoProspetti
     {
         self::$serverDir = $dir;
     }
+    public static function pathAusiliario() : string
+    {
+        return dirname(self::pathCommissioneServer()) . "/ausiliario.json";
+    }
 }
 AccessoProspetti::setServerDir(dirname(__DIR__) . '/data/pdf_generati/');

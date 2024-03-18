@@ -38,6 +38,18 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
         .hidden {
             display: none !important;
         }
+        button {
+            cursor: pointer;
+            color: white;
+            background-color: red;
+            padding: 0.5em;
+            margin: 0.5em;
+            border-radius: 5px;
+        }
+            button:disabled {
+                filter: blur(1.4)px;
+                cursor: not-allowed;
+            }
         #main-form {
             display: grid;
 
@@ -74,12 +86,16 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
             #main-form > button {
                 grid-column-start: 1;
                 grid-column-end: 3;
-                cursor: pointer;
-                color: white;
-                background-color: red;
-                padding: 0.5em;
-                margin: 0.5em;
-                border-radius: 5px;
+            }
+        #second-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+            #second-form > progress {
+                height: 1em;
+                border: 1px solid;
+                background-color: beige;
             }
     </style>
     <script src="/lib/msg_js/msg.min.js" defer></script>
@@ -132,6 +148,14 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
         Invia Prospetti
     </button>
     <progress min="0" max="1" value="0" class="hidden"></progress>
+    <details class="hidden">
+        <summary>
+            Dettagli invio
+        </summary>
+        <ul>
+            <!-- I dettagli andranno qua -->
+        </ul>
+    </details>
 </form>
 <script>
     'use strict';
@@ -161,7 +185,11 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
             {
                 return null;
             }
-            //console.log(await response.text());
+            const contentType = response.headers.get("content-type");
+            if (!contentType || contentType.indexOf("application/json") === -1) {
+                console.log(await response.text());
+                return null;
+            }
             return await response.json();
         } catch (err) {
             console.warn(err);
@@ -208,6 +236,8 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
      * @type {HTMLProgressElement}
      */
     const second_form_progress = document.querySelector('#second-form > progress');
+    const second_form_details = document.querySelector('#second-form > details');
+    const second_form_ul = document.querySelector('#second-form > details > ul');
 
     main_form.onsubmit = async (evt) => {
         // Sostituisco chiamata ajax a normale chiamata
@@ -217,6 +247,7 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
         const textarea = document.getElementById('matricole');
         const matricole = [...new Set(textarea.value.split(',').map(s => s.trim()))];
         textarea.value = matricole.join(',\n'); // Riordino visivamente la textarea
+        second_form.matricole = matricole;
         if (matricole.length === 0)
         {
             return;
@@ -255,9 +286,45 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
         }
 
         second_form.classList.remove('hidden');
-        second_form_progress.classList.add('hidden');
+        second_form_progress.classList.remove('hidden');
+        second_form_details.classList.add('hidden');
         second_form_progress.value = 0;
         second_form_progress.max = Number(res.NumeroProspetti);
+    }
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    second_form.onsubmit = async (evt) => {
+        evt.preventDefault();
+        let iterate = true;
+        
+        second_form_ul.innerHTML = '';
+        second_form.matricole.forEach(mat => {
+            const li = document.createElement('li');
+            li.innerText = mat + ':';
+            li.id = 'result-' + mat;
+            second_form_ul.appendChild(li);
+        });
+        second_form_details.classList.remove('hidden');
+
+        do {
+            const res = await post(second_form.getAttribute('action'), {
+                'numero_max': 1
+            });
+            if (!res)
+            { 
+                continue;
+            }
+            console.log('Invii: ' + res.InviiEffettuati.length);
+            iterate = res.InviiEffettuati.length > 0;
+            res.InviiEffettuati.forEach(mat => {
+                const li = document.getElementById('result-' + mat);
+                li.innerText += ' Inviato'
+            });
+            second_form_progress.value += res.InviiEffettuati.length;
+
+            await sleep(1000);
+        } while (iterate);
     }
 </script>
 </body>

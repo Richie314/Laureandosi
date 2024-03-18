@@ -141,9 +141,4 @@ class CarrieraLaureando2
 
         return $crediti;
     }
-
-    public function get_class()
-    {
-        return $this->_cdl;
-    }
 }

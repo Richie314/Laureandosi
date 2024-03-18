@@ -9,6 +9,7 @@ class CorsoDiLaurea
     public int $ValoreLode;
     private int $Duarata = 3;
     public string $Nome;
+    public string $FormulaEmail;
 
     public function CalcolaFormula(string|float $M, string|int $CFU, string|int|float $T = 0, string|int|float $C = 0) : float|null
     {
@@ -29,7 +30,7 @@ class CorsoDiLaurea
             define("CFU", (int)$CFU);
             define("T", (float)$T);
             define("C", (float)$C);
-            return (float)eval('return ' . $this->Formula);
+            return (float)eval('return ' . $this->Formula . ';');
         } catch (Exception $ex) {
             return null;
         }
@@ -45,6 +46,7 @@ class CorsoDiLaurea
         string|int $valoreLode,
         string|int|null $tMin, string|int|null $tMax, string|int|null $tStep,
         string|int|null $cMin, string|int|null $cMax, string|int|null $cStep,
+        string|null $corpo_email,
         string|int|null $durata = null)
     {
         $this->Nome = trim($nome);
@@ -53,7 +55,7 @@ class CorsoDiLaurea
             $this->CFURichiesti = (int)$cfu;
         }
         $this->ValoreLode = (int)$valoreLode;
-        $this->Formula = isset($formula) ? $formula : '110 * $M / 30';
+        $this->Formula = isset($formula) ? $formula : '110 * M / 30';
         
         $this->T = new ParametroFormula($tMin, $tMax, $tStep);
         $this->C = new ParametroFormula($cMin, $cMax, $cStep);
@@ -61,6 +63,7 @@ class CorsoDiLaurea
         {
             $this->Duarata = (int)$durata;
         }
+        $this->FormulaEmail = isset($corpo_email) ? $corpo_email : "Ecco i prospetti";
     }
     public function __toString() : string
     {

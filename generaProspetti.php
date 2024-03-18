@@ -8,7 +8,6 @@ if (!isset($_POST["matricole"]) ||
     exit;
 }
 
-header("Content-type: application/json");
 
 $matricole_array = array_map("intval", array_map("trim", explode(",", $_POST["matricole"]))); //stringa in array di interi
 $data_laurea = $_POST["data_laurea"];
@@ -27,7 +26,7 @@ if ($prospetto->generaProspettiCommissione())
 $esito = "Successo";
 $messaggio = "$prospetti_generati prospetti generati";
 
-if (!$prospetto->popolaJSON(__DIR__ . '/data/ausiliario.json'))
+if (!$prospetto->popolaJSON())
 {
     $messaggio = "Impossibile salvare dati sull'operazione";
     $esito = "Errore";   
@@ -44,6 +43,7 @@ if (count($matricole_array) === 0)
     $esito = "Errore";
 }
 
+header("Content-type: application/json");
 // Output risposta
 echo json_encode(array(
     'Esito' => $esito,

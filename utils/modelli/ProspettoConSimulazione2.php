@@ -19,8 +19,9 @@ class ProspettoConSimulazione2 extends ProspettoPDFLaureando2 {
 	public function __construct(string|int $matricola, string $cdl_in, string $data_laurea) {
 		parent::__construct($matricola, $cdl_in, $data_laurea);
 	}
-    public function generaProspettoConSimulazione(){
-        $pdf = new FPDF();
+    public function generaProspettoConSimulazione()
+    {
+        $pdf = parent::generaProspetto(null);
         $pdf = $this->generaContenuto($pdf);
         return $pdf;
     }
@@ -55,9 +56,9 @@ class ProspettoConSimulazione2 extends ProspettoPDFLaureando2 {
             $pdf->Cell($width, $height, "VOTO LAUREA", 1, 1, 'C');
             $T = 0;
 
-            for ($C = $cdl->C->Min; $C <= $cdl->C->Max; $C += $cdl->C->Step) {
+            foreach ($cdl->C->GetValues() as $C)
+            {
                 $voto = $cdl->CalcolaFormula($M, $CFU, $T, $C);
-                //$voto = intval($voto);
                 $pdf->Cell($width, $height, $C, 1, 0, 'C');
                 $pdf->Cell($width, $height, $voto, 1, 1, 'C');
             }
@@ -66,7 +67,8 @@ class ProspettoConSimulazione2 extends ProspettoPDFLaureando2 {
             $pdf->Cell($width, $height, "VOTO LAUREA", 1, 1, 'C');
             $C = 0;
 
-            for ($T = $cdl->T->Min; $T <= $cdl->T->Max; $T += $cdl->T->Step) {
+            foreach ($cdl->T->GetValues() as $T)
+            {
                 $voto = $cdl->CalcolaFormula($M, $CFU, $T, $C);
                 $pdf->Cell($width, $height, $T, 1, 0, 'C');
                 $pdf->Cell($width, $height, $voto, 1, 1, 'C');

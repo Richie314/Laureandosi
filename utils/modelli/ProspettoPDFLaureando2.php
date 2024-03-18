@@ -116,13 +116,14 @@ class ProspettoPDFLaureando2 {
         $pdf->Ln(5);
         // ------------------------------- PARTE RIASUNTIVA  ----------------------------------------
         $pdf->SetFont($font_family, "", 9);
-        $string = "Media Pesata (M):                                                  " . $this->_carrieraLaureando->restituisciMedia() .
+        $string = 
+            "Media Pesata (M):                                                  " . number_format($this->_carrieraLaureando->restituisciMedia(), 3) .
             "\nCrediti che fanno media (CFU):                             " . $this->_carrieraLaureando->creditiCheFannoMedia() .
             "\nCrediti curriculari conseguiti:                                  " . $this->_carrieraLaureando->creditiCurricolariConseguiti() .
             "\nFormula calcolo voto di laurea:                               " . $this->_carrieraLaureando->restituisciFormula();
         if ($this->_carrieraLaureando instanceof CarrieraLaureandoInformatica2)
         {
-            $string .= "\nMedia pesata esami INF:                                        " . $this->_carrieraLaureando->getMediaEsamiInformatici();
+            $string .= "\nMedia pesata esami INF:                                        " . number_format($this->_carrieraLaureando->getMediaEsamiInformatici(), 3);
         }
 
         $pdf->MultiCell(0, 6, $string, 1, "L");
@@ -136,7 +137,13 @@ class ProspettoPDFLaureando2 {
         EsameLaureando2 $esame, 
         FPDF &$pdf)
     {
-        $pdf->Cell($larghezza_grande, $altezza, $esame->_nomeEsame /*. " (" . $esame->_dataEsame->format("Y-m-d") . ")"*/, 1, 0, 'L');
+        if (!$esame->_curricolare)
+        {
+            return;
+        }
+        $pdf->Cell($larghezza_grande, $altezza, 
+        $esame->_nomeEsame 
+        /*. " (" . $esame->_dataEsame->format("Y-m-d") . ")"*/, 1, 0, 'L');
         $pdf->Cell($larghezza_piccola, $altezza, $esame->_cfu, 1, 0, 'C');
         $pdf->Cell($larghezza_piccola, $altezza, $esame->_votoEsame, 1, 0, 'C');
         if ($this->_carrieraLaureando instanceof CarrieraLaureandoInformatica2) {

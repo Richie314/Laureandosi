@@ -33,10 +33,9 @@ class EsameLaureando2
 	 */
 	public bool $_informatico = false;
 	public static array $EsamiDaIgnorare = array(
-		"LIBERA SCELTA PER RICONOSCIMENTI",
+		//"LIBERA SCELTA PER RICONOSCIMENTI",
 		"PROVA FINALE",
 		"TEST DI VALUTAZIONE DI INGEGNERIA",
-		"PROVA DI LINGUA INGLESE B2"
 	);
 
 	private static function VotoConLode(string $voto) : bool
@@ -66,17 +65,21 @@ class EsameLaureando2
 		string|int $valore_lode = 33)
 	{
 		$this->_nomeEsame = strtoupper(trim($nome));
-		$faMedia = $faMedia && !in_array($nome, self::$EsamiDaIgnorare) && (int)$voto !== 0;
 		$this->_cfu = (int)$cfu;
 		$this->_dataEsame = DateTime::createFromFormat("d/m/Y", $data);
-		$this->_curricolare = (bool)$curricolare;
-		$this->_faMedia = $faMedia && $this->_curricolare;
 		$voto = !isset($voto) ? 0 : $voto;
 		$this->_votoEsame = self::ParseVoto($voto, $valore_lode);
+
+		$this->_curricolare = (bool)$curricolare && !in_array($this->_nomeEsame, self::$EsamiDaIgnorare);
+		$this->_faMedia = (bool)$faMedia && $this->_curricolare && $this->_votoEsame !== 0;
 	}
 
-	public function Credito() : bool
+	public function CreditoMedia() : int
 	{
-		return ($this->_faMedia && $this->_curricolare) ? $this->_cfu : 0;
+		return $this->_faMedia ? $this->_cfu : 0;
+	}
+	public function CreditoCurriculare() : int
+	{
+		return $this->_curricolare ? $this->_cfu : 0;
 	}
 }

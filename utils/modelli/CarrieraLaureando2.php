@@ -2,6 +2,7 @@
 require_once __DIR__ . '/EsameLaureando2.php';
 require_once __DIR__ . '/CorsoDiLaurea.php';
 require_once dirname(__DIR__) . '/GestioneCarrieraStudente2.php';
+require_once dirname(__DIR__) . '/Configurazione.php';
 
 class CarrieraLaureando2
 {
@@ -61,7 +62,8 @@ class CarrieraLaureando2
                 $carriera["Esami"]["Esame"][$i]["VOTO"],
                 $carriera["Esami"]["Esame"][$i]["PESO"],
                 $carriera["Esami"]["Esame"][$i]["DATA_ESAME"],
-                true, true,
+                true, 
+                (int)$carriera["Esami"]["Esame"][$i]["SOVRAN_FLG"] === 0,
                 $this->_cdl->ValoreLode
             );
             $this->_esami[] = $esame;
@@ -93,18 +95,18 @@ class CarrieraLaureando2
     }
     public function calcola_media() : float
     {
-        $esami = $this->_esami;
         $somma_voto_cfu = 0;
         $somma_cfu_tot = 0;
 
         for ($i = 0; $i < sizeof($this->_esami); $i++)
         {
-            if ($esami[$i]->_faMedia)
+            if (!$this->_esami[$i]->_faMedia)
             {
-                $somma_voto_cfu += $esami[$i]->_votoEsame * $this->_esami[$i]->_cfu;
-                //devi convertire il voto in un int prima
-                $somma_cfu_tot += $this->_esami[$i]->_cfu;
+                continue;
             }
+            $somma_voto_cfu += $this->_esami[$i]->_votoEsame * $this->_esami[$i]->_cfu;
+            //devi convertire il voto in un int prima
+            $somma_cfu_tot += $this->_esami[$i]->_cfu;
         }
         return (float)$somma_voto_cfu / $somma_cfu_tot;
     }
@@ -116,13 +118,12 @@ class CarrieraLaureando2
 	public function creditiCurricolariConseguiti() : int
     {
         $crediti = 0;
-        for ($i = 0; sizeof($this->_esami) > $i; $i++) {
-            if (
-                $this->_esami[$i]->_nomeEsame != "PROVA FINALE" &&  
-                $this->_esami[$i]->_nomeEsame != "LIBERA SCELTA PER RICONOSCIMENTI") {
-                $crediti += ($this->_esami[$i]->_curricolare == 1) ? $this->_esami[$i]->_cfu : 0;
-            }
+
+        for ($i = 0; $i < sizeof($this->_esami); $i++)
+        {
+            $crediti += $this->_esami[$i]->CreditoCurriculare();
         }
+
         return $crediti;
 	}
 
@@ -136,7 +137,7 @@ class CarrieraLaureando2
 
         for ($i = 0; $i < sizeof($this->_esami); $i++)
         {
-            $crediti += $this->_esami[$i]->Credito();
+            $crediti += $this->_esami[$i]->CreditoMedia();
         }
 
         return $crediti;

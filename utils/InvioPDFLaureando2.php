@@ -46,8 +46,8 @@ class InvioPDFLaureando2 {
                 if ($this->inviaProspetto($prospetto->_carrieraLaureando))
                 {
                     unlink(AccessoProspetti::pathLaureandoServer($this->_matricole[$j]));
-                    $this->_matricole[$j] = 0;
                     $inviati[] = $this->_matricole[$j];
+                    $this->_matricole[$j] = 0;
                 }
             } catch (Exception $ex) {};
         }
@@ -88,6 +88,11 @@ class InvioPDFLaureando2 {
     }
     private static function SaveFile(array $matricole, string $cdl, string $data_laurea) : bool
     {
+        if (count($matricole) === 0)
+        {
+            // A operazione terminata il file ausiliario viene cancellato
+            return unlink(AccessoProspetti::pathAusiliario());
+        }
         $json = json_encode(
             array(
                 'matricole' => $matricole,

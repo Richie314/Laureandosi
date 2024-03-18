@@ -60,7 +60,7 @@ class ProspettoConSimulazione2 extends ProspettoPDFLaureando2 {
             {
                 $voto = $cdl->CalcolaFormula($M, $CFU, $T, $C);
                 $pdf->Cell($width, $height, $C, 1, 0, 'C');
-                $pdf->Cell($width, $height, $voto, 1, 1, 'C');
+                $pdf->Cell($width, $height, number_format($voto, 1), 1, 1, 'C');
             }
         } elseif ($cdl->T->InUso()) {
             $pdf->Cell($width, $height, "VOTO TESI (T)", 1, 0, 'C');
@@ -71,7 +71,7 @@ class ProspettoConSimulazione2 extends ProspettoPDFLaureando2 {
             {
                 $voto = $cdl->CalcolaFormula($M, $CFU, $T, $C);
                 $pdf->Cell($width, $height, $T, 1, 0, 'C');
-                $pdf->Cell($width, $height, $voto, 1, 1, 'C');
+                $pdf->Cell($width, $height, number_format($voto, 1), 1, 1, 'C');
             }
         }
 

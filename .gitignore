@@ -8,7 +8,10 @@ local-xdebuginfo.php
 readme.html
 wp-*.php
 xmlrpc.php
+data/pdf_generati/
+data/ausiliario.json
 !wp-content/themes
 !wp-content/themes/twentytwentyfour
 !wp-content/themes/twentytwentyfour/templates
 !wp-content/themes/twentytwentyfour/templates/index.php
+!wp-content/themes/twentytwentyfour/templates/test.php

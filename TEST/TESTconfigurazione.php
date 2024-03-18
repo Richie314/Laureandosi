@@ -1,26 +1,93 @@
 <?php
-require_once('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\utils\ModificaParametriConfigurazione.php');
-class TESTconfigurazione{
-    public function test(){
-        $val = file_get_contents('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\utils\json_files\formule_laurea.json');
-        $val1 = json_decode($val,true);
-        $x = file_get_contents('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\utils\json_files\esami_informatici.json');
-        $y = json_decode($x,true);
-        $var = new ModificaParametriCofigurazione("T. Ing. Informatica",array("ELETTROTECNICA","CRITTOGRAFIA"));
-        $var->modificaFormula("4*3");
-        $var->modificaEsamiInformatici();
-        $aux = file_get_contents('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\utils\json_files\formule_laurea.json');
-        $aux1 = json_decode($aux,true);
-        if($val1 == $aux1)
-            echo "parametri non configurati";
-        else
-            echo "ModificaParametriConfigurazione : TEST SUPERATI";
-        $json_file = json_encode($val1,JSON_PRETTY_PRINT);
-        file_put_contents('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\utils\json_files\formule_laurea.json',$json_file);
-        file_put_contents('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\data\formule_laurea.json',$json_file);
-        $json_file1 = json_encode($y,JSON_PRETTY_PRINT);
-        file_put_contents('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\utils\json_files\esami_informatici.json',$json_file1);
-        file_put_contents('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\data\esami_informatici.json',$json_file1);
+require_once dirname(__DIR__) . "/utils/Configurazione.php";
+require_once dirname(__DIR__) . "/utils/modelli/Test.php";
+class TestConfigurazione_CorsiDiLaurea extends Test
+{
+    public function __construct()
+    {
+        parent::__construct(
+            'Func', 
+            array('T. Ing. Elettronica'), 
+            array(
+                'T. Ing. Elettronica',
+                'T. Ing. Elettronica',
+                '2 + 4 * ( M * CFU + T * 3) / ( CFU + 3)',
+                33,
+                '2026-05-01',
+                177,
+                true, 
+                false
+            ));
+    }
+    public static function Func(string $cdl) : array
+    {
+        $obj = Configurazione::CorsiDiLaurea()[$cdl];
+        return array(
+            $obj->Nome,
+            (string)$obj,
+            $obj->Formula,
+            $obj->ValoreLode,
+            $obj->FineBonus(2022),
+            $obj->CFURichiesti,
+            $obj->T->InUso(),
+            $obj->C->InUso()
+        );
     }
 }
-?>
+
+class TestConfigurazione_IngInf extends Test
+{
+    public function __construct()
+    {
+        parent::__construct(
+            'Func', 
+            array(
+                array(
+                    'T. Ing. Elettronica',
+                    'T. Ing. Informatica',
+                    'boh'
+                )
+            ), 
+            array(
+                false, 
+                true, 
+                false
+            ));
+    }
+    public static function Func(array $nomi) : array
+    {
+        return array_map(function (string $nome) {
+            return Configurazione::IngInf($nome);
+        }, $nomi);
+    }
+}
+class TestConfigurazione_EsamiInformatici extends Test
+{
+    public function __construct()
+    {
+        parent::__construct(
+            'Func', 
+            array(
+                array(
+                    'Fondamenti di Programmazione',
+                    'Elettrotecnica',
+                    'Reti Logiche',
+                    'Ingegneria del Software',
+                    'Algebra Lineare'
+                )
+            ), 
+            array(
+                true,
+                false,
+                true,
+                true,
+                false
+            ));
+    }
+    public static function Func(array $esami) : array
+    {
+        return array_map(function (string $esame) {
+            return in_array(strtoupper($esame), Configurazione::EsamiInformatici());
+        }, $esami);
+    }
+}

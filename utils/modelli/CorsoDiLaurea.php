@@ -7,7 +7,7 @@ class CorsoDiLaurea
     public ParametroFormula $T;
     public ParametroFormula $C;
     public int $ValoreLode;
-    private int $Duarata = 3;
+    private int $Durata = 3;
     public string $Nome;
     public string $FormulaEmail;
 
@@ -26,18 +26,21 @@ class CorsoDiLaurea
             $C = 0;
         }
         try {
-            define("M", (float)$M);
-            define("CFU", (int)$CFU);
-            define("T", (float)$T);
-            define("C", (float)$C);
-            return (float)eval('return ' . $this->Formula . ';');
+            $M = (float)$M;
+            $CFU = (int)$CFU;
+            $T = (float)$T;
+            $C = (float)$C;
+            return (float)eval('return ' . preg_replace_callback('/([A-Z]+)/i', function ($matches) {
+                $a = $matches[1];
+                return "$$a";
+            }, $this->Formula) . ';');
         } catch (Exception $ex) {
             return null;
         }
     }
     public function FineBonus(int $anno_immatricolazione) : string
     {
-        return ($anno_immatricolazione + 1 + $this->Duarata) . "-05-01";
+        return ($anno_immatricolazione + 1 + $this->Durata) . "-05-01";
     }
     public function __construct(
         string $nome,
@@ -61,7 +64,7 @@ class CorsoDiLaurea
         $this->C = new ParametroFormula($cMin, $cMax, $cStep);
         if (isset($durata))
         {
-            $this->Duarata = (int)$durata;
+            $this->Durata = (int)$durata;
         }
         $this->FormulaEmail = isset($corpo_email) ? $corpo_email : "Ecco i prospetti";
     }

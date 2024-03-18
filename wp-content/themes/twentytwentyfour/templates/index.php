@@ -6,7 +6,7 @@ require_once dirname(__DIR__, 4) . "/utils/Configurazione.php";
 require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="it-it">
 <head>
     <title>
         Genera Prospetti di Laurea
@@ -311,16 +311,17 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
 
         while (iterate)
         {
-            console.log('Invio in corso...');
+            console.log('Invio in corso adesso...');
             const res = await post(second_form.getAttribute('action'), {
                 'numero_max': 1
             });
             if (!res)
             { 
-                console.log('Response was invalid');
+                iterate = false;
+                DisplayError('Il server ha risposto con un formato sconosciuto.\nL\'operazione è stata terminata');
                 continue;
             }
-            console.log('Invii: ' + res.InviiEffettuati.length);
+            //console.log('Invii: ' + res.InviiEffettuati.length);
             iterate = res.InviiEffettuati.length > 0;
             res.InviiEffettuati.forEach(mat => {
                 const li = document.getElementById('result-' + mat);
@@ -328,7 +329,7 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
             });
             second_form_progress.value += res.InviiEffettuati.length;
 
-            console.log('Delay di 1s');
+            //console.log('Delay di 1s');
             await sleep(1000);
         }
     }

@@ -7,6 +7,7 @@ include_once dirname(__DIR__, 4) . '/TEST/TestConfigurazione.php';
 include_once dirname(__DIR__, 4) . '/TEST/TestParametroFormula.php';
 include_once dirname(__DIR__, 4) . '/TEST/TestCorsoDiLaurea.php';
 include_once dirname(__DIR__, 4) . '/TEST/TestCarrieraLaureando.php';
+include_once dirname(__DIR__, 4) . '/TEST/TestCarrieraLaureandoInformatica.php';
 $test_array = array(
     new TestAccessoProspetti_PathAusiliario,
     new TestAccessoProspetti_PathCommissioneWeb(),
@@ -20,7 +21,9 @@ $test_array = array(
 
     new TestCorsoDiLaurea(),
 
-    new TestCarrieraLaureando()
+    new TestCarrieraLaureando(),
+    new TestCarrieraLaureandoInformatica_NoBonus(),
+    new TestCarrieraLaureandoInformatica_ConBonus()
 );
 ?>
 <!DOCTYPE html>

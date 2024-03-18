@@ -7,7 +7,7 @@ class TestCarrieraLaureando extends Test
     {
         parent::__construct('Func', array(
             234567,
-            'T. Ing. Elettronica'
+            'M. Ing. Elettronica'
         ), array(
             102,
             '24.559',
@@ -15,15 +15,7 @@ class TestCarrieraLaureando extends Test
             'ATZENI',
             2018,
             234567,
-            new EsameLaureando2(
-                'TELECOMUNICAZIONI',
-                25,
-                9,
-                '29/01/2019',
-                true,
-                true,
-                33
-            )
+            'TELECOMUNICAZIONI 25'
         ));
     }
     public static function Func(int $matricola, string $cdl) : array
@@ -36,6 +28,6 @@ class TestCarrieraLaureando extends Test
             $carriera->_cognome,
             $carriera->_anno_immatricolazione,
             $carriera->_matricola,
-            $carriera->_esami[0]);
+            $carriera->_esami[0]->_nomeEsame . " " . $carriera->_esami[0]->_votoEsame);
     }
 }

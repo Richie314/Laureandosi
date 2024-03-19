@@ -1,17 +1,45 @@
 <?php
-require_once('C:\Users\franc\Local Sites\genera-prospetti-laurea\app\public\utils\EsameLaureando2.php');
-class TESTesameLaureando{
-    public function test(){
-        $ausiliaria = new EsameLaureando2();
-        $ausiliaria->_nomeEsame = "STATISTICA";
-        $ausiliaria->_votoEsame = 28;
-        $aux = $ausiliaria->_nomeEsame;
-        if($aux != "STATISTICA")
-            echo "errore nome esame su esameLaureando2";
-        $aux1 = $ausiliaria->_votoEsame;
-        if($aux1 != 28)
-            echo "errore voto esame su esameLaureando2";
-        echo "EsameLaureando2 : TEST SUPERATI";
+require_once dirname(__DIR__) . "/utils/modelli/EsameLaureando2.php";
+require_once dirname(__DIR__) . "/utils/modelli/Test.php";
+class TestEsameLaureando extends Test
+{
+    public function __construct()
+    {
+        $cfu = 12;
+        $lode = 31;
+        parent::__construct(
+            'Func', 
+            array(
+                '30 e Lode',
+                date("d/m/Y"),
+                $cfu,
+                $lode
+            ), 
+            array(
+                $cfu,
+                $cfu,
+                $lode,
+                date("Y-m-d")
+            ));
+    }
+    public static function Func(
+        string $voto,
+        string $data,
+        int $cfu,
+        int $lode) : array
+    {
+        $esame = new EsameLaureando2(
+            'Esame', 
+            $voto,
+            $cfu, 
+            $data,
+            true, true, $lode
+        );
+        return array(
+            $esame->CreditoCurriculare(),
+            $esame->CreditoMedia(),
+            $esame->_votoEsame,
+            $esame->_dataEsame->format("Y-m-d")
+        );
     }
 }
-?>

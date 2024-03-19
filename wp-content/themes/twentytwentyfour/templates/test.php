@@ -5,12 +5,13 @@
 include_once dirname(__DIR__, 4) . '/TEST/TestAccessoProspetti.php';
 include_once dirname(__DIR__, 4) . '/TEST/TestConfigurazione.php';
 include_once dirname(__DIR__, 4) . '/TEST/TestGestioneCarrieraStudente.php';
+include_once dirname(__DIR__, 4) . '/TEST/TestEsameLaureando.php';
 include_once dirname(__DIR__, 4) . '/TEST/TestParametroFormula.php';
 include_once dirname(__DIR__, 4) . '/TEST/TestCorsoDiLaurea.php';
 include_once dirname(__DIR__, 4) . '/TEST/TestCarrieraLaureando.php';
 include_once dirname(__DIR__, 4) . '/TEST/TestCarrieraLaureandoInformatica.php';
 $test_array = array(
-    new TestAccessoProspetti_PathAusiliario,
+    new TestAccessoProspetti_PathAusiliario(),
     new TestAccessoProspetti_PathCommissioneWeb(),
     new TestAccessoProspetti_PathLaureandoServer(),
 
@@ -25,9 +26,11 @@ $test_array = array(
 
     new TestCorsoDiLaurea(),
 
+    new TestEsameLaureando(),
+
     new TestCarrieraLaureando(),
     new TestCarrieraLaureandoInformatica_NoBonus(),
-    new TestCarrieraLaureandoInformatica_ConBonus()
+    new TestCarrieraLaureandoInformatica_ConBonus(),
 );
 ?>
 <!DOCTYPE html>

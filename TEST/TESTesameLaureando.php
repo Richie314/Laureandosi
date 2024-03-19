@@ -10,7 +10,7 @@ class TestEsameLaureando extends Test
         parent::__construct(
             'Func', 
             array(
-                '30 e Lode',
+                '30 e    Lode',
                 date("d/m/Y"),
                 $cfu,
                 $lode

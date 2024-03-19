@@ -44,7 +44,7 @@ class EsameLaureando2
 		{
 			return (int)$voto > 30;
 		}
-		return preg_match('/((30)\\s(e)\\s(lode))|(30L)/i', trim($voto));
+		return preg_match('/(30\\s+e\\s+lode)|(30L)/i', trim($voto));
 	}
 	public static function ParseVoto(string $voto, int $valore_lode = 33) : int
 	{

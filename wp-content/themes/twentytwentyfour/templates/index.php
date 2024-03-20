@@ -247,11 +247,12 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
         const textarea = document.getElementById('matricole');
         const matricole = [...new Set(textarea.value.split(',').map(s => s.trim()))];
         textarea.value = matricole.join(',\n'); // Riordino visivamente la textarea
-        second_form.matricole = matricole;
+        second_form.matricole = [...matricole];
         if (matricole.length === 0)
         {
             return;
         }
+        second_form.matricole.push('Commissione');
         
         const cdl = document.getElementById('cdl').value;
         if (!cdl || cdl.length === 0)
@@ -325,7 +326,7 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
             iterate = res.InviiEffettuati.length > 0;
             res.InviiEffettuati.forEach(mat => {
                 const li = document.getElementById('result-' + mat);
-                li.innerText += ' Inviato'
+                li.innerText = mat + ': Inviato';
             });
             second_form_progress.value += res.InviiEffettuati.length;
 

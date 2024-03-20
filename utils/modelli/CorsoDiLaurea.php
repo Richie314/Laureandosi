@@ -10,6 +10,7 @@ class CorsoDiLaurea
     private int $Durata = 3;
     public string $Nome;
     public string $FormulaEmail;
+    public string $EmailCommissione;
 
     public function CalcolaFormula(string|float $M, string|int $CFU, string|int|float $T = 0, string|int|float $C = 0) : float|null
     {
@@ -50,6 +51,7 @@ class CorsoDiLaurea
         string|int|null $tMin, string|int|null $tMax, string|int|null $tStep,
         string|int|null $cMin, string|int|null $cMax, string|int|null $cStep,
         string|null $corpo_email,
+        string $email_commissione,
         string|int|null $durata = null)
     {
         $this->Nome = trim($nome);
@@ -67,6 +69,7 @@ class CorsoDiLaurea
             $this->Durata = (int)$durata;
         }
         $this->FormulaEmail = isset($corpo_email) ? $corpo_email : "Ecco i prospetti";
+        $this->EmailCommissione = $email_commissione;
     }
     public function __toString() : string
     {

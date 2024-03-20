@@ -36,7 +36,7 @@ class ProspettoPDFCommissione2 {
 	 */
 	public function __construct(array $aMatricole, string $aDataLaurea, string $aCdl)
     {
-		$this->_matricole = $aMatricole;
+		$this->_matricole = (new ArrayObject(array_map("intval", $aMatricole)))->getArrayCopy();
         $this->_dataLaurea = $aDataLaurea;
         $this->_cdl = $aCdl;
 	}
@@ -104,6 +104,15 @@ class ProspettoPDFCommissione2 {
             } catch (Exception $ex) { }
         }
         return $totale;
+    }
+    public function generaProspetti(): int {
+        $tot = $this->generaProspettiLaureandi();
+        if ($tot === 0)
+            return 0;
+        if ($this->generaProspettiCommissione()) {
+            return $tot + 1;
+        }
+        return $tot;
     }
     public function popolaJSON() : bool
     {

@@ -17,11 +17,7 @@ $messaggio = null;
 $esito = null;
 
 $prospetto = new ProspettoPdfCommissione2($matricole_array, $data_laurea, $cdl);
-$prospetti_generati = $prospetto->generaProspettiLaureandi();
-if ($prospetto->generaProspettiCommissione())
-{
-    $prospetti_generati++;
-}
+$prospetti_generati = $prospetto->generaProspetti();
 
 $esito = "Successo";
 $messaggio = "$prospetti_generati prospetti generati";
@@ -39,7 +35,7 @@ if (count($matricole_array) === 0)
 } elseif ($prospetti_generati < count($matricole_array) + 1)
 {
     $pdf_previsti = count($matricole_array) + 1;
-    $messaggio = "$prospetti_generati / $pdf_previsti prospetti generati";
+    $messaggio = "$prospetti_generati / $pdf_previsti prospetti generati.\n" . join(",", $matricole_array);
     $esito = "Errore";
 }
 

@@ -35,7 +35,7 @@ class TestCorsoDiLaurea extends Test
         int $anno,
         int $cfu_media) : array
     {
-        $cdl = new CorsoDiLaurea($nome, $formula, $cfu, $lode, 18, 33, 1, 0, 0, 0, null, $durata);
+        $cdl = new CorsoDiLaurea($nome, $formula, $cfu, $lode, 18, 33, 1, 0, 0, 0, null, '', $durata);
         return array(
             (string)$cdl,
             $cdl->T->InUso(),

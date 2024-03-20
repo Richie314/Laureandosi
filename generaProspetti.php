@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ERROR | E_PARSE);
-require_once __DIR__ . '/utils/ProspettoPdfCommissione2.php';
+require_once __DIR__ . '/utils/GestoreProspetti.php';
 if (!isset($_POST["matricole"]) || 
     !isset($_POST["data_laurea"]) || !is_string($_POST["data_laurea"]) &&
     !isset($_POST["cdl"]) || !is_string($_POST["cdl"])) {
@@ -16,7 +16,7 @@ $cdl = $_POST["cdl"];
 $messaggio = null;
 $esito = null;
 
-$prospetto = new ProspettoPdfCommissione2($matricole_array, $data_laurea, $cdl);
+$prospetto = new GestoreProspetti($matricole_array, $data_laurea, $cdl);
 $prospetti_generati = $prospetto->generaProspetti();
 
 $esito = "Successo";

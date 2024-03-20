@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/modelli/ProspettoPDFLaureando2.php';
+require_once __DIR__ . '/modelli/ProspettoLaureando.php';
 require_once __DIR__ . '/AccessoProspetti.php';
 require_once dirname(__DIR__) . '/lib/PHPMailer/src/Exception.php';
 require_once dirname(__DIR__) . '/lib/PHPMailer/src/PHPMailer.php';
@@ -11,59 +11,55 @@ use PHPMailer\PHPMailer\Exception;
  * @author franc
  */
 
-class InvioPDFLaureando2 {
+class GestoreInviiEmail {
     /**
      * @AttributeType int[]
      */
-    private array $_matricole;
-    /**
-     * @AssociationType ProspettoPDFLaureando2
-     */
-    private ?CorsoDiLaurea $_cdl = null;
-    private ?string $_dataLaurea = null;
+    private array $Matricole;
+    private ?CorsoDiLaurea $Cdl = null;
+    private ?string $DataLaurea = null;
 
     public function __construct()
     {
-        $this->_matricole = array();
+        $this->Matricole = array();
         $json_content = file_get_contents(AccessoProspetti::pathAusiliario());
-        if (!$json_content)
-            return;
-        $obj = json_decode($json_content, true);
-        if (!isset($obj))
-        {
+        if (!$json_content) {
             return;
         }
-        $this->_matricole = $obj['matricole'];
-        $this->_cdl = Configurazione::CorsiDiLaurea()[$obj['cdl']];
-        $this->_dataLaurea = $obj['data_laurea'];
+        $obj = json_decode($json_content, true);
+        if (!isset($obj)) {
+            return;
+        }
+        $this->Matricole = $obj['matricole'];
+        $this->Cdl = Configurazione::CorsiDiLaurea()[$obj['cdl']];
+        $this->DataLaurea = $obj['data_laurea'];
     }
     public function invioProspetti(int $max = PHP_INT_MAX) : array
     {
-        if (!isset($this->_cdl) || !isset($this->_dataLaurea)) {
+        if (!isset($this->Cdl) || !isset($this->DataLaurea)) {
             return array();
         }
         $inviati = array();
-        for ($j = 0; $j < min(sizeof($this->_matricole), $max); $j++)
-        {   
+        for ($j = 0; $j < min(sizeof($this->Matricole), $max); $j++) {   
             try {
-                if ($this->_matricole[$j] === 0) {
+                if ($this->Matricole[$j] === 0) {
+
                     // Sto inviando alla commissione
-                    if ($this->inviaProspetto($this->_cdl->EmailCommissione))
-                    {
+                    if ($this->inviaProspetto($this->Cdl->EmailCommissione)) {
                         $inviati[] = 'Commissione';
-                        $this->_matricole[$j] = -1;
+                        $this->Matricole[$j] = -1;
                     }
                     continue;
                 }
-                $prospetto = new ProspettoPdfLaureando2($this->_matricole[$j], $this->_cdl, $this->_dataLaurea);
-                if ($this->inviaProspetto($prospetto->_carrieraLaureando)) {
-                    unlink(AccessoProspetti::pathLaureandoServer($this->_matricole[$j]));
-                    $inviati[] = (int)$this->_matricole[$j];
-                    $this->_matricole[$j] = -1;
+                $prospetto = new ProspettoLaureando($this->Matricole[$j], $this->Cdl, $this->DataLaurea);
+                if ($this->inviaProspetto($prospetto->CarrieraLaureando)) {
+                    unlink(AccessoProspetti::pathLaureandoServer($this->Matricole[$j]));
+                    $inviati[] = (int)$this->Matricole[$j];
+                    $this->Matricole[$j] = -1;
                 }
             } catch (Exception $ex) {};
         }
-        $this->_matricole = array_values(array_filter($this->_matricole, function (int $a) { return $a >= 0; }));
+        $this->Matricole = array_values(array_filter($this->Matricole, function (int $a) { return $a >= 0; }));
         $this->AggiornaFile();
         return $inviati;
     }
@@ -73,8 +69,8 @@ class InvioPDFLaureando2 {
      * @ReturnType bool
      */
     public function inviaProspetto(
-        CarrieraLaureando2|CarrieraLaureandoInformatica2|string $destinatario) : bool {
-
+        CarrieraLaureando|CarrieraLaureandoInformatica|string $destinatario
+    ): bool {
         $messaggio = new PHPMailer();
         $messaggio->IsSMTP();
         $messaggio->Host = "mixer.unipi.it";
@@ -87,15 +83,15 @@ class InvioPDFLaureando2 {
         if (is_string($destinatario)) {
             $messaggio->AddAddress($destinatario);
         } else {
-            $messaggio->AddAddress($destinatario->_email);
+            $messaggio->AddAddress($destinatario->Email);
         }
         $messaggio->Subject = 'Appello di laurea in Ing. TEST- indicatori per voto di laurea';
-        $messaggio->Body = $this->_cdl->FormulaEmail;
+        $messaggio->Body = $this->Cdl->FormulaEmail;
 
         if (is_string($destinatario)) {
             $messaggio->AddAttachment(AccessoProspetti::pathCommissioneServer());
         } else {
-            $messaggio->AddAttachment(AccessoProspetti::pathLaureandoServer($destinatario->_matricola));
+            $messaggio->AddAttachment(AccessoProspetti::pathLaureandoServer($destinatario->Matricola));
         }
         
         $res = $messaggio->Send();
@@ -103,14 +99,13 @@ class InvioPDFLaureando2 {
         return $res;
     }
 
-    public function AggiornaFile() : bool
+    public function AggiornaFile(): bool
     {
-        return self::SaveFile($this->_matricole, $this->_cdl->Nome, $this->_dataLaurea);
+        return self::SaveFile($this->Matricole, $this->Cdl->Nome, $this->DataLaurea);
     }
-    private static function SaveFile(array $matricole, string $cdl, string $data_laurea) : bool
+    private static function SaveFile(array $matricole, string $cdl, string $data_laurea): bool
     {
-        if (count($matricole) === 0)
-        {
+        if (count($matricole) === 0) {
             // A operazione terminata il file ausiliario viene cancellato
             return unlink(AccessoProspetti::pathAusiliario());
         }
@@ -118,24 +113,27 @@ class InvioPDFLaureando2 {
             array(
                 'matricole' => $matricole,
                 'cdl' => $cdl,
-                'data_laurea' => $data_laurea
+                'data_laurea' => $data_laurea,
             ), JSON_PRETTY_PRINT
         );
         $res = file_put_contents(AccessoProspetti::pathAusiliario(), $json);
-        if (!$res)
-        {
+        if (!$res) {
             return false;
         }
         return $res > 0;
     }
-    public static function Generate(array $matricole, string $cdl, string $data_laurea) : ?InvioPDFLaureando2
-    {
+    public static function Generate(
+        array $matricole, 
+        string $cdl, 
+        string $data_laurea,
+    ) : ?GestoreInviiEmail {
         $copy = (new ArrayObject(array_map("intval", $matricole)))->getArrayCopy();
         if (count($copy) === 0 || end($copy) !== 0) {
             $copy[] = 0; // 0 significa inviare alla commissione
         }
-        if (!self::SaveFile($copy, $cdl, $data_laurea))
+        if (!self::SaveFile($copy, $cdl, $data_laurea)) {
             return null;
-        return new InvioPDFLaureando2();
+        }
+        return new GestoreInviiEmail();
     }
 }

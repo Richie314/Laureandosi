@@ -1,8 +1,8 @@
 <?php
 
 error_reporting(E_ERROR | E_PARSE);
-require_once __DIR__ . '/utils/InvioPDFLaureando2.php';
-$invio = new InvioPDFLaureando2();
+require_once __DIR__ . '/utils/GestoreInviiEmail.php';
+$invio = new GestoreInviiEmail();
 
 if (isset($_POST['numero_max']) && ctype_digit($_POST['numero_max']))
 {

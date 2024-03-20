@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__) . "/utils/modelli/CarrieraLaureando2.php";
+require_once dirname(__DIR__) . "/utils/modelli/CarrieraLaureando.php";
 require_once dirname(__DIR__) . "/utils/modelli/Test.php";
 class TestCarrieraLaureando extends Test
 {
@@ -20,14 +20,14 @@ class TestCarrieraLaureando extends Test
     }
     public static function Func(int $matricola, string $cdl) : array
     {
-        $carriera = new CarrieraLaureando2($matricola, $cdl);
+        $carriera = new CarrieraLaureando($matricola, $cdl);
         return array(
             $carriera->creditiCurricolariConseguiti(),
             number_format($carriera->restituisciMedia(), 3),
-            $carriera->_nome,
-            $carriera->_cognome,
-            $carriera->_anno_immatricolazione,
-            $carriera->_matricola,
-            $carriera->_esami[0]->_nomeEsame . " " . $carriera->_esami[0]->_votoEsame);
+            $carriera->Nome,
+            $carriera->Cognome,
+            $carriera->AnnoImmatricolazione,
+            $carriera->Matricola,
+            $carriera->Esami[0]->NomeEsame . " " . $carriera->Esami[0]->VotoEsame);
     }
 }

@@ -85,7 +85,7 @@ $test_array = array(
     <hr>
     <ul>
         <?php foreach ($test_array as $test) { 
-            $res = $test->Test(); ?>
+            $res = $test->test(); ?>
             <li class="test <?= $res ? 'ok' : 'error' ?>">
                 <span>
                     <?= htmlspecialchars(get_class($test)) ?>:
@@ -100,7 +100,7 @@ $test_array = array(
                         <summary>
                             Dettagli
                         </summary>
-                        <pre><?= $test->LastCallDetails() ?></pre>
+                        <pre><?= $test->lastCallDetails() ?></pre>
                     </details>
                 <?php } ?>
             </li>

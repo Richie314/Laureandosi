@@ -4,7 +4,7 @@ class ParametroFormula
     public int|float $Min = 0;
     public int|float $Max = 0;
     public int|float $Step = 1;
-    public function InUso() : bool
+    public function inUso(): bool
     {
         if ($this->Min < 0 || $this->Step < 0)
             return false;
@@ -12,14 +12,12 @@ class ParametroFormula
             return $this->Max === $this->Min && $this->Min > 0;
         return $this->Max > $this->Min;
     }
-    private static function ParseArg(string|int|float $n) : int|float
+    private static function parseArg(string|int|float $n): int|float
     {
-        if (!is_string($n))
-        {
+        if (!is_string($n)) {
             return $n;
         }
-        if (ctype_digit($n))
-        {
+        if (ctype_digit($n)) {
             return (int)$n;
         }
         return (float)$n;
@@ -29,38 +27,33 @@ class ParametroFormula
         if (!isset($min)) $min = 0;
         if (!isset($max)) $max = 0;
         if (!isset($step)) $step = 0;
-        $this->Min = self::ParseArg($min);
-        $this->Max = self::ParseArg($max);
-        $this->Step = self::ParseArg($step);
+        $this->Min = self::parseArg($min);
+        $this->Max = self::parseArg($max);
+        $this->Step = self::parseArg($step);
     }
-    public function Valido(string|int|float|null $param) : bool
+    public function valido(string|int|float|null $param) : bool
     {
-        if (!isset($param) || !$this->InUso())
-        {
+        if (!isset($param) || !$this->inUso()) {
             return false;
         }
-        if (is_string($param) && strlen(trim($param)) === 0)
-        {
+        if (is_string($param) && strlen(trim($param)) === 0) {
             return false;
         }
         $param = (int)$param;
 
-        if ($param < $this->Min || $param > $this->Max)
-        {
+        if ($param < $this->Min || $param > $this->Max) {
             return false;
         }
-        if ($this->Step === 0)
-        {
+        if ($this->Step === 0) {
             return $param === $this->Min || $param === $this->Max;
         }
         return ($param - $this->Min) % $this->Step === 0;
     }
-    public function GetValues() : array
+    public function getValues(): array
     {
-        if (!$this->InUso())
+        if (!$this->inUso())
             return array();
-        if ($this->Step === 0)
-        {
+        if ($this->Step === 0) {
             return array($this->Min, $this->Max);
         }
         return range($this->Min, $this->Max, $this->Step);

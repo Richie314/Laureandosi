@@ -33,7 +33,7 @@ class TestParametroFormula extends Test
     public static function Func(array $params) : array
     {
         return array_map(function (array $p) {
-            return (new ParametroFormula($p[0], $p[1], $p[2]))->InUso();
+            return (new ParametroFormula($p[0], $p[1], $p[2]))->inUso();
         }, $params);
     }
 }

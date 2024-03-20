@@ -6,7 +6,7 @@ class CorsoDiLaurea
     public int $CFURichiesti = 180;
     public ParametroFormula $T;
     public ParametroFormula $C;
-    public int $ValoreLode;
+    public int $ValoreLode = 33;
     private int $Durata = 3;
     public string $Nome;
     public string $FormulaEmail;
@@ -18,11 +18,11 @@ class CorsoDiLaurea
         {
             return null;
         }
-        if (!isset($T) || !$this->T->Valido($T))
+        if (!isset($T) || !$this->T->valido($T))
         {
             $T = 0;
         }
-        if (!isset($C) || !$this->C->Valido($C))
+        if (!isset($C) || !$this->C->valido($C))
         {
             $C = 0;
         }

@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__) . "/utils/modelli/EsameLaureando2.php";
+require_once dirname(__DIR__) . "/utils/modelli/EsameLaureando.php";
 require_once dirname(__DIR__) . "/utils/modelli/Test.php";
 class TestEsameLaureando extends Test
 {
@@ -28,7 +28,7 @@ class TestEsameLaureando extends Test
         int $cfu,
         int $lode) : array
     {
-        $esame = new EsameLaureando2(
+        $esame = new EsameLaureando(
             'Esame', 
             $voto,
             $cfu, 
@@ -36,10 +36,10 @@ class TestEsameLaureando extends Test
             true, true, $lode
         );
         return array(
-            $esame->CreditoCurriculare(),
-            $esame->CreditoMedia(),
-            $esame->_votoEsame,
-            $esame->_dataEsame->format("Y-m-d")
+            $esame->creditoCurriculare(),
+            $esame->creditoMedia(),
+            $esame->VotoEsame,
+            $esame->DataEsame->format("Y-m-d")
         );
     }
 }

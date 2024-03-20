@@ -38,8 +38,8 @@ class TestCorsoDiLaurea extends Test
         $cdl = new CorsoDiLaurea($nome, $formula, $cfu, $lode, 18, 33, 1, 0, 0, 0, null, '', $durata);
         return array(
             (string)$cdl,
-            $cdl->T->InUso(),
-            $cdl->C->InUso(),
+            $cdl->T->inUso(),
+            $cdl->C->inUso(),
             number_format($cdl->CalcolaFormula($M, $cfu_media, 18), 3),
             $cdl->FineBonus($anno)
         );

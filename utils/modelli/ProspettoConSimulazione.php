@@ -1,11 +1,11 @@
 <?php
-require_once __DIR__ . '/ProspettoPDFLaureando2.php';
+require_once __DIR__ . '/ProspettoLaureando.php';
 
 /**
  * @access public
  * @author franc
  */
-class ProspettoConSimulazione2 extends ProspettoPDFLaureando2 {
+class ProspettoConSimulazione extends ProspettoLaureando {
 	/**
 	 * @AssociationType ProspettoPDFCommissione2
 	 */
@@ -16,10 +16,11 @@ class ProspettoConSimulazione2 extends ProspettoPDFLaureando2 {
 	 * @return void
 	 * @ReturnType void
 	 */
-	public function __construct(string|int $matricola, string $cdl_in, string $data_laurea) {
+	public function __construct(string|int $matricola, string $cdl_in, string $data_laurea)
+    {
 		parent::__construct($matricola, $cdl_in, $data_laurea);
 	}
-    public function generaProspettoConSimulazione()
+    public function generaProspettoConSimulazione(): FPDF
     {
         $pdf = parent::generaProspetto(null);
         $pdf = $this->generaContenuto($pdf);
@@ -32,14 +33,14 @@ class ProspettoConSimulazione2 extends ProspettoPDFLaureando2 {
 	 * @ParamType aPdf FPDF
 	 * @ReturnType FPDF
 	 */
-	public function generaContenuto(FPDF $pdf) : FPDF 
+	public function generaContenuto(FPDF $pdf): FPDF 
     {
         $pdf = parent::generaProspetto($pdf);
 
         // ------------------------- PARTE DELLA SIMULAZIONE ------------------------------------
 
-        $CFU = $this->_carrieraLaureando->creditiCheFannoMedia();
-        $M = $this->_carrieraLaureando->restituisciMedia();
+        $CFU = $this->CarrieraLaureando->creditiCheFannoMedia();
+        $M = $this->CarrieraLaureando->restituisciMedia();
 
         // aggiungere al pdf le parti necessarie
         $pdf->Ln(4);
@@ -48,26 +49,25 @@ class ProspettoConSimulazione2 extends ProspettoPDFLaureando2 {
         $height = 4.5;
 
         // Scorciatoia
-        $cdl = $this->_carrieraLaureando->_cdl;
+        $cdl = $this->CarrieraLaureando->Cdl;
 
-        if ($cdl->C->InUso())
-        {
+        if ($cdl->C->inUso()) {
             $pdf->Cell($width, $height, "VOTO COMMISSIONE (C)", 1, 0, 'C');
             $pdf->Cell($width, $height, "VOTO LAUREA", 1, 1, 'C');
             $T = 0;
 
-            foreach ($cdl->C->GetValues() as $C)
+            foreach ($cdl->C->getValues() as $C)
             {
                 $voto = $cdl->CalcolaFormula($M, $CFU, $T, $C);
                 $pdf->Cell($width, $height, $C, 1, 0, 'C');
                 $pdf->Cell($width, $height, number_format($voto, 1), 1, 1, 'C');
             }
-        } elseif ($cdl->T->InUso()) {
+        } elseif ($cdl->T->inUso()) {
             $pdf->Cell($width, $height, "VOTO TESI (T)", 1, 0, 'C');
             $pdf->Cell($width, $height, "VOTO LAUREA", 1, 1, 'C');
             $C = 0;
 
-            foreach ($cdl->T->GetValues() as $T)
+            foreach ($cdl->T->getValues() as $T)
             {
                 $voto = $cdl->CalcolaFormula($M, $CFU, $T, $C);
                 $pdf->Cell($width, $height, $T, 1, 0, 'C');
@@ -85,11 +85,11 @@ class ProspettoConSimulazione2 extends ProspettoPDFLaureando2 {
 	 * @ParamType aPdf FPDF
 	 * @ReturnType FPDF
 	 */
-	public function generaRiga(FPDF $pdf) {
+	public function generaRiga(FPDF $pdf): FPDF {
         $width = 190 / 4;
         $height = 5;
-        $pdf->Cell($width, $height, $this->_carrieraLaureando->_cognome, 1, 0, 'L');
-        $pdf->Cell($width, $height, $this->_carrieraLaureando->_nome, 1, 0, 'L');
+        $pdf->Cell($width, $height, $this->CarrieraLaureando->Cognome, 1, 0, 'L');
+        $pdf->Cell($width, $height, $this->CarrieraLaureando->Nome, 1, 0, 'L');
         $pdf->Cell($width, $height, "", 1, 0, 'C');
         // è vuoto apposta, il cdl è scritto sopra. nell'esempio era così
         $pdf->Cell($width, $height, "/110", 1, 1, 'C');

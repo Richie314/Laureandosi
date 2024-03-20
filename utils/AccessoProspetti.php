@@ -5,28 +5,28 @@
  */
 class AccessoProspetti
 {
-    private static string $serverDir;
-    private const websiteDir = '/data/pdf_generati/';
-    private const nomeFileCommissione = "prospettoCommissione.pdf";
+    private static string $ServerDir;
+    private const WebsiteDir = '/data/pdf_generati/';
+    private const NomeFileCommissione = "prospettoCommissione.pdf";
     public static function pathCommissioneWeb() : string
     {
-        return self::websiteDir . self::nomeFileCommissione;
+        return self::WebsiteDir . self::NomeFileCommissione;
     }
     public static function pathCommissioneServer() : string
     {
-        return self::$serverDir . self::nomeFileCommissione;
+        return self::$ServerDir . self::NomeFileCommissione;
     }
     public static function pathLaureandoServer(string|int $matricola) : string
     {
-        return self::$serverDir . "$matricola-prospetto.pdf";
+        return self::$ServerDir . "$matricola-prospetto.pdf";
     }
     public static function setServerDir(string $dir) : void
     {
-        self::$serverDir = $dir;
+        self::$ServerDir = $dir . self::WebsiteDir;
     }
     public static function pathAusiliario() : string
     {
         return dirname(self::pathCommissioneServer(), 2) . "/ausiliario.json";
     }
 }
-AccessoProspetti::setServerDir(dirname(__DIR__) . '/data/pdf_generati/');
+AccessoProspetti::setServerDir(dirname(__DIR__));

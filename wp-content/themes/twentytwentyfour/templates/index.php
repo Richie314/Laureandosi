@@ -8,6 +8,12 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
 <!DOCTYPE html>
 <html lang="it-it">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Riccardo Ciucci">
+    <meta name="description" content="Laureandosi 2.1 - Gestione prospetti di Laurea">
+    <meta name="keywords" content="Laureandosi, UniPI, Università, Pisa, Prospetti, Laurea, Email, Dipartimento d'Ingegneria dell'Informazione">
+    <meta name="robots" content="noindex,nofollow">
     <title>
         Laureandosi 2 - Gestione Prospetti Laurea 
     </title>

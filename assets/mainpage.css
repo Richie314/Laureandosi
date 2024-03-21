@@ -14,12 +14,86 @@ body {
     overflow: auto;
 
     --w: 800px;
-    --gap: 2px;
+    --gap: 5px;
     --row-h: 2em;
+
+    --text-color: #3472ad;
+    --bg-color: #deebf7;
+    --button-bg-color: #c0d4f5;
+    --progress-gradient-to: #056fd2;
+    --text-red-color: #c66424;
 }
+/*
+    Elementi generici
+*/
+textarea {
+    resize: none;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+}
+h1, h2 {
+    text-align: center;
+}
+select {
+    cursor: pointer;
+}
+a, a:active, a:visited {
+    color: var(--text-color);
+}
+    a[target=_blank]::after {
+        content: ' 🗁';
+        text-decoration: none !important;
+        user-select: none;
+        opacity: 0;
+        transition: opacity .3s ease-in-out;
+        display: inline-block;
+    }
+        a[target=_blank]:hover::after {
+            opacity: 1;
+        }
+.hidden {
+    display: none !important;
+}
+.invisible {
+    visibility: hidden;
+}
+button {
+    cursor: pointer;
+    color: var(--text-color);
+    background-color: var(--button-bg-color);
+    padding: 0.5em;
+    border-radius: 2px;
+    border: 1px solid;
+}
+    button:disabled {
+        filter: blur(1.4)px;
+        cursor: not-allowed;
+    }
+label {
+    font-weight: bolder;
+    font-size: calc(.5 * var(--row-h));
+    padding-block: calc(.5 * var(--row-h)) 0;
+}
+select, input {
+    padding: unset;
+    height: calc(.5 * var(--row-h));
+    margin-block: calc(.25 * var(--row-h));
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+}
+label, select, input {
+    user-select: none;
+    text-align: left;
+    height: var(--row-h);
+    width: 100%;
+    direction: ltr;
+}
+/*
+    Elementi di pagina
+*/
 .container {
-    background-color: #deebf7;
-    color: #3472ad;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     border: 2px solid;
 
     width: calc(var(--w) + 2 * var(--gap));
@@ -56,35 +130,35 @@ body {
     grid-template-rows: repeat(4, var(--row-h));
     gap: var(--gap);
 }
-label[for="cdl"] {
-    grid-area: l1;
-}
-#cdl {
-    grid-area: i1;
-    height: var(--row-h);
-    /*padding-block: .5em;*/
-}
-label[for="matricole"] {
-    grid-area: l2;
-}
-#matricole {
-    grid-area: i2;
-}
-#main-form > button[type="submit"] {
-    grid-area: b1;
-}
-label[for="data_laurea"] {
-    grid-area: l3;
-    padding-block: calc(.25 * var(--row-h));
-}
-#data_laurea {
-    grid-area: i3;
-    background-color: transparent;
-    border: 1px solid;
-    cursor: pointer;
-    height: var(--row-h);
-    width: 100%;
-}
+    label[for="cdl"] {
+        grid-area: l1;
+    }
+    #cdl {
+        grid-area: i1;
+        height: var(--row-h);
+        /*padding-block: .5em;*/
+    }
+    label[for="matricole"] {
+        grid-area: l2;
+    }
+    #matricole {
+        grid-area: i2;
+    }
+    label[for="data_laurea"] {
+        grid-area: l3;
+        padding-block: calc(.25 * var(--row-h));
+    }
+    #data_laurea {
+        grid-area: i3;
+        background-color: transparent;
+        border: 1px solid;
+        cursor: pointer;
+        height: var(--row-h);
+        width: 100%;
+    }
+    #main-form > button[type="submit"] {
+        grid-area: b1;
+    }
 
 #second-form {
     position: absolute;
@@ -101,15 +175,15 @@ label[for="data_laurea"] {
     grid-template-rows: 1fr 1fr;
     gap: var(--gap);
 }
-#second-form > .download-link {
-    height: max-content;
-    width: 100%;
-    margin: 0;
+    #second-form > .download-link {
+        height: var(--row-h);
+        width: 100%;
+        margin: 0;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 #output-invio {
     position: absolute;
 
@@ -138,9 +212,28 @@ label[for="data_laurea"] {
         display: block;
         height: 100%;
         width: 100%;
-        background-color: #3072af;
+
         border: none;
+        border-radius: calc(.5 * var(--row-h));
+        background-color: transparent;
+
+        /* Rimuove lo stile di default */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
     }
+        #output-invio > progress[value]::-webkit-progress-bar {
+            background-color: transparent;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+        }
+        #output-invio > progress[value]::-webkit-progress-value,
+        #output-invio > progress[value]::-moz-progress-bar {
+            background-image: -webkit-linear-gradient(left, var(--text-color), var(--progress-gradient-to));
+            background-image: -moz-linear-gradient(left, var(--text-color), var(--progress-gradient-to));
+            background-image: linear-gradient(left, var(--text-color), var(--progress-gradient-to));
+            background-size: 100% 100%;
+            transition: all .8s ease-out;
+        }
 .container > .output {
     position: absolute;
     
@@ -153,55 +246,6 @@ label[for="data_laurea"] {
     justify-content: center;
     align-items: center;
 
-    color: #c66424;
+    color: var(--text-red-color);
     font-weight: bold;
-}
-
-textarea {
-    resize: none;
-    color: #3472ad;
-    border: 1px solid #3472ad;
-}
-h1, h2 {
-    text-align: center;
-}
-select {
-    cursor: pointer;
-}
-.hidden {
-    display: none !important;
-}
-.invisible {
-    visibility: hidden;
-}
-button {
-    cursor: pointer;
-    color: #3072af;
-    background-color: #c0d4f5;
-    padding: 0.5em;
-    border-radius: 2px;
-    border: 1px solid;
-}
-    button:disabled {
-        filter: blur(1.4)px;
-        cursor: not-allowed;
-    }
-label {
-    font-weight: bolder;
-    font-size: calc(.5 * var(--row-h));
-    padding-block: calc(.5 * var(--row-h)) 0;
-}
-select, input {
-    padding: unset;
-    height: calc(.5 * var(--row-h));
-    margin-block: calc(.25 * var(--row-h));
-    color: #3472ad;
-    border: 1px solid #3472ad;
-}
-label, select, input {
-    user-select: none;
-    text-align: left;
-    height: var(--row-h);
-    width: 100%;
-    direction: ltr;
 }

@@ -17,3 +17,4 @@ data/ausiliario.json
 !wp-content/themes/twentytwentyfour/templates/test.php
 !wp-content/themes/twentytwentyfour/templates/configurazione.php
 *.vpp~*
+.hintrc

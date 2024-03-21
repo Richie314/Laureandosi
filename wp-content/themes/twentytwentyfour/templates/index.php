@@ -55,9 +55,10 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
     </form>
     <form action="./inviaProspetti.php" method="post" id="second-form">
         <div class="download-link invisible">
-            <a href="<?= AccessoProspetti::pathCommissioneWeb() ?>" target="_blank" tabindex="4">
-                Apri Prospetti
-            </a>
+            <a 
+                href="<?= AccessoProspetti::pathCommissioneWeb() ?>" 
+                target="_blank" 
+                tabindex="4">Apri Prospetti</a>
         </div>
 
         <button type="submit" disabled title="Invia i prospetti appena creati" tabindex="5">
@@ -69,13 +70,13 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
 
         </output>
     </div>
-    <div id="output-invio" class="hidden">
+    <div id="output-invio" class="hidden" title="Email inviate">
         <progress min="0" max="1" value="0" id="progress"></progress>
         <output id="progress-show"></output>
     </div>
 </div>
 
-<div class="dettagli-invio hidden">
+<div id="dettagli-invio" class="hidden">
     <h2>
         Dettagli invio
     </h2>

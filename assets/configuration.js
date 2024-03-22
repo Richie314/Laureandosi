@@ -16,7 +16,7 @@ function handleWatchDogError(error) {
     console.error('Qualcosa è anadato storto');
     console.error(error);
 }
-watchdog.create(elem, CkEditorConfig)
+watchdog.create(document.getElementById('body'))
     .then(editor => editor)
     .catch(err => {
         console.error(err);

@@ -28,8 +28,8 @@ class Configurazione
                 $cdl['formula'],
                 $cdl['cfu_richiesti'],
                 $cdl['valore_lode'],
-                $cdl['Tmin'], $cdl['Tmax'], $cdl['Tstep'],
-                $cdl['Cmin'], $cdl['Cmax'], $cdl['Cstep'],
+                $cdl['tMin'], $cdl['tMax'], $cdl['tStep'],
+                $cdl['cMin'], $cdl['cMax'], $cdl['cStep'],
                 $cdl['formula_email'],
                 $cdl['email_commissione'],
                 $cdl['durata']

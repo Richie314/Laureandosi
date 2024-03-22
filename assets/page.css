@@ -1,0 +1,103 @@
+body {
+    background-color: whitesmoke;
+    font-size: larger;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    min-width: 350px;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+
+    --text-color: #3472ad;
+    --bg-color: #deebf7;
+    --button-bg-color: #c0d4f5;
+    --progress-gradient-to: #056fd2;
+    --text-red-color: #c66424;
+}
+
+a, a:active, a:visited {
+    color: var(--text-color);
+}
+    a[target=_blank]::after {
+        content: ' 🗁';
+        text-decoration: none !important;
+        user-select: none;
+        opacity: 0;
+        transition: opacity .3s ease-in-out;
+        display: inline-block;
+    }
+        a[target=_blank]:hover::after {
+            opacity: 1;
+        }
+.hidden {
+    display: none !important;
+}
+.invisible {
+    visibility: hidden;
+}
+
+.container {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 2px solid;
+
+    min-width: calc(var(--w) + 2 * var(--gap));
+    width: calc(var(--w) + 2 * var(--gap));
+    height: calc(2 * var(--gap) + 6 * var(--row-h));
+
+    position: relative;
+    overflow: hidden;;
+}
+
+/*
+    Elementi generici
+*/
+
+textarea {
+    resize: none;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+}
+h1, h2 {
+    text-align: center;
+}
+select {
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+    color: var(--text-color);
+    background-color: var(--button-bg-color);
+    padding: 0.5em;
+    border-radius: 2px;
+    border: 1px solid;
+}
+    button:disabled {
+        filter: blur(1.4)px;
+        cursor: not-allowed;
+    }
+label {
+    font-weight: bolder;
+    font-size: calc(.5 * var(--row-h));
+    padding-block: calc(.5 * var(--row-h)) 0;
+}
+select, input {
+    padding: unset;
+    height: calc(.5 * var(--row-h));
+    margin-block: calc(.25 * var(--row-h));
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+}
+label, select, input {
+    user-select: none;
+    text-align: left;
+    height: var(--row-h);
+    width: 100%;
+    direction: ltr;
+}

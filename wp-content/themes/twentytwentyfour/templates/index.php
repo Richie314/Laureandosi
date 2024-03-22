@@ -18,7 +18,9 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
         Laureandosi 2.1 - Gestione Prospetti Laurea 
     </title>
     <script src="/lib/msg_js/msg.min.js" defer></script>
+    <script src="/assets/page.js" defer></script>
     <script src="/assets/mainpage.js" defer></script>
+    <link rel="stylesheet" href="/assets/page.css" type="text/css">
     <link rel="stylesheet" href="/assets/mainpage.css" type="text/css" media="all">
 </head>
 <body>

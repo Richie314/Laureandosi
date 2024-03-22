@@ -1,0 +1,40 @@
+:root {
+    --w: 800px;
+    --gap: 5px;
+    --row-h: 1.5em;
+}
+form {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    position: absolute;
+    top: calc(var(--row-h) + 2 * var(--gap));
+    left: var(--gap);
+    width: calc(var(--w) - 3 * var(--gap));
+    height: calc(100% - var(--row-h) - 3 * var(--gap));
+    gap: var(--gap);
+}
+.container {
+    height: calc(15 * var(--row-h) + 2 * var(--gap));
+    max-height: 85vh;
+    overflow-y: auto;
+}
+    .container > h1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--row-h);
+        font-size: var(--row-h);
+        margin: 0; 
+        text-align: center;
+    }
+
+.span-2, div[role="application"].ck {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+button {
+    margin: 1em;
+    width: calc(100% - 2em);
+}

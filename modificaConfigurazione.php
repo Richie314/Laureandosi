@@ -42,10 +42,6 @@ $obj = new CorsoDiLaurea(
     $durata
 );
 
-header("Content-type: application/json");
-
 $esito = Configurazione::salvaCdl($cdl, $obj) ? "Successo" : "Errore";
-
-echo json_encode(array(
-    'Esito' => $esito
-), JSON_PRETTY_PRINT) . PHP_EOL;
+$url = $_SERVER['HTTP_REFERER'];
+header("Location: $url&esit=" . urlencode($esito));

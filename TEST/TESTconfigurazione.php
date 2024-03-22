@@ -21,7 +21,7 @@ class TestConfigurazione_CorsiDiLaurea extends Test
     }
     public static function Func(string $cdl) : array
     {
-        $obj = Configurazione::CorsiDiLaurea()[$cdl];
+        $obj = Configurazione::corsiDiLaurea()[$cdl];
         return array(
             $obj->Nome,
             (string)$obj,
@@ -57,7 +57,7 @@ class TestConfigurazione_IngInf extends Test
     public static function Func(array $nomi) : array
     {
         return array_map(function (string $nome) {
-            return Configurazione::IngInf($nome);
+            return Configurazione::ingInf($nome);
         }, $nomi);
     }
 }
@@ -87,7 +87,7 @@ class TestConfigurazione_EsamiInformatici extends Test
     public static function Func(array $esami) : array
     {
         return array_map(function (string $esame) {
-            return in_array(strtoupper($esame), Configurazione::EsamiInformatici());
+            return in_array(strtoupper($esame), Configurazione::esamiInformatici());
         }, $esami);
     }
 }

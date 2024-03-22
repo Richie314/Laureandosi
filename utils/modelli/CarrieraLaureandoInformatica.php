@@ -15,7 +15,7 @@ class CarrieraLaureandoInformatica extends CarrieraLaureando
             $this->MediaConBonus = $this->applicaBonus();
         }
 
-        $esami_info = Configurazione::EsamiInformatici();
+        $esami_info = Configurazione::esamiInformatici();
         if (!isset($esami_info)) {
             throw new Exception("Impossibile caricare gli esami informatici");
         }

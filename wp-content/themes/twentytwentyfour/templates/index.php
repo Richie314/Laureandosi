@@ -33,9 +33,9 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
         <select name="cdl" id="cdl" required tabindex="0">
             <option value="">Seleziona un Cdl</option>
             <optgroup label="Corsi di Laurea disponibili">
-                <?php foreach (Configurazione::CorsiDiLaurea() as $nome => $cdl) {  ?>
+                <?php foreach (Configurazione::corsiDiLaurea() as $nome => $cdl) {  ?>
                     <option value="<?= htmlspecialchars($nome) ?>">
-                        <?= htmlspecialchars($nome) ?>
+                        <?= htmlspecialchars($cdl) ?>
                     </option>
                 <?php } ?>
             </optgroup>

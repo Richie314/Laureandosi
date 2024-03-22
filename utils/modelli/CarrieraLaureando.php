@@ -29,7 +29,7 @@ class CarrieraLaureando
         if ($cdl_in instanceof CorsoDiLaurea) {
             $this->Cdl = $cdl_in;
         } else {
-            $this->Cdl = Configurazione::CorsiDiLaurea()[$cdl_in];
+            $this->Cdl = Configurazione::corsiDiLaurea()[$cdl_in];
         }
 
         $anagrafica_json = GestioneCarrieraStudente::restituisciAnagraficaStudente($matricola);

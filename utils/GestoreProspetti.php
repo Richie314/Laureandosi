@@ -12,13 +12,10 @@ class GestoreProspetti {
 	 * @param int[] aMatricole
 	 * @param string aDataLaurea
 	 * @param string aCdl
-	 * @ParamType aMatricole int[]
-	 * @ParamType aDataLaurea string
-	 * @ParamType aCdl string
 	 */
 	public function __construct(array $aMatricole, string $aDataLaurea, string $aCdl)
     {
-		$this->Matricole = (new ArrayObject(array_map("intval", $aMatricole)))->getArrayCopy();
+		$this->Matricole = array_map("intval", $aMatricole);
         $this->DataLaurea = $aDataLaurea;
         $this->Cdl = $aCdl;
 	}
@@ -35,7 +32,7 @@ class GestoreProspetti {
         $pdf->AddPage();
         $pdf->SetFont($font_family, "", 14);
         // --------  PRIMA PAGINA CON LA LISTA ---------------------
-        $pdf->Cell(0, 6, $this->Cdl, 0, 1, 'C');
+        $pdf->Cell(0, 6, Configurazione::corsiDiLaurea()[$this->Cdl], 0, 1, 'C');
         $pdf->Ln(2);
         $pdf->SetFont($font_family, "", 16);
         $pdf->Cell(0, 6, 'LISTA LAUREANDI', 0, 1, 'C');

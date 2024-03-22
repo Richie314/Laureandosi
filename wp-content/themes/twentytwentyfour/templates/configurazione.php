@@ -74,9 +74,8 @@ if (isset($_GET["section"]) && is_string($_GET["section"]) && !empty($_GET["sect
         Modifica Configurazione
     </h1>
     <hr>
-    <?php switch ($menu) { ?>
-    
-        <?php case PageToShow::ModificaCorsoDiLaurea: { ?>
+    <?php switch ($menu) { 
+        case PageToShow::ModificaCorsoDiLaurea: { ?>
             <form action="/modificaConfigurazione.php" method="post">
                 <input type="hidden" value="<?= htmlspecialchars($cdl_short) ?>" name="cdl">
                 
@@ -163,21 +162,18 @@ if (isset($_GET["section"]) && is_string($_GET["section"]) && !empty($_GET["sect
             <script defer src="/lib/ckeditor5/build/ckeditor.js"></script>
             <script defer src="/assets/configuration.js"></script>
 
-        <?php } break; ?>
-    
-        <?php case PageToShow::EsamiInformatici: { ?>
+        <?php } break;
+        case PageToShow::EsamiInformatici: { ?>
             <h2>
                 Non ancora disponibile
             </h2>
-        <?php } break; ?>
-
-        <?php case PageToShow::FiltroEsami: { ?>
+        <?php } break; 
+        case PageToShow::FiltroEsami: { ?>
             <h2>
                 Non ancora disponibile
             </h2>
-        <?php } break; ?>
-
-        <?php case PageToShow::Menu: { ?>
+        <?php } break; 
+        case PageToShow::Menu: { ?>
             <!-- Il target è la pagina corrente (a qualunque endpoint si trovi) -->
             <form method="get">
 
@@ -206,8 +202,7 @@ if (isset($_GET["section"]) && is_string($_GET["section"]) && !empty($_GET["sect
                     Vai
                 </button>
             </form>
-        <?php } break; ?>
-
-    <?php } ?>    
+        <?php } break; 
+    } ?>    
 </body>
 </html>

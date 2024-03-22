@@ -31,7 +31,7 @@ class GestoreInviiEmail {
             return;
         }
         $this->Matricole = $obj['matricole'];
-        $this->Cdl = Configurazione::CorsiDiLaurea()[$obj['cdl']];
+        $this->Cdl = Configurazione::corsiDiLaurea()[$obj['cdl']];
         $this->DataLaurea = $obj['data_laurea'];
     }
     public function invioProspetti(int $max = PHP_INT_MAX) : array

@@ -22,7 +22,7 @@ class ProspettoLaureando {
 	public function __construct(string|int $aMatricola, CorsoDiLaurea|string $aCdl, string $aDataLaurea)
     {
         $this->CarrieraLaureando = 
-            Configurazione::IngInf($aCdl) ? 
+            Configurazione::ingInf($aCdl) ? 
             new CarrieraLaureandoInformatica($aMatricola, $aCdl, $aDataLaurea) :
             new CarrieraLaureando($aMatricola, $aCdl);
         $this->Matricola = (int)$aMatricola;

@@ -22,9 +22,9 @@ class Configurazione
             return null;
         }
         $arr = array();
-        foreach ($obj as $nome => $cdl) {
-            $arr[$nome] = new CorsoDiLaurea(
-                $nome,
+        foreach ($obj as $nome_corto => $cdl) {
+            $arr[$nome_corto] = new CorsoDiLaurea(
+                $cdl['nome'],
                 $cdl['formula'],
                 $cdl['cfu_richiesti'],
                 $cdl['valore_lode'],
@@ -69,5 +69,39 @@ class Configurazione
     public static function IngInf(string $cdl) : bool
     {
         return in_array(trim(strtoupper($cdl)), self::$NomiIngInf);
+    }
+    public static function salvaCdl(string $short, CorsoDiLaurea $cdl): bool {
+        if (empty($short)) {
+            return false;
+        }
+        $esistenti = self::CorsiDiLaurea(true);
+        if (!isset($esistenti)) {
+            return false;
+        }
+        $esistenti[$short] = $cdl;
+        return self::salvaSuFile($esistenti);
+    }
+    private static function salvaSuFile(array $corsi): bool {
+        $array = array_map(function (CorsoDiLaurea $cdl) : array {
+            return array (
+                'nome' => $cdl->Nome,
+                'formula' => $cdl->Formula,
+                'cfu_richiesti' => $cdl->CFURichiesti,
+                'valore_lode' => $cdl->ValoreLode,
+                'formula_email' => $cdl->FormulaEmail,
+                'email_commissione' => $cdl->EmailCommissione,
+                'durata' => $cdl->Durata,
+
+                'tMin' => $cdl->T->Min,
+                'tMax' => $cdl->T->Max,
+                'tStep' => $cdl->T->Step,
+
+                'cMin' => $cdl->C->Min,
+                'cMax' => $cdl->C->Max,
+                'cStep' => $cdl->C->Step,
+            );
+        }, $corsi);
+        $stringa = json_encode($array, JSON_PRETTY_PRINT);
+        return (int)file_put_contents(__DIR__ . "/json_files/formule_laurea.json", $stringa) > 0;
     }
 }

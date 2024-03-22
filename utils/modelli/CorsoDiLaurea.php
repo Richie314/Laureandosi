@@ -7,7 +7,7 @@ class CorsoDiLaurea
     public ParametroFormula $T;
     public ParametroFormula $C;
     public int $ValoreLode = 33;
-    private int $Durata = 3;
+    public int $Durata = 3;
     public string $Nome;
     public string $FormulaEmail;
     public string $EmailCommissione;

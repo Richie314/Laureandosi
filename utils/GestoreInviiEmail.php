@@ -72,20 +72,25 @@ class GestoreInviiEmail {
         CarrieraLaureando|CarrieraLaureandoInformatica|string $destinatario
     ): bool {
         $messaggio = new PHPMailer();
-        $messaggio->IsSMTP();
         $messaggio->Host = "mixer.unipi.it";
-        $messaggio->SMTPSecure = "tls";
-        $messaggio->SMTPAuth = false;
         $messaggio->Port = 25;
 
+        $messaggio->IsSMTP();
+        $messaggio->SMTPSecure = "tls";
+        $messaggio->SMTPAuth = false;
+
         $messaggio->From = 'noreply-laureandosi@ing.unipi.it';
+        $messaggio->FromName = 'Laureandosi 2';
+
         $messaggio->CharSet = 'UTF-8';
+        $messaggio->isHTML();
+
         if (is_string($destinatario)) {
             $messaggio->AddAddress($destinatario);
         } else {
             $messaggio->AddAddress($destinatario->Email);
         }
-        $messaggio->Subject = 'Appello di laurea in Ing. TEST- indicatori per voto di laurea';
+        $messaggio->Subject = 'Prospetti per appello di laurea';
         $messaggio->Body = $this->Cdl->FormulaEmail;
 
         if (is_string($destinatario)) {

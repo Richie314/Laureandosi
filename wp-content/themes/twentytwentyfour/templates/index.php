@@ -15,7 +15,7 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
     <meta name="keywords" content="Laureandosi, UniPI, Università, Pisa, Prospetti, Laurea, Email, Dipartimento d'Ingegneria dell'Informazione">
     <meta name="robots" content="noindex,nofollow">
     <title>
-        Laureandosi 2 - Gestione Prospetti Laurea 
+        Laureandosi 2.1 - Gestione Prospetti Laurea 
     </title>
     <script src="/lib/msg_js/msg.min.js" defer></script>
     <script src="/assets/mainpage.js" defer></script>
@@ -24,9 +24,9 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
 <body>
 <div class="container">
     <h2> 
-        Laureandosi 2 - Gestione Prospetti Laurea 
+        Gestione Prospetti Laurea 
     </h2>
-    <form action="./generaProspetti.php" method="post" id="main-form">
+    <form action="/generaProspetti.php" method="post" id="main-form">
         <label for="cdl">
             Cdl:
         </label>
@@ -59,7 +59,7 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
             Crea Prospetti
         </button>
     </form>
-    <form action="./inviaProspetti.php" method="post" id="second-form">
+    <form action="/inviaProspetti.php" method="post" id="second-form">
         <div class="download-link invisible">
             <a 
                 href="<?= AccessoProspetti::pathCommissioneWeb() ?>" 

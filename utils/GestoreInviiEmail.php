@@ -6,17 +6,11 @@ require_once dirname(__DIR__) . '/lib/PHPMailer/src/PHPMailer.php';
 require_once dirname(__DIR__) . '/lib/PHPMailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-/**
- * @access public
- * @author franc
- */
 
 class GestoreInviiEmail {
-    /**
-     * @AttributeType int[]
-     */
     private array $Matricole;
     private ?CorsoDiLaurea $Cdl = null;
+    private ?string $CdlShort = null;
     private ?string $DataLaurea = null;
 
     public function __construct()
@@ -31,10 +25,11 @@ class GestoreInviiEmail {
             return;
         }
         $this->Matricole = $obj['matricole'];
-        $this->Cdl = Configurazione::corsiDiLaurea()[$obj['cdl']];
+        $this->CdlShort = $obj['cdl'];
+        $this->Cdl = Configurazione::corsiDiLaurea()[$this->CdlShort];
         $this->DataLaurea = $obj['data_laurea'];
     }
-    public function invioProspetti(int $max = PHP_INT_MAX) : array
+    public function invioProspetti(int $max = PHP_INT_MAX): array
     {
         if (!isset($this->Cdl) || !isset($this->DataLaurea)) {
             return array();
@@ -60,14 +55,9 @@ class GestoreInviiEmail {
             } catch (Exception $ex) {};
         }
         $this->Matricole = array_values(array_filter($this->Matricole, function (int $a) { return $a >= 0; }));
-        $this->AggiornaFile();
+        $this->aggiornaFile();
         return $inviati;
     }
-    /**
-     * @access public
-     * @return bool
-     * @ReturnType bool
-     */
     public function inviaProspetto(
         CarrieraLaureando|CarrieraLaureandoInformatica|string $destinatario
     ): bool {
@@ -104,11 +94,11 @@ class GestoreInviiEmail {
         return $res;
     }
 
-    public function AggiornaFile(): bool
+    private function aggiornaFile(): bool
     {
-        return self::SaveFile($this->Matricole, $this->Cdl->Nome, $this->DataLaurea);
+        return self::saveFile($this->Matricole, $this->CdlShort, $this->DataLaurea);
     }
-    private static function SaveFile(array $matricole, string $cdl, string $data_laurea): bool
+    private static function saveFile(array $matricole, string $cdl, string $dataLaurea): bool
     {
         if (count($matricole) === 0) {
             // A operazione terminata il file ausiliario viene cancellato
@@ -118,7 +108,7 @@ class GestoreInviiEmail {
             array(
                 'matricole' => $matricole,
                 'cdl' => $cdl,
-                'data_laurea' => $data_laurea,
+                'data_laurea' => $dataLaurea,
             ), JSON_PRETTY_PRINT
         );
         $res = file_put_contents(AccessoProspetti::pathAusiliario(), $json);
@@ -127,16 +117,16 @@ class GestoreInviiEmail {
         }
         return $res > 0;
     }
-    public static function Generate(
+    public static function generate(
         array $matricole, 
         string $cdl, 
-        string $data_laurea,
+        string $dataLaurea,
     ) : ?GestoreInviiEmail {
         $copy = (new ArrayObject(array_map("intval", $matricole)))->getArrayCopy();
         if (count($copy) === 0 || end($copy) !== 0) {
             $copy[] = 0; // 0 significa inviare alla commissione
         }
-        if (!self::SaveFile($copy, $cdl, $data_laurea)) {
+        if (!self::saveFile($copy, $cdl, $dataLaurea)) {
             return null;
         }
         return new GestoreInviiEmail();

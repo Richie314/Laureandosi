@@ -40,8 +40,8 @@ class TestCorsoDiLaurea extends Test
             (string)$cdl,
             $cdl->T->inUso(),
             $cdl->C->inUso(),
-            number_format($cdl->CalcolaFormula($M, $cfu_media, 18), 3),
-            $cdl->FineBonus($anno)
+            number_format($cdl->calcolaFormula($M, $cfu_media, 18), 3),
+            $cdl->fineBonus($anno)
         );
     }
 }

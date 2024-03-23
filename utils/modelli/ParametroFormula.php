@@ -4,6 +4,15 @@ class ParametroFormula
     public int|float $Min = 0;
     public int|float $Max = 0;
     public int|float $Step = 1;
+    public function __construct(string|int|float|null $min, string|int|float|null $max, string|int|float|null $step)
+    {
+        if (!isset($min)) $min = 0;
+        if (!isset($max)) $max = 0;
+        if (!isset($step)) $step = 0;
+        $this->Min = self::parseArg($min);
+        $this->Max = self::parseArg($max);
+        $this->Step = self::parseArg($step);
+    }
     public function inUso(): bool
     {
         if ($this->Min < 0 || $this->Step < 0)
@@ -21,15 +30,6 @@ class ParametroFormula
             return (int)$n;
         }
         return (float)$n;
-    }
-    public function __construct(string|int|float|null $min, string|int|float|null $max, string|int|float|null $step)
-    {
-        if (!isset($min)) $min = 0;
-        if (!isset($max)) $max = 0;
-        if (!isset($step)) $step = 0;
-        $this->Min = self::parseArg($min);
-        $this->Max = self::parseArg($max);
-        $this->Step = self::parseArg($step);
     }
     public function valido(string|int|float|null $param) : bool
     {

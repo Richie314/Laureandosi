@@ -22,14 +22,14 @@ class CarrieraLaureando
 	private float $Media;
     public ?int $AnnoImmatricolazione = null;
 
-	public function __construct(string|int $matricola, string|CorsoDiLaurea $cdl_in)
+	public function __construct(string|int $matricola, string|CorsoDiLaurea $cdl)
     {
         $this->Matricola = $matricola = (int)$matricola;
         
-        if ($cdl_in instanceof CorsoDiLaurea) {
-            $this->Cdl = $cdl_in;
+        if ($cdl instanceof CorsoDiLaurea) {
+            $this->Cdl = $cdl;
         } else {
-            $this->Cdl = Configurazione::corsiDiLaurea()[$cdl_in];
+            $this->Cdl = Configurazione::corsiDiLaurea()[$cdl];
         }
 
         $anagrafica_json = GestioneCarrieraStudente::restituisciAnagraficaStudente($matricola);

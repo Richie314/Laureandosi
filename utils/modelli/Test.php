@@ -39,7 +39,7 @@ class Test {
             $this->Details = $out;
         return $ret;
     }
-    public function LastCallDetails(): string
+    public function lastCallDetails(): string
     {
         return $this->Details;
     }

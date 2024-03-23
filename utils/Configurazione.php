@@ -3,12 +3,12 @@ require_once __DIR__ . "/modelli/CorsoDiLaurea.php";
 class Configurazione
 {
     private static array|null $CorsiDiLaureaCache = null;
-    public static function corsiDiLaurea(bool $reload_cache = false) : array|null
+    public static function corsiDiLaurea(bool $reloadCache = false) : array|null
     {
         if (
             isset(self::$CorsiDiLaureaCache) && 
             is_array(self::$CorsiDiLaureaCache) &&
-            !$reload_cache
+            !$reloadCache
         ) {
             return self::$CorsiDiLaureaCache;
         }
@@ -39,12 +39,12 @@ class Configurazione
         return $arr;
     }
     private static array|null $EsamiInformaticiCache = null;
-    public static function esamiInformatici(bool $reload_cache = false) : array|null
+    public static function esamiInformatici(bool $reloadCache = false) : array|null
     {
         if (
             isset(self::$EsamiInformaticiCache) &&
             is_array(self::$EsamiInformaticiCache) && 
-            !$reload_cache
+            !$reloadCache
         ) {
             return self::$EsamiInformaticiCache;
         }

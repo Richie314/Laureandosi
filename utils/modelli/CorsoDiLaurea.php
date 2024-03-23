@@ -12,7 +12,7 @@ class CorsoDiLaurea
     public string $FormulaEmail;
     public string $EmailCommissione;
 
-    public function CalcolaFormula(string|float $M, string|int $CFU, string|int|float $T = 0, string|int|float $C = 0) : float|null
+    public function calcolaFormula(string|float $M, string|int $CFU, string|int|float $T = 0, string|int|float $C = 0): float|null
     {
         if (strlen(trim($this->Formula)) === 0)
         {
@@ -39,21 +39,21 @@ class CorsoDiLaurea
             return null;
         }
     }
-    public function FineBonus(int $anno_immatricolazione) : string
+    public function fineBonus(int $AnnoImmatricolazione): string
     {
-        return ($anno_immatricolazione + 1 + $this->Durata) . "-05-01";
+        return ($AnnoImmatricolazione + 1 + $this->Durata) . "-05-01";
     }
     public function __construct(
         string $nome,
         string|null $formula, 
         string|int|null $cfu, 
         string|int $valoreLode,
-        string|int|null $tMin, string|int|null $tMax, string|int|null $tStep,
-        string|int|null $cMin, string|int|null $cMax, string|int|null $cStep,
+        string|int|float|null $tMin, string|int|float|null $tMax, string|int|float|null $tStep,
+        string|int|float|null $cMin, string|int|float|null $cMax, string|int|float|null $cStep,
         string|null $corpo_email,
         string $email_commissione,
-        string|int|null $durata = null)
-    {
+        string|int|null $durata = null,
+    ) {
         $this->Nome = trim($nome);
         if (isset($cfu))
         {

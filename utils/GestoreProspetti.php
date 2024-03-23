@@ -7,24 +7,13 @@ class GestoreProspetti {
 	private string $DataLaurea;
 	private string $Cdl;
 
-	/**
-	 * @access public
-	 * @param int[] aMatricole
-	 * @param string aDataLaurea
-	 * @param string aCdl
-	 */
-	public function __construct(array $aMatricole, string $aDataLaurea, string $aCdl)
+	public function __construct(array $matricole, string $dataLaurea, string $cdl)
     {
-		$this->Matricole = array_map("intval", $aMatricole);
-        $this->DataLaurea = $aDataLaurea;
-        $this->Cdl = $aCdl;
+		$this->Matricole = array_map("intval", $matricole);
+        $this->DataLaurea = $dataLaurea;
+        $this->Cdl = $cdl;
 	}
 
-	/**
-	 * @access public
-	 * @return bool
-	 * @ReturnType bool
-	 */
 	public function generaProspettiCommissione(): bool
     {
         $pdf = new FPDF();
@@ -97,7 +86,7 @@ class GestoreProspetti {
     public function popolaJSON(): bool
     {
         require_once __DIR__ . '/GestoreInviiEmail.php';
-        $obj = GestoreInviiEmail::Generate($this->Matricole, $this->Cdl, $this->DataLaurea);
+        $obj = GestoreInviiEmail::generate($this->Matricole, $this->Cdl, $this->DataLaurea);
         return isset($obj);
     }
 }

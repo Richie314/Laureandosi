@@ -6,11 +6,11 @@ class CarrieraLaureandoInformatica extends CarrieraLaureando
     private float $MediaConBonus = 0.0;
     private bool $Bonus = false;
     
-    public function __construct(string|int $matricola, string|CorsoDiLaurea $cdl_in, string $dataLaurea)
+    public function __construct(string|int $matricola, string|CorsoDiLaurea $cdl, string $dataLaurea)
     {
-        parent::__construct($matricola, $cdl_in);
+        parent::__construct($matricola, $cdl);
         
-        if ($dataLaurea < $this->Cdl->FineBonus($this->AnnoImmatricolazione)) {
+        if ($dataLaurea < $this->Cdl->fineBonus($this->AnnoImmatricolazione)) {
             $this->Bonus = true;
             $this->MediaConBonus = $this->applicaBonus();
         }
@@ -33,7 +33,7 @@ class CarrieraLaureandoInformatica extends CarrieraLaureando
     {
         return $this->MediaEsamiInformatici;
     }
-    private function calcolaMediaEsamiInformatici() : float
+    private function calcolaMediaEsamiInformatici(): float
     {
         $somma = 0;
         $numero = 0;

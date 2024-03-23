@@ -2,38 +2,22 @@
 require_once __DIR__ . '/CarrieraLaureandoInformatica.php';
 require_once dirname(__DIR__) . '/Configurazione.php';
 require_once dirname(__DIR__, 2) . '/lib/fpdf184/fpdf.php';
-/**
- * @access public
- * @author franc
- */
 
 class ProspettoLaureando {
 	public CarrieraLaureando|CarrieraLaureandoInformatica $CarrieraLaureando;
 	private int $Matricola;
 	private string $DataLaurea;
 
-
-	/**
-	 * @access public
-	 * @param int aMatricola
-	 * @param CorsoDiLaurea|string aCdl
-	 * @param string aDataLaurea
-	 */
-	public function __construct(string|int $aMatricola, CorsoDiLaurea|string $aCdl, string $aDataLaurea)
+    public function __construct(string|int $matricola, CorsoDiLaurea|string $cdl, string $dataLaurea)
     {
         $this->CarrieraLaureando = 
-            Configurazione::ingInf($aCdl) ? 
-            new CarrieraLaureandoInformatica($aMatricola, $aCdl, $aDataLaurea) :
-            new CarrieraLaureando($aMatricola, $aCdl);
-        $this->Matricola = (int)$aMatricola;
-        $this->DataLaurea = $aDataLaurea;
+            Configurazione::ingInf($cdl) ? 
+            new CarrieraLaureandoInformatica($matricola, $cdl, $dataLaurea) :
+            new CarrieraLaureando($matricola, $cdl);
+        $this->Matricola = (int)$matricola;
+        $this->DataLaurea = $dataLaurea;
 	}
 
-	/**
-	 * @access public
-	 * @return FPDF
-	 * @ReturnType FPDF
-	 */
 	public function generaProspetto(FPDF|null $pdf = null): FPDF
     {
         // genera il prospetto in pdf e lo salva in un percorso specifico
@@ -95,7 +79,7 @@ class ProspettoLaureando {
         $pdf->SetFont($font_family, "", 8);
         for ($i = 0; $i < sizeof($this->CarrieraLaureando->Esami); $i++) {
             $esame = $this->CarrieraLaureando->Esami[$i];
-            $this->RigaEsameTabella(
+            $this->rigaEsameTabella(
                 $larghezza_grande,
                 $larghezza_piccola,
                 $altezza,
@@ -119,27 +103,27 @@ class ProspettoLaureando {
 
         return $pdf;
 	}
-    private function RigaEsameTabella(
-        int $larghezza_grande, 
-        int $larghezza_piccola,
+    private function rigaEsameTabella(
+        int $larghezzaGrande, 
+        int $larghezzaPiccola,
         int $altezza, 
         EsameLaureando $esame, 
-        FPDF &$pdf,
+        FPDF $pdf,
     ):void {
         if (!$esame->Curricolare) {
             return;
         }
-        $pdf->Cell($larghezza_grande, $altezza, 
-        $esame->NomeEsame 
-        /*. " (" . $esame->DataEsame->format("Y-m-d") . ")"*/, 1, 0, 'L');
-        $pdf->Cell($larghezza_piccola, $altezza, $esame->Cfu, 1, 0, 'C');
-        $pdf->Cell($larghezza_piccola, $altezza, $esame->VotoEsame, 1, 0, 'C');
+        $pdf->Cell($larghezzaGrande, $altezza, 
+            $esame->NomeEsame 
+            /*. " (" . $esame->DataEsame->format("Y-m-d") . ")"*/, 1, 0, 'L');
+        $pdf->Cell($larghezzaPiccola, $altezza, $esame->Cfu, 1, 0, 'C');
+        $pdf->Cell($larghezzaPiccola, $altezza, $esame->VotoEsame, 1, 0, 'C');
 
         if ($this->CarrieraLaureando instanceof CarrieraLaureandoInformatica) {
-            $pdf->Cell($larghezza_piccola, $altezza, ($esame->FaMedia) ? 'X' : '', 1, 0, 'C');
-            $pdf->Cell($larghezza_piccola, $altezza, ($esame->Informatico) ? 'X' : '', 1, 1, 'C');
+            $pdf->Cell($larghezzaPiccola, $altezza, ($esame->FaMedia) ? 'X' : '', 1, 0, 'C');
+            $pdf->Cell($larghezzaPiccola, $altezza, ($esame->Informatico) ? 'X' : '', 1, 1, 'C');
         } else {
-            $pdf->Cell($larghezza_piccola, $altezza, ($esame->FaMedia) ? 'X' : '', 1, 1, 'C');
+            $pdf->Cell($larghezzaPiccola, $altezza, ($esame->FaMedia) ? 'X' : '', 1, 1, 'C');
             // newline
         }
     }

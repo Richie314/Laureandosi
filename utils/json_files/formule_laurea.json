@@ -29,7 +29,7 @@
         "cMax": 0,
         "cStep": 0
     },
-    "t-info": {
+    "t-inf": {
         "nome": "T. Ing. Informatica",
         "formula": "M * 3 + 18 + T + C",
         "cfu_richiesti": 177,

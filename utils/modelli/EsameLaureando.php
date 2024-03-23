@@ -5,22 +5,10 @@ class EsameLaureando
 	public string $NomeEsame;
 	
 	public int $VotoEsame;
-	/**
-	 * @AttributeType int
-	 */
 	public int $Cfu;
-	/**
-	 * @AttributeType boolean
-	 */
 	public bool $FaMedia;
-	/**
-	 * @AttributeType boolean
-	 */
 	public bool $Curricolare;
 	public DateTime $DataEsame;
-	/**
-	 * @AttributeType boolean
-	 */
 	public bool $Informatico = false;
 	public static array $EsamiDaIgnorare = array(
 		//"LIBERA SCELTA PER RICONOSCIMENTI",
@@ -28,14 +16,14 @@ class EsameLaureando
 		"TEST DI VALUTAZIONE DI INGEGNERIA",
 	);
 
-	private static function votoConLode(string $voto): bool
+	private static function votoConLode(string|int $voto): bool
 	{
-		if (ctype_digit($voto)) {
+		if (is_string($voto) && ctype_digit($voto) || is_numeric($voto)) {
 			return (int)$voto > 30;
 		}
 		return preg_match('/(30\\s+e\\s+lode)|(30L)/i', trim($voto));
 	}
-	public static function parseVoto(string $voto, int $valore_lode = 33): int
+	public static function parseVoto(string|int $voto, int $valore_lode = 33): int
 	{
 		if (!isset($voto) || empty($voto)) {
 			return 0;

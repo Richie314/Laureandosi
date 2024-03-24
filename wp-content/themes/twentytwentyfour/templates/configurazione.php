@@ -85,7 +85,7 @@ if (isset($_GET["section"]) && is_string($_GET["section"]) && !empty($_GET["sect
                     <label for="formula">
                         Formula
                     </label>
-                    <input type="text" value="<?= htmlspecialchars($cdl->Formula) ?>" name="formula" id="formula" required pattern="[0-9MTCFUmtcfu\/\+\-\*\%\(\)\s]+">
+                    <input type="text" value="<?= htmlspecialchars($cdl->Formula) ?>" name="formula" id="formula" required pattern="[0-9MTCFUmtcfu\/\+\-\*\%\(\)\.\s]+">
                     
                     <label for="cfu">
                         Cfu Richiesti

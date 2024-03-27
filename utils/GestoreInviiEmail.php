@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/modelli/ProspettoLaureando.php';
 require_once __DIR__ . '/AccessoProspetti.php';
+require_once __DIR__ . '/Configurazione.php';
 require_once dirname(__DIR__) . '/lib/PHPMailer/src/Exception.php';
 require_once dirname(__DIR__) . '/lib/PHPMailer/src/PHPMailer.php';
 require_once dirname(__DIR__) . '/lib/PHPMailer/src/SMTP.php';
@@ -12,6 +12,7 @@ class GestoreInviiEmail {
     private ?CorsoDiLaurea $Cdl = null;
     private ?string $CdlShort = null;
     private ?string $DataLaurea = null;
+    private array $Email = array();
 
     public function __construct()
     {
@@ -28,6 +29,7 @@ class GestoreInviiEmail {
         $this->CdlShort = $obj['cdl'];
         $this->Cdl = Configurazione::corsiDiLaurea()[$this->CdlShort];
         $this->DataLaurea = $obj['data_laurea'];
+        $this->Email = $obj['email'];
     }
     public function invioProspetti(int $max = PHP_INT_MAX): array
     {
@@ -46,8 +48,8 @@ class GestoreInviiEmail {
                     }
                     continue;
                 }
-                $prospetto = new ProspettoLaureando($this->Matricole[$j], $this->Cdl, $this->DataLaurea);
-                if ($this->inviaProspetto($prospetto->CarrieraLaureando)) {
+                $emailLaureando = $this->Email[$this->Matricole[$j]];
+                if ($this->inviaProspetto($emailLaureando, $this->Matricole[$j])) {
                     unlink(AccessoProspetti::pathLaureandoServer($this->Matricole[$j]));
                     $inviati[] = (int)$this->Matricole[$j];
                     $this->Matricole[$j] = -1;
@@ -58,9 +60,7 @@ class GestoreInviiEmail {
         $this->aggiornaFile();
         return $inviati;
     }
-    public function inviaProspetto(
-        CarrieraLaureando|CarrieraLaureandoInformatica|string $destinatario
-    ): bool {
+    public function inviaProspetto(string $destinatario, int $matricola = 0): bool {
         $messaggio = new PHPMailer();
         $messaggio->Host = "mixer.unipi.it";
         $messaggio->Port = 25;
@@ -75,18 +75,15 @@ class GestoreInviiEmail {
         $messaggio->CharSet = 'UTF-8';
         $messaggio->isHTML();
 
-        if (is_string($destinatario)) {
-            $messaggio->AddAddress($destinatario);
-        } else {
-            $messaggio->AddAddress($destinatario->Email);
-        }
+        $messaggio->AddAddress($destinatario);
         $messaggio->Subject = 'Prospetti per appello di laurea';
-        $messaggio->Body = $this->Cdl->FormulaEmail;
 
-        if (is_string($destinatario)) {
+        if ($matricola === 0) {
+            $messaggio->Body = "Gentilissima commissione di laurea,<br>Vengono allegati i prospetti per il prossimo appello di laurea.<br>";
             $messaggio->AddAttachment(AccessoProspetti::pathCommissioneServer());
         } else {
-            $messaggio->AddAttachment(AccessoProspetti::pathLaureandoServer($destinatario->Matricola));
+            $messaggio->Body = $this->Cdl->FormulaEmail;
+            $messaggio->AddAttachment(AccessoProspetti::pathLaureandoServer($matricola));
         }
         
         $res = $messaggio->Send();
@@ -96,9 +93,9 @@ class GestoreInviiEmail {
 
     private function aggiornaFile(): bool
     {
-        return self::saveFile($this->Matricole, $this->CdlShort, $this->DataLaurea);
+        return self::saveFile($this->Matricole, $this->CdlShort, $this->DataLaurea, $this->Email);
     }
-    private static function saveFile(array $matricole, string $cdl, string $dataLaurea): bool
+    private static function saveFile(array $matricole, string $cdl, string $dataLaurea, array $email): bool
     {
         if (count($matricole) === 0) {
             // A operazione terminata il file ausiliario viene cancellato
@@ -109,6 +106,7 @@ class GestoreInviiEmail {
                 'matricole' => $matricole,
                 'cdl' => $cdl,
                 'data_laurea' => $dataLaurea,
+                'email' => $email,
             ), JSON_PRETTY_PRINT
         );
         $res = file_put_contents(AccessoProspetti::pathAusiliario(), $json);
@@ -121,14 +119,15 @@ class GestoreInviiEmail {
         array $matricole, 
         string $cdl, 
         string $dataLaurea,
-    ) : ?GestoreInviiEmail {
+        array $email,
+    ) : bool {
         $copy = (new ArrayObject(array_map("intval", $matricole)))->getArrayCopy();
         if (count($copy) === 0 || end($copy) !== 0) {
             $copy[] = 0; // 0 significa inviare alla commissione
         }
-        if (!self::saveFile($copy, $cdl, $dataLaurea)) {
-            return null;
+        if (!self::saveFile($copy, $cdl, $dataLaurea, $email)) {
+            return false;
         }
-        return new GestoreInviiEmail();
+        return true;
     }
 }

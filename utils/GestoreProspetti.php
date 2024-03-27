@@ -6,6 +6,7 @@ class GestoreProspetti {
 	private array $Matricole = array();
 	private string $DataLaurea;
 	private string $Cdl;
+    private array $ListaEmail = array();
 
 	public function __construct(array $matricole, string $dataLaurea, string $cdl)
     {
@@ -62,6 +63,8 @@ class GestoreProspetti {
         for ($i = 0; $i < sizeof($this->Matricole); $i++) {
             try {
                 $prospetto = new ProspettoLaureando($this->Matricole[$i], $this->Cdl, $this->DataLaurea);
+                // Memorizzo l'email per dopo
+                $this->ListaEmail[$this->Matricole[$i]] = $prospetto->CarrieraLaureando->Email;
                 $pdf = $prospetto->generaProspetto();
                 
                 $path = AccessoProspetti::pathLaureandoServer($this->Matricole[$i]);
@@ -86,7 +89,6 @@ class GestoreProspetti {
     public function popolaJSON(): bool
     {
         require_once __DIR__ . '/GestoreInviiEmail.php';
-        $obj = GestoreInviiEmail::generate($this->Matricole, $this->Cdl, $this->DataLaurea);
-        return isset($obj);
+        return GestoreInviiEmail::generate($this->Matricole, $this->Cdl, $this->DataLaurea, $this->ListaEmail);
     }
 }

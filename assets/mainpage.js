@@ -168,7 +168,7 @@ second_form.onsubmit = async (evt) => {
         });
         if (!res) { 
             iterate = false;
-            DisplayError('Il server ha risposto con un formato sconosciuto.\nL\'operazione è stata terminata');
+            DisplayError('Il server ha risposto con un formato sconosciuto (era previsto JSON).\nL\'operazione è stata terminata.\nApri la console del browser per maggiori dettagli');
             break;
         }
         
@@ -207,7 +207,7 @@ function ShowEmailDetails() {
     }
     const msg = Msg.factory({
         class: 'blue',
-        preset: 'window',
+        preset: 'popup',
         position: 'center',
         autoclose: false,
         closeable: true,

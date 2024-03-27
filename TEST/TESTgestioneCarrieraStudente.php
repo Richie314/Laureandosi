@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__) . "/utils/GestioneCarrieraStudente2.php";
+require_once dirname(__DIR__) . "/utils/GestioneCarrieraStudente.php";
 require_once dirname(__DIR__) . "/utils/modelli/Test.php";
 class TestGestioneCarrieraStudente_restituisciAnagraficaStudente extends Test
 {

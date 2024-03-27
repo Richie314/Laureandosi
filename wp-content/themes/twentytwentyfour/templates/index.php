@@ -17,18 +17,18 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
     <title>
         Laureandosi 2.1 - Gestione Prospetti Laurea 
     </title>
-    <script src="/lib/msg_js/msg.min.js" defer></script>
-    <script src="/assets/page.js" defer></script>
-    <script src="/assets/mainpage.js" defer></script>
-    <link rel="stylesheet" href="/assets/page.css" type="text/css">
-    <link rel="stylesheet" href="/assets/mainpage.css" type="text/css" media="all">
+    <script src="<?= AccessoProspetti::$AppPathOnServer ?>/lib/msg_js/msg.min.js" defer></script>
+    <script src="<?= AccessoProspetti::$AppPathOnServer ?>/assets/page.js" defer></script>
+    <script src="<?= AccessoProspetti::$AppPathOnServer ?>/assets/mainpage.js" defer></script>
+    <link rel="stylesheet" href="<?= AccessoProspetti::$AppPathOnServer ?>/assets/page.css" type="text/css">
+    <link rel="stylesheet" href="<?= AccessoProspetti::$AppPathOnServer ?>/assets/mainpage.css" type="text/css" media="all">
 </head>
 <body>
 <div class="container">
     <h2> 
         Gestione Prospetti Laurea 
     </h2>
-    <form action="/generaProspetti.php" method="post" id="main-form">
+    <form action="<?= AccessoProspetti::$AppPathOnServer ?>/generaProspetti.php" method="post" id="main-form">
         <label for="cdl">
             Cdl:
         </label>
@@ -61,7 +61,7 @@ require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
             Crea Prospetti
         </button>
     </form>
-    <form action="/inviaProspetti.php" method="post" id="second-form">
+    <form action="<?= AccessoProspetti::$AppPathOnServer ?>/inviaProspetti.php" method="post" id="second-form">
         <div class="download-link invisible">
             <a 
                 href="<?= AccessoProspetti::pathCommissioneWeb() ?>" 

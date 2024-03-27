@@ -5,16 +5,23 @@ require_once dirname(__DIR__, 2) . '/lib/fpdf184/fpdf.php';
 
 class ProspettoLaureando {
 	public CarrieraLaureando|CarrieraLaureandoInformatica $CarrieraLaureando;
-	private int $Matricola;
 	private string $DataLaurea;
+    private static array $CarriereCache = array();
 
     public function __construct(string|int $matricola, CorsoDiLaurea|string $cdl, string $dataLaurea)
     {
-        $this->CarrieraLaureando = 
-            Configurazione::ingInf($cdl) ? 
-            new CarrieraLaureandoInformatica($matricola, $cdl, $dataLaurea) :
-            new CarrieraLaureando($matricola, $cdl);
-        $this->Matricola = (int)$matricola;
+        if (array_key_exists((int)$matricola, self::$CarriereCache)) {
+            // Cache hit
+            $this->CarrieraLaureando = self::$CarriereCache[(int)$matricola];
+        } else {
+            // Cache miss
+            $this->CarrieraLaureando = 
+                Configurazione::ingInf($cdl) ? 
+                new CarrieraLaureandoInformatica($matricola, $cdl, $dataLaurea) :
+                new CarrieraLaureando($matricola, $cdl);
+            // Salvo in cache per non dover ricaricare dopo
+            self::$CarriereCache[(int)$matricola] = $this->CarrieraLaureando;  
+        }
         $this->DataLaurea = $dataLaurea;
 	}
 
@@ -37,7 +44,7 @@ class ProspettoLaureando {
         // ------------------------------ INFORMAZIONI ANAGRAFICHE DELLO STUDENTE ------------------------------
 
         $pdf->SetFont($font_family, "", 9);
-        $anagrafica_stringa = "Matricola:                       " . $this->Matricola . //attenzione: quelli che sembrano spazi in realtà sono &Nbsp perché fpdf non stampa spazi
+        $anagrafica_stringa = "Matricola:                       " . $this->CarrieraLaureando->Matricola . //attenzione: quelli che sembrano spazi in realtà sono &Nbsp perché fpdf non stampa spazi
             "\nNome:                            " . $this->CarrieraLaureando->Nome .
             "\nCognome:                      " . $this->CarrieraLaureando->Cognome .
             "\nEmail:                             " . $this->CarrieraLaureando->Email .

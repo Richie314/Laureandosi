@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/EsameLaureando.php';
-require_once __DIR__ . '/CorsoDiLaurea.php';
-require_once dirname(__DIR__) . '/GestioneCarrieraStudente2.php';
+require_once dirname(__DIR__) . '/GestioneCarrieraStudente.php';
 require_once dirname(__DIR__) . '/Configurazione.php';
 
 class CarrieraLaureando

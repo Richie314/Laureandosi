@@ -79,7 +79,7 @@ button {
     border: 1px solid;
 }
     button:disabled {
-        filter: blur(1.4)px;
+        filter: blur(.4px);
         cursor: not-allowed;
     }
 label {

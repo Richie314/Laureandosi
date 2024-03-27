@@ -14,7 +14,7 @@ class ProspettoConSimulazione extends ProspettoLaureando {
         return $pdf;
     }
 	
-    public function generaContenuto(FPDF $pdf): FPDF 
+    public function generaContenuto(FPDF|null $pdf): FPDF 
     {
         $pdf = parent::generaProspetto($pdf);
 

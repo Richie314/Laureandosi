@@ -3,6 +3,7 @@
  * Template Name: Configuration Page
  */
 require_once dirname(__DIR__, 4) . "/utils/Configurazione.php";
+require_once dirname(__DIR__, 4) . "/utils/AccessoProspetti.php";
 enum PageToShow:string 
 {
     case ModificaCorsoDiLaurea = "modifica-cdl";
@@ -57,9 +58,9 @@ if (isset($_GET["section"]) && is_string($_GET["section"]) && !empty($_GET["sect
     <title>
         Laureandosi 2 - Configurazione
     </title>
-    <script src="/assets/page.js" defer></script>
-    <link rel="stylesheet" href="/assets/page.css" type="text/css">
-    <link rel="stylesheet" href="/assets/configuration.css" type="text/css">
+    <script src="<?= AccessoProspetti::$AppPathOnServer ?>/assets/page.js" defer></script>
+    <link rel="stylesheet" href="<?= AccessoProspetti::$AppPathOnServer ?>/assets/page.css" type="text/css">
+    <link rel="stylesheet" href="<?= AccessoProspetti::$AppPathOnServer ?>/assets/configuration.css" type="text/css">
 </head>
 <body>
     <div class="container">
@@ -74,7 +75,7 @@ if (isset($_GET["section"]) && is_string($_GET["section"]) && !empty($_GET["sect
         <?php } ?>
         <?php switch ($menu) { 
             case PageToShow::ModificaCorsoDiLaurea: { ?>
-                <form action="/modificaConfigurazione.php" method="post">
+                <form action="<?= AccessoProspetti::$AppPathOnServer ?>/modificaConfigurazione.php" method="post">
                     <input type="hidden" value="<?= htmlspecialchars($cdl_short) ?>" name="cdl">
                     
                     <label for="nome">
@@ -157,8 +158,8 @@ if (isset($_GET["section"]) && is_string($_GET["section"]) && !empty($_GET["sect
                         Salva
                     </button>
                 </form>
-                <script defer src="/lib/ckeditor5/build/ckeditor.js"></script>
-                <script defer src="/assets/configuration.js"></script>
+                <script defer src="<?= AccessoProspetti::$AppPathOnServer ?>/lib/ckeditor5/build/ckeditor.js"></script>
+                <script defer src="<?= AccessoProspetti::$AppPathOnServer ?>/assets/configuration.js"></script>
 
             <?php } break;
             case PageToShow::EsamiInformatici: { ?>
@@ -175,7 +176,9 @@ if (isset($_GET["section"]) && is_string($_GET["section"]) && !empty($_GET["sect
                 <!-- Il target è la pagina corrente (a qualunque endpoint si trovi) -->
                 <form method="get">
 
-                    <label for="cdl"></label>
+                    <label for="cdl">
+                        Cdl:
+                    </label>
                     <select name="cdl" id="cdl">
                         <option value="">Scegli un Cdl:</option>
                         

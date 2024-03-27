@@ -15,14 +15,14 @@ class TestCorsoDiLaurea extends Test
                 3,
                 24.559,
                 2022,
-                12
+                12,
             ), 
             array(
                 'T. Ing. Elettronica',
                 true,
                 false,
                 '94.989',
-                '2026-05-01'
+                '2026-05-01',
             ));
     }
     public static function Func(
@@ -33,8 +33,8 @@ class TestCorsoDiLaurea extends Test
         int $durata,
         float $M,
         int $anno,
-        int $cfu_media) : array
-    {
+        int $cfu_media,
+    ): array {
         $cdl = new CorsoDiLaurea($nome, $formula, $cfu, $lode, 18, 33, 1, 0, 0, 0, null, '', $durata);
         return array(
             (string)$cdl,

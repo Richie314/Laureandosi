@@ -18,3 +18,4 @@ data/ausiliario.json
 !wp-content/themes/twentytwentyfour/templates/configurazione.php
 *.vpp~*
 .hintrc
+guida/

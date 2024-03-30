@@ -14,7 +14,7 @@ function DisplayError(err)
         autoclose: false,
         closeable: true,
         close_others_on_show: true,
-        replace_linebreaks: false,
+        replace_linebreaks: true,
         enable_titlebar: true
     });
     msg.show([
@@ -93,13 +93,22 @@ main_form.onsubmit = async (evt) => {
     evt.preventDefault();
 
     // Prendo i parametri dalla form
+    /**
+     * @type {HTMLTextAreaElement}
+     */
     const textarea = document.getElementById('matricole');
-    const matricole = [...new Set(textarea.value.split(/[\s,]+/).map(s => s.trim()))];
+    const matricole = 
+        [...new Set(
+            textarea.value.split(/[\s,]+/)
+            .map(s => s.trim())
+            .filter(s => s.length > 0 && !(/[^0-9]+/.test(s)))
+        )];
     textarea.value = matricole.join(',\n'); // Riordino visivamente la textarea
     second_form.matricole = [...matricole];
     if (matricole.length === 0) {
         return;
     }
+
     second_form.matricole.push('Commissione');
     
     const cdl = document.getElementById('cdl').value;

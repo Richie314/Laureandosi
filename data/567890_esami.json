@@ -2,23 +2,23 @@
   "Esami": {
     "Esame": [
       {
-        "MATRICOLA": 234567,
+        "MATRICOLA": 567890,
         "DES_CAT": {
           "@nil": "true"
         },
-        "NOME": "ALESSANDRO BASTONI",
+        "NOME": "ACERBI FRANCESCO",
         "COD_FIS": "ABCDEFX12X12X123X",
-        "INIZIO_CARRIERA": "24/10/2018",
-        "ANNO_IMM": 2018,
-        "DATA_CHIUSURA": "18/02/2022",
-        "AA_CHIUSURA": 2020,
+        "INIZIO_CARRIERA": "17/09/2020",
+        "ANNO_IMM": 2020,
+        "DATA_CHIUSURA": "26/07/2022",
+        "AA_CHIUSURA": 2021,
         "STA_STU_COD": "X",
         "MOT_STASTU_COD": "TIT",
-        "CORSO": "INGEGNERIA ELETTRONICA (WIE-LM)",
-        "COD": "915II",
-        "DES": "NANOELETTRONICA E FOTONICA",
-        "DATA_ESAME": "02/07/2020",
-        "VOTO": "20 ",
+        "CORSO": "CYBERSECURITY (WCY-LM)",
+        "COD": "934II",
+        "DES": "BIOMETRICS SYSTEMS",
+        "DATA_ESAME": "07/01/2022",
+        "VOTO": "22 ",
         "RIC_ID": 0,
         "TIPO_RIC": {
           "@nil": "true"
@@ -29,32 +29,30 @@
         "GIUDIZIO": {
           "@nil": "true"
         },
-        "PESO": 9,
-        "PIANO": {
-          "@nil": "true"
-        },
+        "PESO": 6,
+        "PIANO": "Y",
         "ABBR_FLG": 0,
         "SOVRAN_FLG": 0,
         "ANNO_CORSO": 2,
-        "adsce_id": 10791188
+        "adsce_id": 11486530
       },
       {
-        "MATRICOLA": 234567,
+        "MATRICOLA": 567890,
         "DES_CAT": {
           "@nil": "true"
         },
-        "NOME": "ALESSANDRO BASTONI",
+        "NOME": "ACERBI FRANCESCO",
         "COD_FIS": "ABCDEFX12X12X123X",
-        "INIZIO_CARRIERA": "24/10/2018",
-        "ANNO_IMM": 2018,
-        "DATA_CHIUSURA": "18/02/2022",
-        "AA_CHIUSURA": 2020,
+        "INIZIO_CARRIERA": "17/09/2020",
+        "ANNO_IMM": 2020,
+        "DATA_CHIUSURA": "26/07/2022",
+        "AA_CHIUSURA": 2021,
         "STA_STU_COD": "X",
         "MOT_STASTU_COD": "TIT",
-        "CORSO": "INGEGNERIA ELETTRONICA (WIE-LM)",
-        "COD": "317II",
-        "DES": "SISTEMI DI ELABORAZIONE",
-        "DATA_ESAME": "08/07/2020",
+        "CORSO": "CYBERSECURITY (WCY-LM)",
+        "COD": "932II",
+        "DES": "DEPENDABILITY",
+        "DATA_ESAME": "07/06/2022",
         "VOTO": "28 ",
         "RIC_ID": 0,
         "TIPO_RIC": {
@@ -71,375 +69,25 @@
         "ABBR_FLG": 0,
         "SOVRAN_FLG": 0,
         "ANNO_CORSO": 2,
-        "adsce_id": 10794387
+        "adsce_id": 11591093
       },
       {
-        "MATRICOLA": 234567,
+        "MATRICOLA": 567890,
         "DES_CAT": {
           "@nil": "true"
         },
-        "NOME": "ALESSANDRO BASTONI",
+        "NOME": "ACERBI FRANCESCO",
         "COD_FIS": "ABCDEFX12X12X123X",
-        "INIZIO_CARRIERA": "24/10/2018",
-        "ANNO_IMM": 2018,
-        "DATA_CHIUSURA": "18/02/2022",
-        "AA_CHIUSURA": 2020,
+        "INIZIO_CARRIERA": "17/09/2020",
+        "ANNO_IMM": 2020,
+        "DATA_CHIUSURA": "26/07/2022",
+        "AA_CHIUSURA": 2021,
         "STA_STU_COD": "X",
         "MOT_STASTU_COD": "TIT",
-        "CORSO": "INGEGNERIA ELETTRONICA (WIE-LM)",
-        "COD": "307II",
-        "DES": "ELETTRONICA ANALOGICA",
-        "DATA_ESAME": "09/04/2021",
-        "VOTO": "19 ",
-        "RIC_ID": 0,
-        "TIPO_RIC": {
-          "@nil": "true"
-        },
-        "DES_RIC": {
-          "@nil": "true"
-        },
-        "GIUDIZIO": {
-          "@nil": "true"
-        },
-        "PESO": 9,
-        "PIANO": "Y",
-        "ABBR_FLG": 0,
-        "SOVRAN_FLG": 0,
-        "ANNO_CORSO": 1,
-        "adsce_id": 10220937
-      },
-      {
-        "MATRICOLA": 234567,
-        "DES_CAT": {
-          "@nil": "true"
-        },
-        "NOME": "ALESSANDRO BASTONI",
-        "COD_FIS": "ABCDEFX12X12X123X",
-        "INIZIO_CARRIERA": "24/10/2018",
-        "ANNO_IMM": 2018,
-        "DATA_CHIUSURA": "18/02/2022",
-        "AA_CHIUSURA": 2020,
-        "STA_STU_COD": "X",
-        "MOT_STASTU_COD": "TIT",
-        "CORSO": "INGEGNERIA ELETTRONICA (WIE-LM)",
-        "COD": "309II",
-        "DES": "ELETTRONICA DELLE TELECOMUNICAZIONI",
-        "DATA_ESAME": "11/01/2021",
-        "VOTO": "27 ",
-        "RIC_ID": 0,
-        "TIPO_RIC": {
-          "@nil": "true"
-        },
-        "DES_RIC": {
-          "@nil": "true"
-        },
-        "GIUDIZIO": {
-          "@nil": "true"
-        },
-        "PESO": 9,
-        "PIANO": "Y",
-        "ABBR_FLG": 0,
-        "SOVRAN_FLG": 0,
-        "ANNO_CORSO": 1,
-        "adsce_id": 10220936
-      },
-      {
-        "MATRICOLA": 234567,
-        "DES_CAT": {
-          "@nil": "true"
-        },
-        "NOME": "ALESSANDRO BASTONI",
-        "COD_FIS": "ABCDEFX12X12X123X",
-        "INIZIO_CARRIERA": "24/10/2018",
-        "ANNO_IMM": 2018,
-        "DATA_CHIUSURA": "18/02/2022",
-        "AA_CHIUSURA": 2020,
-        "STA_STU_COD": "X",
-        "MOT_STASTU_COD": "TIT",
-        "CORSO": "INGEGNERIA ELETTRONICA (WIE-LM)",
-        "COD": "314II",
-        "DES": "PROGETTAZIONE DI SISTEMI DIGITALI",
-        "DATA_ESAME": "13/01/2020",
-        "VOTO": "30 ",
-        "RIC_ID": 0,
-        "TIPO_RIC": {
-          "@nil": "true"
-        },
-        "DES_RIC": {
-          "@nil": "true"
-        },
-        "GIUDIZIO": {
-          "@nil": "true"
-        },
-        "PESO": 9,
-        "PIANO": "Y",
-        "ABBR_FLG": 0,
-        "SOVRAN_FLG": 0,
-        "ANNO_CORSO": 2,
-        "adsce_id": 10681482
-      },
-      {
-        "MATRICOLA": 234567,
-        "DES_CAT": {
-          "@nil": "true"
-        },
-        "NOME": "ALESSANDRO BASTONI",
-        "COD_FIS": "ABCDEFX12X12X123X",
-        "INIZIO_CARRIERA": "24/10/2018",
-        "ANNO_IMM": 2018,
-        "DATA_CHIUSURA": "18/02/2022",
-        "AA_CHIUSURA": 2020,
-        "STA_STU_COD": "X",
-        "MOT_STASTU_COD": "TIT",
-        "CORSO": "INGEGNERIA ELETTRONICA (WIE-LM)",
-        "COD": "313II",
-        "DES": "PROGETTAZIONE DI SENSORI E MICROSISTEMI",
-        "DATA_ESAME": "15/04/2021",
-        "VOTO": "24 ",
-        "RIC_ID": 0,
-        "TIPO_RIC": {
-          "@nil": "true"
-        },
-        "DES_RIC": {
-          "@nil": "true"
-        },
-        "GIUDIZIO": {
-          "@nil": "true"
-        },
-        "PESO": 9,
-        "PIANO": "Y",
-        "ABBR_FLG": 0,
-        "SOVRAN_FLG": 0,
-        "ANNO_CORSO": 2,
-        "adsce_id": 11167164
-      },
-      {
-        "MATRICOLA": 234567,
-        "DES_CAT": {
-          "@nil": "true"
-        },
-        "NOME": "ALESSANDRO BASTONI",
-        "COD_FIS": "ABCDEFX12X12X123X",
-        "INIZIO_CARRIERA": "24/10/2018",
-        "ANNO_IMM": 2018,
-        "DATA_CHIUSURA": "18/02/2022",
-        "AA_CHIUSURA": 2020,
-        "STA_STU_COD": "X",
-        "MOT_STASTU_COD": "TIT",
-        "CORSO": "INGEGNERIA ELETTRONICA (WIE-LM)",
-        "COD": "311II",
-        "DES": "SISTEMI EMBEDDED",
-        "DATA_ESAME": "17/09/2020",
-        "VOTO": "28 ",
-        "RIC_ID": 0,
-        "TIPO_RIC": {
-          "@nil": "true"
-        },
-        "DES_RIC": {
-          "@nil": "true"
-        },
-        "GIUDIZIO": {
-          "@nil": "true"
-        },
-        "PESO": 9,
-        "PIANO": "Y",
-        "ABBR_FLG": 0,
-        "SOVRAN_FLG": 0,
-        "ANNO_CORSO": 2,
-        "adsce_id": 10879990
-      },
-      {
-        "MATRICOLA": 234567,
-        "DES_CAT": {
-          "@nil": "true"
-        },
-        "NOME": "ALESSANDRO BASTONI",
-        "COD_FIS": "ABCDEFX12X12X123X",
-        "INIZIO_CARRIERA": "24/10/2018",
-        "ANNO_IMM": 2018,
-        "DATA_CHIUSURA": "18/02/2022",
-        "AA_CHIUSURA": 2020,
-        "STA_STU_COD": "X",
-        "MOT_STASTU_COD": "TIT",
-        "CORSO": "INGEGNERIA ELETTRONICA (WIE-LM)",
-        "COD": "274ZW",
-        "DES": "PROVA FINALE",
-        "DATA_ESAME": "18/02/2022",
-        "VOTO": "30 ",
-        "RIC_ID": 0,
-        "TIPO_RIC": {
-          "@nil": "true"
-        },
-        "DES_RIC": {
-          "@nil": "true"
-        },
-        "GIUDIZIO": {
-          "@nil": "true"
-        },
-        "PESO": 18,
-        "PIANO": "Y",
-        "ABBR_FLG": 0,
-        "SOVRAN_FLG": 0,
-        "ANNO_CORSO": 2,
-        "adsce_id": 11528406
-      },
-      {
-        "MATRICOLA": 234567,
-        "DES_CAT": {
-          "@nil": "true"
-        },
-        "NOME": "ALESSANDRO BASTONI",
-        "COD_FIS": "ABCDEFX12X12X123X",
-        "INIZIO_CARRIERA": "24/10/2018",
-        "ANNO_IMM": 2018,
-        "DATA_CHIUSURA": "18/02/2022",
-        "AA_CHIUSURA": 2020,
-        "STA_STU_COD": "X",
-        "MOT_STASTU_COD": "TIT",
-        "CORSO": "INGEGNERIA ELETTRONICA (WIE-LM)",
-        "COD": "098II",
-        "DES": "DISPOSITIVI ELETTRONICI",
-        "DATA_ESAME": "20/06/2019",
-        "VOTO": "24 ",
-        "RIC_ID": 0,
-        "TIPO_RIC": {
-          "@nil": "true"
-        },
-        "DES_RIC": {
-          "@nil": "true"
-        },
-        "GIUDIZIO": {
-          "@nil": "true"
-        },
-        "PESO": 9,
-        "PIANO": "Y",
-        "ABBR_FLG": 0,
-        "SOVRAN_FLG": 0,
-        "ANNO_CORSO": 1,
-        "adsce_id": 10371487
-      },
-      {
-        "MATRICOLA": 234567,
-        "DES_CAT": {
-          "@nil": "true"
-        },
-        "NOME": "ALESSANDRO BASTONI",
-        "COD_FIS": "ABCDEFX12X12X123X",
-        "INIZIO_CARRIERA": "24/10/2018",
-        "ANNO_IMM": 2018,
-        "DATA_CHIUSURA": "18/02/2022",
-        "AA_CHIUSURA": 2020,
-        "STA_STU_COD": "X",
-        "MOT_STASTU_COD": "TIT",
-        "CORSO": "INGEGNERIA ELETTRONICA (WIE-LM)",
-        "COD": "310II",
-        "DES": "ELETTRONICA DI POTENZA E DI CONTROLLO",
-        "DATA_ESAME": "22/04/2020",
-        "VOTO": "26 ",
-        "RIC_ID": 0,
-        "TIPO_RIC": {
-          "@nil": "true"
-        },
-        "DES_RIC": {
-          "@nil": "true"
-        },
-        "GIUDIZIO": {
-          "@nil": "true"
-        },
-        "PESO": 6,
-        "PIANO": "Y",
-        "ABBR_FLG": 0,
-        "SOVRAN_FLG": 0,
-        "ANNO_CORSO": 1,
-        "adsce_id": 10220934
-      },
-      {
-        "MATRICOLA": 234567,
-        "DES_CAT": {
-          "@nil": "true"
-        },
-        "NOME": "ALESSANDRO BASTONI",
-        "COD_FIS": "ABCDEFX12X12X123X",
-        "INIZIO_CARRIERA": "24/10/2018",
-        "ANNO_IMM": 2018,
-        "DATA_CHIUSURA": "18/02/2022",
-        "AA_CHIUSURA": 2020,
-        "STA_STU_COD": "X",
-        "MOT_STASTU_COD": "TIT",
-        "CORSO": "INGEGNERIA ELETTRONICA (WIE-LM)",
-        "COD": "315II",
-        "DES": "PROGETTAZIONE DI SISTEMI MICROELETTRONICI",
-        "DATA_ESAME": "23/09/2019",
-        "VOTO": "24 ",
-        "RIC_ID": 0,
-        "TIPO_RIC": {
-          "@nil": "true"
-        },
-        "DES_RIC": {
-          "@nil": "true"
-        },
-        "GIUDIZIO": {
-          "@nil": "true"
-        },
-        "PESO": 12,
-        "PIANO": "Y",
-        "ABBR_FLG": 0,
-        "SOVRAN_FLG": 0,
-        "ANNO_CORSO": 1,
-        "adsce_id": 10220938
-      },
-      {
-        "MATRICOLA": 234567,
-        "DES_CAT": {
-          "@nil": "true"
-        },
-        "NOME": "ALESSANDRO BASTONI",
-        "COD_FIS": "ABCDEFX12X12X123X",
-        "INIZIO_CARRIERA": "24/10/2018",
-        "ANNO_IMM": 2018,
-        "DATA_CHIUSURA": "18/02/2022",
-        "AA_CHIUSURA": 2020,
-        "STA_STU_COD": "X",
-        "MOT_STASTU_COD": "TIT",
-        "CORSO": "INGEGNERIA ELETTRONICA (WIE-LM)",
-        "COD": "318II",
-        "DES": "TECNOLOGIE MICROELETTRONICHE",
-        "DATA_ESAME": "27/02/2019",
-        "VOTO": "20 ",
-        "RIC_ID": 0,
-        "TIPO_RIC": {
-          "@nil": "true"
-        },
-        "DES_RIC": {
-          "@nil": "true"
-        },
-        "GIUDIZIO": {
-          "@nil": "true"
-        },
-        "PESO": 6,
-        "PIANO": "Y",
-        "ABBR_FLG": 0,
-        "SOVRAN_FLG": 0,
-        "ANNO_CORSO": 1,
-        "adsce_id": 10220940
-      },
-      {
-        "MATRICOLA": 234567,
-        "DES_CAT": {
-          "@nil": "true"
-        },
-        "NOME": "ALESSANDRO BASTONI",
-        "COD_FIS": "ABCDEFX12X12X123X",
-        "INIZIO_CARRIERA": "24/10/2018",
-        "ANNO_IMM": 2018,
-        "DATA_CHIUSURA": "18/02/2022",
-        "AA_CHIUSURA": 2020,
-        "STA_STU_COD": "X",
-        "MOT_STASTU_COD": "TIT",
-        "CORSO": "INGEGNERIA ELETTRONICA (WIE-LM)",
-        "COD": "319II",
-        "DES": "TELECOMUNICAZIONI",
-        "DATA_ESAME": "29/01/2019",
+        "CORSO": "CYBERSECURITY (WCY-LM)",
+        "COD": "929II",
+        "DES": "APPLIED CRYPTOGRAPHY",
+        "DATA_ESAME": "08/07/2021",
         "VOTO": "25 ",
         "RIC_ID": 0,
         "TIPO_RIC": {
@@ -456,7 +104,355 @@
         "ABBR_FLG": 0,
         "SOVRAN_FLG": 0,
         "ANNO_CORSO": 1,
-        "adsce_id": 10220935
+        "adsce_id": 11026666
+      },
+      {
+        "MATRICOLA": 567890,
+        "DES_CAT": {
+          "@nil": "true"
+        },
+        "NOME": "ACERBI FRANCESCO",
+        "COD_FIS": "ABCDEFX12X12X123X",
+        "INIZIO_CARRIERA": "17/09/2020",
+        "ANNO_IMM": 2020,
+        "DATA_CHIUSURA": "26/07/2022",
+        "AA_CHIUSURA": 2021,
+        "STA_STU_COD": "X",
+        "MOT_STASTU_COD": "TIT",
+        "CORSO": "CYBERSECURITY (WCY-LM)",
+        "COD": "930II",
+        "DES": "HARDWARE AND EMBEDDED SECURITY",
+        "DATA_ESAME": "09/06/2021",
+        "VOTO": "28 ",
+        "RIC_ID": 0,
+        "TIPO_RIC": {
+          "@nil": "true"
+        },
+        "DES_RIC": {
+          "@nil": "true"
+        },
+        "GIUDIZIO": {
+          "@nil": "true"
+        },
+        "PESO": 9,
+        "PIANO": "Y",
+        "ABBR_FLG": 0,
+        "SOVRAN_FLG": 0,
+        "ANNO_CORSO": 1,
+        "adsce_id": 11026665
+      },
+      {
+        "MATRICOLA": 567890,
+        "DES_CAT": {
+          "@nil": "true"
+        },
+        "NOME": "ACERBI FRANCESCO",
+        "COD_FIS": "ABCDEFX12X12X123X",
+        "INIZIO_CARRIERA": "17/09/2020",
+        "ANNO_IMM": 2020,
+        "DATA_CHIUSURA": "26/07/2022",
+        "AA_CHIUSURA": 2021,
+        "STA_STU_COD": "X",
+        "MOT_STASTU_COD": "TIT",
+        "CORSO": "CYBERSECURITY (WCY-LM)",
+        "COD": "933II",
+        "DES": "NETWORK SECURITY",
+        "DATA_ESAME": "10/01/2022",
+        "VOTO": "24 ",
+        "RIC_ID": 0,
+        "TIPO_RIC": {
+          "@nil": "true"
+        },
+        "DES_RIC": {
+          "@nil": "true"
+        },
+        "GIUDIZIO": {
+          "@nil": "true"
+        },
+        "PESO": 9,
+        "PIANO": "Y",
+        "ABBR_FLG": 0,
+        "SOVRAN_FLG": 0,
+        "ANNO_CORSO": 2,
+        "adsce_id": 11487890
+      },
+      {
+        "MATRICOLA": 567890,
+        "DES_CAT": {
+          "@nil": "true"
+        },
+        "NOME": "ACERBI FRANCESCO",
+        "COD_FIS": "ABCDEFX12X12X123X",
+        "INIZIO_CARRIERA": "17/09/2020",
+        "ANNO_IMM": 2020,
+        "DATA_CHIUSURA": "26/07/2022",
+        "AA_CHIUSURA": 2021,
+        "STA_STU_COD": "X",
+        "MOT_STASTU_COD": "TIT",
+        "CORSO": "CYBERSECURITY (WCY-LM)",
+        "COD": "938II",
+        "DES": "ELECTRONICS AND COMMUNICATION TECHNOLOGIES",
+        "DATA_ESAME": "11/01/2021",
+        "VOTO": "21 ",
+        "RIC_ID": 0,
+        "TIPO_RIC": {
+          "@nil": "true"
+        },
+        "DES_RIC": {
+          "@nil": "true"
+        },
+        "GIUDIZIO": {
+          "@nil": "true"
+        },
+        "PESO": 12,
+        "PIANO": "Y",
+        "ABBR_FLG": 0,
+        "SOVRAN_FLG": 0,
+        "ANNO_CORSO": 1,
+        "adsce_id": 11070457
+      },
+      {
+        "MATRICOLA": 567890,
+        "DES_CAT": {
+          "@nil": "true"
+        },
+        "NOME": "ACERBI FRANCESCO",
+        "COD_FIS": "ABCDEFX12X12X123X",
+        "INIZIO_CARRIERA": "17/09/2020",
+        "ANNO_IMM": 2020,
+        "DATA_CHIUSURA": "26/07/2022",
+        "AA_CHIUSURA": 2021,
+        "STA_STU_COD": "X",
+        "MOT_STASTU_COD": "TIT",
+        "CORSO": "CYBERSECURITY (WCY-LM)",
+        "COD": "714AA",
+        "DES": "LANGUAGE-BASED TECHNOLOGY FOR SECURITY",
+        "DATA_ESAME": "11/06/2021",
+        "VOTO": "28 ",
+        "RIC_ID": 0,
+        "TIPO_RIC": {
+          "@nil": "true"
+        },
+        "DES_RIC": {
+          "@nil": "true"
+        },
+        "GIUDIZIO": {
+          "@nil": "true"
+        },
+        "PESO": 9,
+        "PIANO": "Y",
+        "ABBR_FLG": 0,
+        "SOVRAN_FLG": 0,
+        "ANNO_CORSO": 1,
+        "adsce_id": 11026663
+      },
+      {
+        "MATRICOLA": 567890,
+        "DES_CAT": {
+          "@nil": "true"
+        },
+        "NOME": "ACERBI FRANCESCO",
+        "COD_FIS": "ABCDEFX12X12X123X",
+        "INIZIO_CARRIERA": "17/09/2020",
+        "ANNO_IMM": 2020,
+        "DATA_CHIUSURA": "26/07/2022",
+        "AA_CHIUSURA": 2021,
+        "STA_STU_COD": "X",
+        "MOT_STASTU_COD": "TIT",
+        "CORSO": "CYBERSECURITY (WCY-LM)",
+        "COD": "715AA",
+        "DES": "SECURE SOFTWARE ENGINEERING",
+        "DATA_ESAME": "19/01/2022",
+        "VOTO": "25 ",
+        "RIC_ID": 0,
+        "TIPO_RIC": {
+          "@nil": "true"
+        },
+        "DES_RIC": {
+          "@nil": "true"
+        },
+        "GIUDIZIO": {
+          "@nil": "true"
+        },
+        "PESO": 9,
+        "PIANO": "Y",
+        "ABBR_FLG": 0,
+        "SOVRAN_FLG": 0,
+        "ANNO_CORSO": 2,
+        "adsce_id": 11520700
+      },
+      {
+        "MATRICOLA": 567890,
+        "DES_CAT": {
+          "@nil": "true"
+        },
+        "NOME": "ACERBI FRANCESCO",
+        "COD_FIS": "ABCDEFX12X12X123X",
+        "INIZIO_CARRIERA": "17/09/2020",
+        "ANNO_IMM": 2020,
+        "DATA_CHIUSURA": "26/07/2022",
+        "AA_CHIUSURA": 2021,
+        "STA_STU_COD": "X",
+        "MOT_STASTU_COD": "TIT",
+        "CORSO": "CYBERSECURITY (WCY-LM)",
+        "COD": "005PN",
+        "DES": "ORGANIZATIONAL SCIENCES AND INFORMATION AND TECHNOLOGY LAW (OL)",
+        "DATA_ESAME": "20/09/2021",
+        "VOTO": "25 ",
+        "RIC_ID": 0,
+        "TIPO_RIC": {
+          "@nil": "true"
+        },
+        "DES_RIC": {
+          "@nil": "true"
+        },
+        "GIUDIZIO": {
+          "@nil": "true"
+        },
+        "PESO": 12,
+        "PIANO": "Y",
+        "ABBR_FLG": 0,
+        "SOVRAN_FLG": 0,
+        "ANNO_CORSO": 1,
+        "adsce_id": 11026667
+      },
+      {
+        "MATRICOLA": 567890,
+        "DES_CAT": {
+          "@nil": "true"
+        },
+        "NOME": "ACERBI FRANCESCO",
+        "COD_FIS": "ABCDEFX12X12X123X",
+        "INIZIO_CARRIERA": "17/09/2020",
+        "ANNO_IMM": 2020,
+        "DATA_CHIUSURA": "26/07/2022",
+        "AA_CHIUSURA": 2021,
+        "STA_STU_COD": "X",
+        "MOT_STASTU_COD": "TIT",
+        "CORSO": "CYBERSECURITY (WCY-LM)",
+        "COD": "713AA",
+        "DES": "DATA AND SYSTEM SECURITY",
+        "DATA_ESAME": "22/02/2021",
+        "VOTO": "28 ",
+        "RIC_ID": 0,
+        "TIPO_RIC": {
+          "@nil": "true"
+        },
+        "DES_RIC": {
+          "@nil": "true"
+        },
+        "GIUDIZIO": {
+          "@nil": "true"
+        },
+        "PESO": 9,
+        "PIANO": "Y",
+        "ABBR_FLG": 0,
+        "SOVRAN_FLG": 0,
+        "ANNO_CORSO": 1,
+        "adsce_id": 11026662
+      },
+      {
+        "MATRICOLA": 567890,
+        "DES_CAT": {
+          "@nil": "true"
+        },
+        "NOME": "ACERBI FRANCESCO",
+        "COD_FIS": "ABCDEFX12X12X123X",
+        "INIZIO_CARRIERA": "17/09/2020",
+        "ANNO_IMM": 2020,
+        "DATA_CHIUSURA": "26/07/2022",
+        "AA_CHIUSURA": 2021,
+        "STA_STU_COD": "X",
+        "MOT_STASTU_COD": "TIT",
+        "CORSO": "CYBERSECURITY (WCY-LM)",
+        "COD": "937II",
+        "DES": "PENETRATION AND DEFENCE LABORATORY",
+        "DATA_ESAME": "25/02/2022",
+        "VOTO": "21 ",
+        "RIC_ID": 0,
+        "TIPO_RIC": {
+          "@nil": "true"
+        },
+        "DES_RIC": {
+          "@nil": "true"
+        },
+        "GIUDIZIO": {
+          "@nil": "true"
+        },
+        "PESO": 6,
+        "PIANO": "Y",
+        "ABBR_FLG": 0,
+        "SOVRAN_FLG": 0,
+        "ANNO_CORSO": 2,
+        "adsce_id": 11541700
+      },
+      {
+        "MATRICOLA": 567890,
+        "DES_CAT": {
+          "@nil": "true"
+        },
+        "NOME": "ACERBI FRANCESCO",
+        "COD_FIS": "ABCDEFX12X12X123X",
+        "INIZIO_CARRIERA": "17/09/2020",
+        "ANNO_IMM": 2020,
+        "DATA_CHIUSURA": "26/07/2022",
+        "AA_CHIUSURA": 2021,
+        "STA_STU_COD": "X",
+        "MOT_STASTU_COD": "TIT",
+        "CORSO": "CYBERSECURITY (WCY-LM)",
+        "COD": "931II",
+        "DES": "ARTIFICIAL INTELLIGENCE FOR CYBERSECURITY",
+        "DATA_ESAME": "26/01/2022",
+        "VOTO": "23 ",
+        "RIC_ID": 0,
+        "TIPO_RIC": {
+          "@nil": "true"
+        },
+        "DES_RIC": {
+          "@nil": "true"
+        },
+        "GIUDIZIO": {
+          "@nil": "true"
+        },
+        "PESO": 6,
+        "PIANO": "Y",
+        "ABBR_FLG": 0,
+        "SOVRAN_FLG": 0,
+        "ANNO_CORSO": 2,
+        "adsce_id": 11507194
+      },
+      {
+        "MATRICOLA": 567890,
+        "DES_CAT": {
+          "@nil": "true"
+        },
+        "NOME": "ACERBI FRANCESCO",
+        "COD_FIS": "ABCDEFX12X12X123X",
+        "INIZIO_CARRIERA": "17/09/2020",
+        "ANNO_IMM": 2020,
+        "DATA_CHIUSURA": "26/07/2022",
+        "AA_CHIUSURA": 2021,
+        "STA_STU_COD": "X",
+        "MOT_STASTU_COD": "TIT",
+        "CORSO": "CYBERSECURITY (WCY-LM)",
+        "COD": "1863Z",
+        "DES": "TESI",
+        "DATA_ESAME": "26/07/2022",
+        "VOTO": null,
+        "RIC_ID": 0,
+        "TIPO_RIC": {
+          "@nil": "true"
+        },
+        "DES_RIC": {
+          "@nil": "true"
+        },
+        "GIUDIZIO": "Eccellente",
+        "PESO": 18,
+        "PIANO": "Y",
+        "ABBR_FLG": 0,
+        "SOVRAN_FLG": 0,
+        "ANNO_CORSO": 1,
+        "adsce_id": 11026664
       }
     ]
   }

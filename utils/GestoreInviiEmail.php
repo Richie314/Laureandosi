@@ -70,7 +70,7 @@ class GestoreInviiEmail {
         $messaggio->SMTPAuth = false;
 
         $messaggio->From = 'noreply-laureandosi@ing.unipi.it';
-        $messaggio->FromName = 'Laureandosi 2';
+        $messaggio->FromName = 'Laureandosi 2.1';
 
         $messaggio->CharSet = 'UTF-8';
         $messaggio->isHTML();
@@ -79,7 +79,7 @@ class GestoreInviiEmail {
         $messaggio->Subject = 'Prospetti per appello di laurea';
 
         if ($matricola === 0) {
-            $messaggio->Body = "Gentilissima commissione di laurea,<br>Vengono allegati i prospetti per il prossimo appello di laurea.<br>";
+            $messaggio->Body = "Gentilissimi membri della commissione di laurea,<br>Vengono allegati i prospetti per il prossimo appello di laurea.<br>";
             $messaggio->AddAttachment(AccessoProspetti::pathCommissioneServer());
         } else {
             $messaggio->Body = $this->Cdl->FormulaEmail;

@@ -35,7 +35,8 @@ if (count($matricole_array) === 0)
 } elseif ($prospetti_generati < count($matricole_array) + 1)
 {
     $pdf_previsti = count($matricole_array) + 1;
-    $messaggio = "$prospetti_generati / $pdf_previsti prospetti generati.\n" . join(",", $matricole_array);
+    $messaggio = "$prospetti_generati / $pdf_previsti prospetti generati.\n" . 
+        "Errori con matricole:\n" . join(",\n", $matricole_array);
     $esito = "Errore";
 }
 

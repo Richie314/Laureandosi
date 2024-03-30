@@ -49,7 +49,7 @@ class ParametroFormula
         }
         return ($param - $this->Min) % $this->Step === 0;
     }
-    public function getValues(): array
+    public function valoriPossibili(): array
     {
         if (!$this->inUso())
             return array();
@@ -57,5 +57,15 @@ class ParametroFormula
             return array($this->Min, $this->Max);
         }
         return range($this->Min, $this->Max, $this->Step);
+    }
+    public function numeroValoriPossibili(): int 
+    {
+        if (!$this->inUso()) {
+            return 0;
+        }
+        if ($this->Step === 0) {
+            return 1;
+        }
+        return ($this->Max - $this->Min) / $this->Step;
     }
 }

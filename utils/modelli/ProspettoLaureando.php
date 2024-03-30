@@ -100,7 +100,7 @@ class ProspettoLaureando {
         $string = 
             "Media Pesata (M):                                                  " . number_format($this->CarrieraLaureando->restituisciMedia(), 3) .
             "\nCrediti che fanno media (CFU):                             " . $this->CarrieraLaureando->creditiCheFannoMedia() .
-            "\nCrediti curriculari conseguiti:                                  " . $this->CarrieraLaureando->creditiCurricolariConseguiti() .
+            "\nCrediti curriculari conseguiti:                                  " . $this->CarrieraLaureando->creditiCurricolariConseguiti() . "/" . $this->CarrieraLaureando->Cdl->CFURichiesti . 
             "\nFormula calcolo voto di laurea:                               " . $this->CarrieraLaureando->restituisciFormula();
         if ($this->CarrieraLaureando instanceof CarrieraLaureandoInformatica) {
             $string .= "\nMedia pesata esami INF:                                        " . number_format($this->CarrieraLaureando->getMediaEsamiInformatici(), 3);

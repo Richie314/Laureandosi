@@ -33,29 +33,56 @@ class ProspettoConSimulazione extends ProspettoLaureando {
         $cdl = $this->CarrieraLaureando->Cdl;
 
         if ($cdl->C->inUso()) {
-            $pdf->Cell($width, $height, "VOTO COMMISSIONE (C)", 1, 0, 'C');
-            $pdf->Cell($width, $height, "VOTO LAUREA", 1, 1, 'C');
-            $T = 0;
+            $divisore = ($cdl->C->numeroValoriPossibili() >= 10) ? 2 : 1;
+            for ($i = 0; $i < $divisore; $i++) {
+                $pdf->Cell($width / $divisore, $height, "VOTO COMMISSIONE (C)", 1, 0, 'C');
+                $pdf->Cell($width / $divisore, $height, "VOTO LAUREA", 1, $i, 'C');
+            }
 
-            foreach ($cdl->C->getValues() as $C)
+
+            $nuovaRiga = 0;
+            foreach ($cdl->C->valoriPossibili() as $C)
             {
-                $voto = $cdl->calcolaFormula($M, $CFU, $T, $C);
-                $pdf->Cell($width, $height, $C, 1, 0, 'C');
-                $pdf->Cell($width, $height, number_format($voto, 1), 1, 1, 'C');
+                $voto = $cdl->calcolaFormula($M, $CFU, 0, $C);
+                $pdf->Cell($width / $divisore, $height, $C, 1, 0, 'C');
+                $pdf->Cell($width / $divisore, $height, number_format($voto, 3), 1, $nuovaRiga, 'C');
+                $nuovaRiga = 1 - $nuovaRiga;
+            }
+
+            if ($cdl->T->inUso()) {
+                $min = $cdl->T->Min;
+                $max = $cdl->T->Max;
+                $spiegazione = 
+                    "VOTO DI LAUREA FINALE: scegli voto commissione, ". 
+                    "prendi il corrispondente voto di laurea e somma il voto di tesi tra $min e $max, quindi arrotonda";
+            } else {
+                $spiegazione = 
+                    "VOTO DI LAUREA FINALE: scegli voto commissione, ". 
+                    "prendi il corrispondente voto di laurea, quindi arrotonda";
             }
         } elseif ($cdl->T->inUso()) {
-            $pdf->Cell($width, $height, "VOTO TESI (T)", 1, 0, 'C');
-            $pdf->Cell($width, $height, "VOTO LAUREA", 1, 1, 'C');
-            $C = 0;
-
-            foreach ($cdl->T->getValues() as $T)
-            {
-                $voto = $cdl->calcolaFormula($M, $CFU, $T, $C);
-                $pdf->Cell($width, $height, $T, 1, 0, 'C');
-                $pdf->Cell($width, $height, number_format($voto, 1), 1, 1, 'C');
+            $divisore = ($cdl->T->numeroValoriPossibili() >= 10) ? 2 : 1;
+            for ($i = 0; $i < $divisore; $i++) {
+                $pdf->Cell($width / $divisore, $height, "VOTO TESI (T)", 1, 0, 'C');
+                $pdf->Cell($width / $divisore, $height, "VOTO LAUREA", 1, $i, 'C');
             }
-        }
 
+            $nuovaRiga = 0;
+            foreach ($cdl->T->valoriPossibili() as $T)
+            {
+                $voto = $cdl->calcolaFormula($M, $CFU, $T, 0);
+                $pdf->Cell($width / $divisore, $height, $T, 1, 0, 'C');
+                $pdf->Cell($width / $divisore, $height, number_format($voto, 3), 1, $nuovaRiga, 'C');
+                $nuovaRiga = 1 - $nuovaRiga;
+            }
+
+            $spiegazione = "VOTO DI LAUREA FINALE: scegli voto di tesi, prendi il corrispondente voto di laurea ed arrotonda";
+        }
+        if (isset($spiegazione)) {   
+            $pdf->Ln(6);
+            $pdf->SetFont('Arial', "", 9);
+            $pdf->MultiCell(0, 5, $spiegazione, 0, 'L');
+        }
         return $pdf;
 	}
 

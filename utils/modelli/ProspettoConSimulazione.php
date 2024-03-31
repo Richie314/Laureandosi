@@ -41,8 +41,7 @@ class ProspettoConSimulazione extends ProspettoLaureando {
 
 
             $nuovaRiga = 0;
-            foreach ($cdl->C->valoriPossibili() as $C)
-            {
+            foreach ($cdl->C->valoriPossibili() as $C) {
                 $voto = $cdl->calcolaFormula($M, $CFU, 0, $C);
                 $pdf->Cell($width / $divisore, $height, $C, 1, 0, 'C');
                 $pdf->Cell($width / $divisore, $height, number_format($voto, 3), 1, $nuovaRiga, 'C');
@@ -68,8 +67,7 @@ class ProspettoConSimulazione extends ProspettoLaureando {
             }
 
             $nuovaRiga = 0;
-            foreach ($cdl->T->valoriPossibili() as $T)
-            {
+            foreach ($cdl->T->valoriPossibili() as $T) {
                 $voto = $cdl->calcolaFormula($M, $CFU, $T, 0);
                 $pdf->Cell($width / $divisore, $height, $T, 1, 0, 'C');
                 $pdf->Cell($width / $divisore, $height, number_format($voto, 3), 1, $nuovaRiga, 'C');

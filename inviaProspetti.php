@@ -4,8 +4,7 @@ error_reporting(E_ERROR | E_PARSE);
 require_once __DIR__ . '/utils/GestoreInviiEmail.php';
 $invio = new GestoreInviiEmail();
 
-if (isset($_POST['numero_max']) && ctype_digit($_POST['numero_max']))
-{
+if (isset($_POST['numero_max']) && ctype_digit($_POST['numero_max'])) {
     $inviati = $invio->invioProspetti((int)$_POST['numero_max']);
 } else {
     $inviati = $invio->invioProspetti();
@@ -14,5 +13,5 @@ if (isset($_POST['numero_max']) && ctype_digit($_POST['numero_max']))
 header("Content-type: application/json");
 // Output risposta
 echo json_encode(array(
-    'InviiEffettuati' => $inviati
+    'InviiEffettuati' => $inviati,
 ), JSON_PRETTY_PRINT) . PHP_EOL;

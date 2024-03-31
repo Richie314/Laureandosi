@@ -36,16 +36,16 @@ class ProspettoConSimulazione extends ProspettoLaureando {
             $divisore = ($cdl->C->numeroValoriPossibili() >= 10) ? 2 : 1;
             for ($i = 0; $i < $divisore; $i++) {
                 $pdf->Cell($width / $divisore, $height, "VOTO COMMISSIONE (C)", 1, 0, 'C');
-                $pdf->Cell($width / $divisore, $height, "VOTO LAUREA", 1, $i, 'C');
+                $pdf->Cell($width / $divisore, $height, "VOTO LAUREA", 1, ($divisore === 2) ? $i : 1, 'C');
             }
 
-
-            $nuovaRiga = 0;
+            $nuovaRiga = (int)((3 - $divisore) / 2);
             foreach ($cdl->C->valoriPossibili() as $C) {
                 $voto = $cdl->calcolaFormula($M, $CFU, 0, $C);
                 $pdf->Cell($width / $divisore, $height, $C, 1, 0, 'C');
                 $pdf->Cell($width / $divisore, $height, number_format($voto, 3), 1, $nuovaRiga, 'C');
-                $nuovaRiga = 1 - $nuovaRiga;
+                if ($divisore === 2)
+                    $nuovaRiga = 1 - $nuovaRiga;
             }
 
             if ($cdl->T->inUso()) {
@@ -63,15 +63,16 @@ class ProspettoConSimulazione extends ProspettoLaureando {
             $divisore = ($cdl->T->numeroValoriPossibili() >= 10) ? 2 : 1;
             for ($i = 0; $i < $divisore; $i++) {
                 $pdf->Cell($width / $divisore, $height, "VOTO TESI (T)", 1, 0, 'C');
-                $pdf->Cell($width / $divisore, $height, "VOTO LAUREA", 1, $i, 'C');
+                $pdf->Cell($width / $divisore, $height, "VOTO LAUREA", 1, ($divisore === 2) ? $i : 1, 'C');
             }
 
-            $nuovaRiga = 0;
+            $nuovaRiga = (int)((3 - $divisore) / 2);
             foreach ($cdl->T->valoriPossibili() as $T) {
                 $voto = $cdl->calcolaFormula($M, $CFU, $T, 0);
                 $pdf->Cell($width / $divisore, $height, $T, 1, 0, 'C');
                 $pdf->Cell($width / $divisore, $height, number_format($voto, 3), 1, $nuovaRiga, 'C');
-                $nuovaRiga = 1 - $nuovaRiga;
+                if ($divisore === 2)
+                    $nuovaRiga = 1 - $nuovaRiga;
             }
 
             $spiegazione = "VOTO DI LAUREA FINALE: scegli voto di tesi, prendi il corrispondente voto di laurea ed arrotonda";

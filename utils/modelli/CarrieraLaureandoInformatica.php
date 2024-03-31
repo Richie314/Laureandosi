@@ -54,20 +54,26 @@ class CarrieraLaureandoInformatica extends CarrieraLaureando
     private function applicaBonus(): float
     {
         $voto_min = null;
+        $cfu_voto_min = null;
         $indice_min = null;
 
         for ($i = 0; $i < sizeof($this->Esami); $i++)
         {
             if ($this->Esami[$i]->FaMedia) {
-                if (!isset($voto_min) || $this->Esami[$i]->VotoEsame < $voto_min) {
+                if (
+                    !isset($voto_min) || 
+                    $this->Esami[$i]->VotoEsame < $voto_min ||
+                    $this->Esami[$i]->VotoEsame === $voto_min && $this->Esami[$i]->Cfu > $cfu_voto_min
+                ) {
                     $indice_min = $i;
                     $voto_min = (int)$this->Esami[$i]->VotoEsame;
+                    $cfu_voto_min = (int)$this->Esami[$i]->Cfu;
                 }
             }
         }
         $this->Esami[$indice_min]->FaMedia = false; // Rimuovo l'esame peggiore
         $media_bonus = $this->calcolaMedia(); // Calcolo la media vendo escluso l'esame
-        $this->Esami[$indice_min]->FaMedia = true; // Reinserisco l'esame che avevo rimosso
+        //$this->Esami[$indice_min]->FaMedia = true; // Reinserisco l'esame che avevo rimosso
         return $media_bonus;
     }
     public function restituisciMedia(): float

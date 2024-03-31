@@ -37,9 +37,9 @@
         "formula_email": "<p><span style=\"color:hsl(0,0%,0%);\">Gentile laureando\/laureanda,<\/span><\/p><p><span style=\"color:hsl(0,0%,0%);\">Allego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adoperer\u00e0 per determinare il voto di laurea. La prego di prendere visione dei dati relativi agli esami. In caso di dubbi scrivere a: <\/span><a href=\"mailto:vittoria.dattilo@unipi.it\"><span style=\"color:hsl(0,0%,0%);\">vittoria.dattilo@unipi.it<\/span><\/a><\/p><p><span style=\"color:hsl(0,0%,0%);\">Alcune spiegazioni:<\/span><\/p><ul><li><span style=\"color:hsl(0,0%,0%);\">Gli esami che non hanno un voto in trentesimi, hanno voto nominale zero al posto di giudizio o idoneit\u00e0, in quanto non contribuiscono al calcolo della media ma solo al numero di crediti curriculari<\/span><\/li><li><span style=\"color:hsl(0,0%,0%);\">Gli esami che non fanno media (pur contribuendo ai crediti curriculari) non hanno la spunta nella colonna MED<\/span><\/li><li><span style=\"color:hsl(0,0%,0%);\">Il voto di tesi (T) appare nominalmente a zero in quanto verr\u00e0 determinato in sede di laurea, e va da 18 a 30.<\/span><\/li><\/ul><p><span style=\"color:hsl(0,0%,0%);\">Cordiali saluti, Unit\u00e0 Didattica DII<\/span><\/p>",
         "email_commissione": "commissione.t-inf@unipi.it",
         "durata": 3,
-        "tMin": 0,
-        "tMax": 0,
-        "tStep": 0,
+        "tMin": 1,
+        "tMax": 3,
+        "tStep": 1,
         "cMin": 1,
         "cMax": 7,
         "cStep": 1
@@ -132,6 +132,21 @@
         "tStep": 0,
         "cMin": 1,
         "cMax": 11,
+        "cStep": 1
+    },
+    "m-cyb": {
+        "nome": "M. Cybersecurity",
+        "formula": "M * 110 \/ 30 + C",
+        "cfu_richiesti": 102,
+        "valore_lode": 33,
+        "formula_email": "Gentile laureando\/laureanda,\nAllego un prospetto contenente: la sua carriera, gli indicatori e la formula che la commissione adoperer\u00e0 per\ndeterminare il voto di laurea.\nLa prego di prendere visione dei dati relativi agli esami.\nIn caso di dubbi scrivere a: vittoria.dattilo@unipi.it\nAlcune spiegazioni:\n- gli esami che non hanno un voto in trentesimi, hanno voto nominale zero al posto di giudizio o idoneita', in\nquanto non contribuiscono al calcolo della media ma solo al numero di crediti curriculari;\n- gli esami che non fanno media (pur contribuendo ai crediti curriculari) non hanno la spunta nella colonna MED;\n- il voto di tesi (T) appare nominalmente a zero in quanto verra' determinato in sede di laurea, e va da 18 a 30.\n Cordiali saluti\n Unit\u00e0 Didattica DII",
+        "email_commissione": "r.ciucci3@studenti.unipi.it",
+        "durata": 2,
+        "tMin": 0,
+        "tMax": 0,
+        "tStep": 0,
+        "cMin": 1,
+        "cMax": 7,
         "cStep": 1
     }
 }

@@ -9,11 +9,11 @@ class TestGestioneCarrieraStudente_restituisciAnagraficaStudente extends Test
             'Func', 
             array('123456'), 
             array(
-                'nome' => 'GIUSEPPE',
-                'cognome' => 'ZEDDE',
+                'nome' => 'GIANLUIGI',
+                'cognome' => 'DONNARUMMA',
                 'cod_fis' => 'ABCDEFX12X12X123X',
                 'data_nascita' => '1997-06-14T00:00:00.000+02:00',
-                'email_ate' => 'g.zedde@studenti.unipi.it'
+                'email_ate' => 'nome.cognome@studenti.unipi.it'
             )
         );
     }

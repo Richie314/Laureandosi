@@ -7,12 +7,12 @@ class TestCarrieraLaureando extends Test
     {
         parent::__construct('Func', array(
             234567,
-            'M. Ing. Elettronica'
+            'm-ele'
         ), array(
             102,
             '24.559',
-            'GIOVANNI',
-            'ATZENI',
+            'ALESSANDRO',
+            'BASTONI',
             2018,
             234567,
             'TELECOMUNICAZIONI 25'

@@ -7,7 +7,7 @@ class TestConfigurazione_CorsiDiLaurea extends Test
     {
         parent::__construct(
             'Func', 
-            array('T. Ing. Elettronica'), 
+            array('t-ele'), 
             array(
                 'T. Ing. Elettronica',
                 'T. Ing. Elettronica',

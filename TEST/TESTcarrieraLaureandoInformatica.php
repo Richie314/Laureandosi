@@ -7,14 +7,14 @@ class TestCarrieraLaureandoInformatica_NoBonus extends Test
     {
         parent::__construct('Func', array(
             123456,
-            'T. Ing. Informatica',
+            't-inf',
             date("Y-m-d")
         ), array(
             177,
             174,
             '23.655',
-            'GIUSEPPE',
-            'ZEDDE',
+            'GIANLUIGI',
+            'DONNARUMMA',
             2016,
             123456,
             'FONDAMENTI DI PROGRAMMAZIONE 23',
@@ -42,14 +42,14 @@ class TestCarrieraLaureandoInformatica_ConBonus extends Test
     {
         parent::__construct('Func', array(
             123456,
-            'T. Ing. Informatica',
+            't-inf',
             '2019-04-01'
         ), array(
             177,
             174,
             '23.909',
-            'GIUSEPPE',
-            'ZEDDE',
+            'GIANLUIGI',
+            'DONNARUMMA',
             2016,
             123456,
             'FONDAMENTI DI PROGRAMMAZIONE 23',

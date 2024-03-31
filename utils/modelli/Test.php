@@ -22,16 +22,30 @@ class Test {
         ob_start();
         try {
             echo "Chiamata di '$this->FunzioneDaChiamare'" . PHP_EOL;
-            $out = call_user_func_array(get_class($this) . '::' . $this->FunzioneDaChiamare, $this->ParametriChiamata);
+            $out = call_user_func_array(
+                get_class($this) . '::' . $this->FunzioneDaChiamare, 
+                $this->ParametriChiamata);
             if ($out != $this->RisultatoCorretto) {
                 $ret = false;
                 echo "Risultato scorretto." . PHP_EOL;
-                echo "\tOttenuto: " . json_encode($out, JSON_PRETTY_PRINT) . PHP_EOL; 
-                echo "\tAtteso: " . json_encode($this->RisultatoCorretto, JSON_PRETTY_PRINT) . PHP_EOL; 
+                if (isset($out)) {
+                    echo 
+                        "\tOttenuto: " . PHP_EOL . 
+                        str_replace(PHP_EOL, PHP_EOL . "\t", json_encode($out, JSON_PRETTY_PRINT)) . PHP_EOL; 
+                } else {
+                    echo "\tOttenuto: null" . PHP_EOL; 
+                }
+                if (isset($this->RisultatoCorretto)) {
+                    echo 
+                        "\tAtteso: " . PHP_EOL . 
+                        str_replace(PHP_EOL, PHP_EOL . "\t", json_encode($this->RisultatoCorretto, JSON_PRETTY_PRINT)) . PHP_EOL; 
+                } else {
+                    echo "\tAtteso: null" . PHP_EOL; 
+                }
             }
         } catch (Exception|Error $ex) {
-            echo "\nErrore: " . $ex->getMessage() . PHP_EOL;
-            echo "\n\tErrore: " . $ex->getTraceAsString() . PHP_EOL;
+            echo PHP_EOL . "Errore: " . $ex->getMessage() . PHP_EOL . PHP_EOL;
+            echo "\tStackTrace: " . $ex->getTraceAsString() . PHP_EOL;
             $ret = false;
         }
         $out = ob_get_clean();

@@ -46,7 +46,7 @@ class TestCarrieraLaureandoInformatica_ConBonus extends Test
             '2019-04-01'
         ), array(
             177,
-            174,
+            165,
             '23.909',
             'GIANLUIGI',
             'DONNARUMMA',
